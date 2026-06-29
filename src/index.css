@@ -58,10 +58,6 @@
   --header-height: 80px;
   --content-width: 1200px;
   --reading-width: 760px;
-
-  /* Motion */
-  --transition-fast: 150ms ease;
-  --transition-base: 220ms ease;
 }
 
 body {
@@ -73,6 +69,12 @@ body {
   font-family: var(--font-heading);
 }
 
-.body-font {
-  font-family: var(--font-body);
+.hero-image {
+  mask-image: radial-gradient(ellipse at center, black 70%, transparent 100%);
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 70%,
+    transparent 100%
+  );
 }

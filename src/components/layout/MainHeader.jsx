@@ -16,7 +16,7 @@ export default function MainHeader() {
           </p>
         </div>
       </NavLink>
-      <nav>
+      <nav className="hidden md:flex">
         <ul className="flex items-center gap-4">
           <li>
             <NavLink
