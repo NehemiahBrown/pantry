@@ -2,6 +2,10 @@ import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { Plus } from "lucide-react";
 import { Search } from "lucide-react";
+import { Link } from "lucide-react";
+import { PenLine } from "lucide-react";
+import { Utensils } from "lucide-react";
+
 import personOne from "../assets/images/person1.jpg";
 import personTwo from "../assets/images/person2.jpg";
 import personThree from "../assets/images/person3.jpg";
@@ -51,7 +55,7 @@ export default function Landing() {
         </div>
       </header>
       <main className="flex-1 flex-col">
-        <section className="flex flex-col px-8 py-48 bg-[var(--background-soft)]">
+        <section className="flex flex-col px-8 md:px-15 lg:px-20 xl:px-25 py-30 bg-[var(--background-soft)]">
           <div className="flex gap-8 items-center mx-auto max-w-4/5">
             <div>
               <div>
@@ -159,7 +163,7 @@ export default function Landing() {
                   <hr className="flex-1 text-[var(--accent-soft)]" />
                 </div>
                 <div className="mt-2 w-12 h-12 rounded-md bg-[var(--dessert)]/30 flex items-center justify-center">
-                  <Search
+                  <Link
                     size={24}
                     className="text-[var(--dessert)]"
                     strokeWidth={1.75}
@@ -182,7 +186,7 @@ export default function Landing() {
                   <hr className="flex-1 text-[var(--accent-soft)]" />
                 </div>
                 <div className="mt-2 w-12 h-12 rounded-md bg-[var(--dinner)]/30 flex items-center justify-center">
-                  <Search
+                  <PenLine
                     size={24}
                     className="text-[var(--dinner)]"
                     strokeWidth={1.75}
@@ -205,18 +209,20 @@ export default function Landing() {
                   <hr className="flex-1 text-[var(--accent-soft)]" />
                 </div>
                 <div className="mt-2 w-12 h-12 rounded-md bg-[var(--lunch)]/30 flex items-center justify-center">
-                  <Search
+                  <Utensils
                     size={24}
                     className="text-[var(--lunch)]"
                     strokeWidth={1.75}
                   />
                 </div>
                 <div className="mt-4">
-                  <p className="heading-font text-xl">Discover recipes</p>
+                  <p className="heading-font text-xl">
+                    Cook without distractions
+                  </p>
                   <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
-                    Browse thousands of curated recipes organised by Breakfast,
-                    Lunch, Dinner, Dessert and Snacks. Search by ingredient or
-                    cuisine.
+                    Hit Start Cooking and enter a focused, step-by-step mode.
+                    One instruction at a time, large text, and no UI to get in
+                    the way.
                   </p>
                 </div>
               </div>
