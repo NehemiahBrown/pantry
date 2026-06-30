@@ -53,6 +53,7 @@
   --shadow-sm: 0 2px 8px rgba(74, 55, 40, 0.06);
   --shadow-md: 0 8px 24px rgba(74, 55, 40, 0.1);
   --shadow-lg: 0 18px 45px rgba(74, 55, 40, 0.14);
+  --shadow-bottom: 0 4px 8px rgba(74, 55, 40, 0.08);
 
   /* Layout */
   --header-height: 80px;

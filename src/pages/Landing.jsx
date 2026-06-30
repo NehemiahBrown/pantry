@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { Plus } from "lucide-react";
+import { Search } from "lucide-react";
 import personOne from "../assets/images/person1.jpg";
 import personTwo from "../assets/images/person2.jpg";
 import personThree from "../assets/images/person3.jpg";
@@ -12,7 +13,7 @@ export default function Landing() {
     "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface-muted)] transition-colors duration-150";
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="flex p-4 items-center justify-between bg-[var(--background)]">
+      <header className="sticky top-0 z-50 flex p-4 items-center justify-between bg-[var(--background)] shadow-[var(--shadow-bottom)]">
         <NavLink to="/">
           <div className="flex items-center gap-2 cursor-pointer">
             <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
@@ -55,7 +56,7 @@ export default function Landing() {
             <div>
               <div>
                 <h1 className="heading-font font-medium text-5xl">
-                  The cookbook that lives with{" "}
+                  The cookbook that lives with&nbsp;
                   <span className="text-[var(--accent)] font-extralight body-font italic">
                     you.
                   </span>
@@ -99,10 +100,10 @@ export default function Landing() {
                   alt="Smiling reviewer."
                 />
                 <p className="text-sm ml-2 text-[var(--text-muted)]">
-                  Loved by{" "}
+                  Loved by
                   <span className="text-[var(--primary)] font-bold">
                     4,200+
-                  </span>{" "}
+                  </span>
                   home cooks and counting.
                 </p>
               </div>
@@ -112,20 +113,113 @@ export default function Landing() {
             </div>
           </div>
         </section>
-        <section className="bg-[var(--background)]" id="features">
-          <div className="px-8 py-24">
-            <div className="flex flex-col gap-2">
+        <section
+          className="px-10 md:px-20 lg:px-25 xl:px-30 py-24 bg-[var(--background)]"
+          id="features"
+        >
+          <div className="">
+            <div className="flex flex-col">
               <p className="text-[var(--accent)]">SIMPLE BY DESIGN</p>
-              <h2 className="text-4xl heading-font max-w-md">
-                Everything you need,{" "}
-                <span className="font-extralight text-[var(--primary-light)] italic">
+              <h2 className="mt-4 text-5xl heading-font max-w-lg">
+                Everything you need,&nbsp;
+                <span className="block font-extralight text-[var(--primary-light)] italic">
                   nothing you don't.
                 </span>
               </h2>
-              <p className="max-w-lg">
+              <p className="mt-4 max-w-lg text-[var(--text-muted)]">
                 Pantry strips away the clutter. Four things — done exceptionally
-                well.{" "}
+                well.
               </p>
+            </div>
+            <div className=" mt-16 max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-6">
+              <div className="group px-6 py-8 bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+                <div className="gap-2 flex items-center">
+                  <p className="heading-font text-[var(--accent)]">01</p>
+                  <hr className="flex-1 text-[var(--accent-soft)]" />
+                </div>
+                <div className="mt-2 w-12 h-12 rounded-md bg-[var(--breakfast)]/30 flex items-center justify-center">
+                  <Search
+                    size={24}
+                    className="text-[var(--breakfast)]"
+                    strokeWidth={1.75}
+                  />
+                </div>
+                <div className="mt-4">
+                  <p className="heading-font text-xl">Discover recipes</p>
+                  <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
+                    Browse thousands of curated recipes organised by Breakfast,
+                    Lunch, Dinner, Dessert and Snacks. Search by ingredient or
+                    cuisine.
+                  </p>
+                </div>
+              </div>
+              <div className="group  px-6 py-8 bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+                <div className="gap-2 flex items-center">
+                  <p className="heading-font text-[var(--accent)]">02</p>
+                  <hr className="flex-1 text-[var(--accent-soft)]" />
+                </div>
+                <div className="mt-2 w-12 h-12 rounded-md bg-[var(--dessert)]/30 flex items-center justify-center">
+                  <Search
+                    size={24}
+                    className="text-[var(--dessert)]"
+                    strokeWidth={1.75}
+                  />
+                </div>
+                <div className="mt-4">
+                  <p className="heading-font text-xl">
+                    Save links from the web
+                  </p>
+                  <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
+                    Found a recipe on Serious Eats or Half Baked Harvest? Save
+                    the link with your own notes and category — all in one
+                    place.
+                  </p>
+                </div>
+              </div>
+              <div className="group  px-6 py-8 bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+                <div className="gap-2 flex items-center">
+                  <p className="heading-font text-[var(--accent)]">03</p>
+                  <hr className="flex-1 text-[var(--accent-soft)]" />
+                </div>
+                <div className="mt-2 w-12 h-12 rounded-md bg-[var(--dinner)]/30 flex items-center justify-center">
+                  <Search
+                    size={24}
+                    className="text-[var(--dinner)]"
+                    strokeWidth={1.75}
+                  />
+                </div>
+                <div className="mt-4">
+                  <p className="heading-font text-xl">
+                    Create your own recipes
+                  </p>
+                  <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
+                    Write recipes from scratch with ingredients, step-by-step
+                    instructions, prep times, and personal notes. Your family
+                    recipes, finally preserved.
+                  </p>
+                </div>
+              </div>
+              <div className="group  px-6 py-8 bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+                <div className="gap-2 flex items-center">
+                  <p className="heading-font text-[var(--accent)]">04</p>
+                  <hr className="flex-1 text-[var(--accent-soft)]" />
+                </div>
+                <div className="mt-2 w-12 h-12 rounded-md bg-[var(--lunch)]/30 flex items-center justify-center">
+                  <Search
+                    size={24}
+                    className="text-[var(--lunch)]"
+                    strokeWidth={1.75}
+                  />
+                </div>
+                <div className="mt-4">
+                  <p className="heading-font text-xl">Discover recipes</p>
+                  <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
+                    Browse thousands of curated recipes organised by Breakfast,
+                    Lunch, Dinner, Dessert and Snacks. Search by ingredient or
+                    cuisine.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
