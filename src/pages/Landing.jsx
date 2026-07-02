@@ -1,3 +1,5 @@
+import {useEffect} from "react"
+
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { Plus } from "lucide-react";
@@ -16,8 +18,17 @@ import chickenCard from "../assets/images/chickencard.png";
 import recipeCard from "../assets/images/recipecard.png";
 import webRecipeCard1 from "../assets/images/weblinkrecipe1.png";
 import webRecipeCard2 from "../assets/images/weblinkrecipe2.png";
+import facebookIcon from "../assets/images/facebook-icon.svg";
+import linkedinIcon from "../assets/images/linkedin-icon.svg";
+import githubIcon from "../assets/images/github-icon.svg";
+
+
 
 export default function Landing() {
+    useEffect(() => {
+      document.title = "Pantry"
+    }, [])
+
   const navLinkStyle =
     "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface-muted)] transition-colors duration-150";
   return (
@@ -434,7 +445,40 @@ export default function Landing() {
           </div>
         </section>
       </main>
-      <footer className=""></footer>
+      <footer className="px-8 py-8 bg-[var(--background-soft)]">
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col gap-2">
+            <div className="flex gap-2 items-center">
+            <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
+              <p className="heading-font text-[var(--text-primary)] text-xl">
+                  Pantry
+              </p>
+              </div>
+              <div>
+                <p className="mt-2 font-body max-w-lg">A warm, personal cookbook for the way you actually cook. Discover, save, and create — all in one beautiful place.</p>
+              </div> 
+          </div>
+          
+          <div className="flex">
+            <img src={facebookIcon}/>
+            <img src={linkedinIcon}/>
+            <img src={githubIcon}/>
+          </div>
+        </div>
+        <hr className="my-8 border-0 h-px mx-auto w-full lg:w-full bg-[var(--divider)]" />
+    <div className="flex justify-between">
+      <div>
+        <p>© 2026 Pantry. Made with care for home cooks everywhere.</p>
+      </div>
+      <div>
+        <ul className="flex">
+          <li>Privacy</li>
+          <li>Terms</li>
+          <li>API</li>
+        </ul>
+      </div>
+    </div>
+      </footer>
     </div>
   );
 }
