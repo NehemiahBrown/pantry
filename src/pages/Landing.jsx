@@ -23,14 +23,12 @@ export default function Landing() {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-50 flex p-4 items-center justify-between bg-[var(--background)] shadow-[var(--shadow-bottom)]">
-        <NavLink to="/">
-          <div className="flex items-center gap-2 cursor-pointer">
-            <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
-            <p className="heading-font text-[var(--text-primary)] text-2xl">
-              Pantry
-            </p>
-          </div>
-        </NavLink>
+        <div className="flex items-center gap-2 cursor-pointer">
+          <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
+          <p className="heading-font text-[var(--text-primary)] text-2xl">
+            <a href="#landing">Pantry</a>
+          </p>
+        </div>
         <nav className="hidden md:flex">
           <ul className="flex items-center gap-4">
             <li>
@@ -59,8 +57,11 @@ export default function Landing() {
           </button>
         </div>
       </header>
-      <main className="flex-1 flex-col">
-        <section className="flex flex-col px-8 xl:px-25 2xl:px-60 py-30 bg-[var(--background-soft)]">
+      <main className="flex flex-1 flex-col">
+        <section
+          id="landing"
+          className="flex flex-col px-8 xl:px-25 2xl:px-60 py-30 bg-[var(--background-soft)]"
+        >
           <div className="flex gap-8 items-center mx-auto max-w-4/5">
             <div className="max-w-150">
               <div>
@@ -80,12 +81,12 @@ export default function Landing() {
                 <button className="flex items-center gap-1 text-nowrap text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-5 py-2.5 text-md font-medium hover:brightness-90 hover:shadow-[var(--shadow-md)] cursor-pointer transition-all duration-200">
                   <Plus size={16} /> Start for free
                 </button>
-                <button
-                  href="#features"
+                <a
+                  href="#how-it-works"
                   className="border border-[var(--surface-muted)] bg-[var(--surface)] rounded-full px-5 py-3.5 text-nowrap text-md font-medium hover:border-[var(--primary-light)] hover:bg-[var(--background-soft)] cursor-pointer transition-colors duration-220"
                 >
                   See how it works
-                </button>
+                </a>
               </div>
               <div className="flex mt-12 items-center">
                 <img
