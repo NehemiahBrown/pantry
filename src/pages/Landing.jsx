@@ -18,11 +18,6 @@ import chickenCard from "../assets/images/chickencard.png";
 import recipeCard from "../assets/images/recipecard.png";
 import webRecipeCard1 from "../assets/images/weblinkrecipe1.png";
 import webRecipeCard2 from "../assets/images/weblinkrecipe2.png";
-import facebookIcon from "../assets/images/facebook-icon.svg";
-import linkedinIcon from "../assets/images/linkedin-icon.svg";
-import githubIcon from "../assets/images/github-icon.svg";
-
-
 
 export default function Landing() {
     useEffect(() => {
@@ -60,12 +55,12 @@ export default function Landing() {
           </ul>
         </nav>
         <div className="flex items-center gap-4">
-          <div className="border border-[var(--surface-muted)] rounded-full py-1.5 px-2 hover:border-[var(--primary-light)] cursor-pointer transition-colors duration-150">
+          <NavLink to="/log-in" className="border border-[var(--surface-muted)] rounded-full py-1.5 px-2 hover:border-[var(--primary-light)] cursor-pointer transition-colors duration-150">
             Sign In
-          </div>
-          <button className="flex items-center gap-1 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer">
+          </NavLink>
+          <NavLink to="/sign-up" className="flex items-center gap-1 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer">
             Build Your Pantry <ChevronRight size={14} />
-          </button>
+          </NavLink>
         </div>
       </header>
       <main className="flex flex-1 flex-col">
@@ -293,7 +288,7 @@ export default function Landing() {
             <div className="hidden lg:block">
               <img className="w-100 h-90 rounded-lg" src={recipeCard} alt="" />
             </div>
-            <div className="">
+            <div>
               <p className="text-[var(--accent)]">COOK MODE</p>
               <h2 className="mt-4 text-5xl heading-font max-w-lg">
                 Your phone stays clean. Your hands do too.
@@ -445,40 +440,7 @@ export default function Landing() {
           </div>
         </section>
       </main>
-      <footer className="px-8 py-8 bg-[var(--background-soft)]">
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col gap-2">
-            <div className="flex gap-2 items-center">
-            <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
-              <p className="heading-font text-[var(--text-primary)] text-xl">
-                  Pantry
-              </p>
-              </div>
-              <div>
-                <p className="mt-2 font-body max-w-lg">A warm, personal cookbook for the way you actually cook. Discover, save, and create — all in one beautiful place.</p>
-              </div> 
-          </div>
-          
-          <div className="flex">
-            <img src={facebookIcon}/>
-            <img src={linkedinIcon}/>
-            <img src={githubIcon}/>
-          </div>
-        </div>
-        <hr className="my-8 border-0 h-px mx-auto w-full lg:w-full bg-[var(--divider)]" />
-    <div className="flex justify-between">
-      <div>
-        <p>© 2026 Pantry. Made with care for home cooks everywhere.</p>
-      </div>
-      <div>
-        <ul className="flex">
-          <li>Privacy</li>
-          <li>Terms</li>
-          <li>API</li>
-        </ul>
-      </div>
-    </div>
-      </footer>
+      
     </div>
   );
 }
