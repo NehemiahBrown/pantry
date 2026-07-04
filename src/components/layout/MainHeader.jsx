@@ -20,10 +20,11 @@ export default function MainHeader() {
         <ul className="flex items-center gap-4">
           <li>
             <NavLink
+            end
               className={({ isActive }) =>
                 isActive ? activeLink : navLinkStyle
               }
-              to="/discover"
+              to="/app"
             >
               Discover
             </NavLink>
@@ -33,7 +34,7 @@ export default function MainHeader() {
               className={({ isActive }) =>
                 isActive ? activeLink : navLinkStyle
               }
-              to="/my-recipes"
+              to="/app/my-recipes"
             >
               My Recipes
             </NavLink>
@@ -43,7 +44,7 @@ export default function MainHeader() {
               className={({ isActive }) =>
                 isActive ? activeLink : navLinkStyle
               }
-              to="/saved-recipes"
+              to="/app/saved-recipes"
             >
               Saved Recipes
             </NavLink>

@@ -22,7 +22,7 @@ export default function App() {
           <Route path={"log-in"} element={<LogIn />}/>
         </Route>
 
-        <Route path={"/app"} element={<RootLayout />}>
+        <Route path="/app" element={<RootLayout />}>
           <Route index element={<Discover />}/>
           <Route path="my-recipes" element={<MyRecipes />}/>
           <Route path="saved-recipes" element={<SavedRecipes />}/>
