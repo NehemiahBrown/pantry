@@ -4,7 +4,7 @@ import githubIcon from "../../assets/images/github-icon.svg";
 
 export default function PublicFooter(){
     return (
-        <footer className="px-12 py-8 bg-[var(--background-soft)]">
+        <footer className="px-12 py-8 bg-[var(--background)]">
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-2">
             <div className="flex gap-2 items-center">

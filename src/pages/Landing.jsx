@@ -385,7 +385,7 @@ export default function Landing() {
               <p className="mt-2 font-body">
                 "I've tried every recipe app out there. Pantry is the first one
                 that actually feels designed for someone who loves cooking, not
-                just collecting recipes."
+                just collecting recipes."</p>
                 <div className="mt-4 flex items-center gap-3">
                   <img
                     className="w-10 h-10 rounded-full"
@@ -397,7 +397,7 @@ export default function Landing() {
                     <p>Weekend chef · London</p>
                   </div>
                 </div>
-              </p>
+              
             </div>
             <div className=" flex-1 min-w-[300px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <p className="text-[#FFD700] tracking-widest text-sm">★★★★★</p>

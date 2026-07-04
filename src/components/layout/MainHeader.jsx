@@ -8,7 +8,7 @@ export default function MainHeader() {
     "p-2 rounded-full cursor-pointer text-[var(--primary)] bg-[var(--background)]";
   return (
     <div className="flex p-4 items-center justify-between">
-      <NavLink to="/">
+      <NavLink to="/app">
         <div className="flex items-center gap-2 cursor-pointer">
           <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
           <p className="heading-font text-[var(--text-primary)] text-2xl">
