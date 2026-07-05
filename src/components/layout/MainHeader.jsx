@@ -5,9 +5,9 @@ export default function MainHeader() {
   const navLinkStyle =
     "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface-muted)] transition-colors duration-150";
   const activeLink =
-    "p-2 rounded-full cursor-pointer text-[var(--primary)] bg-[var(--background)]";
+    "py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)]";
   return (
-    <div className="flex p-4 items-center justify-between">
+    <header className="flex p-4 bg-[var(--background-soft)] items-center justify-between">
       <NavLink to="/app">
         <div className="flex items-center gap-2 cursor-pointer">
           <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
@@ -59,6 +59,6 @@ export default function MainHeader() {
           NB
         </div>
       </div>
-    </div>
+    </header>
   );
 }
