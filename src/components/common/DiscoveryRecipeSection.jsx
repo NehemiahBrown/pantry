@@ -1,0 +1,50 @@
+import { ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+import RecipeOptions from "./RecipeOptions";
+
+export default function DiscoverRecipeSection({
+  title,
+  mealTypeIcon,
+  meals,
+  recipesShown,
+  setRecipesShown,
+  nextRecipes,
+  shownRecipes,
+  prevRecipes,
+}) {
+  const MealTypeIcon = mealTypeIcon;
+  return (
+    <section>
+      <div className="px-8 mt-16 flex items-center gap-4">
+        <hr className="flex-1 border border-0 h-px bg-[var(--divider)] " />
+        <p className="flex gap-2 items-center body-font text-center text-3xl text-[var(--primary-light)]">
+          <MealTypeIcon /> {title}
+        </p>
+        <hr className="flex-1 border border-0 h-px bg-[var(--divider)]" />
+      </div>
+      <div className="flex w-full mt-10 justify-center items-center gap-4">
+        <ArrowLeft
+          className="w-12 h-12 rounded-full bg-[var(--surface)] border border-[var(--border)] shadow-[var(--shadow-sm)] flex items-center justify-center hover:bg-[var(--accent)] hover:text-white hover:shadow-[var(--shadow-md)] transition-all duration-200 active:scale-95 cursor-pointer"
+          onClick={() => prevRecipes(recipesShown, setRecipesShown)}
+        />
+        <div className="flex px-8 gap-10">
+          {meals
+            .slice(recipesShown, recipesShown + shownRecipes)
+            .map((meal) => (
+              <RecipeOptions
+                key={meal.id}
+                recipeName={meal.recipeName}
+                recipeImage={meal.recipeImage}
+                mealTypeIcon={mealTypeIcon}
+              />
+            ))}
+        </div>
+        <ArrowRight
+          className="w-12 h-12 rounded-full bg-[var(--surface)] border border-[var(--border)] shadow-[var(--shadow-sm)] flex items-center justify-center hover:bg-[var(--accent)] hover:text-white hover:shadow-[var(--shadow-md)] transition-all duration-200 active:scale-95 cursor-pointer"
+          onClick={() => nextRecipes(meals, recipesShown, setRecipesShown)}
+        />
+      </div>
+    </section>
+  );
+}

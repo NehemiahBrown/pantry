@@ -1,60 +1,188 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { EggFried } from "lucide-react";
+import { Fish } from "lucide-react";
+import { LineSquiggle } from "lucide-react";
+import { Drumstick } from "lucide-react";
+import { CakeSlice } from "lucide-react";
 
-
-
+import DiscoveryRecipeSection from "../components/common/DiscoveryRecipeSection.jsx";
 
 export default function Discover() {
+  const [vegetarianMeals, setVegetarianMeals] = useState([]);
+  const [seafoodMeals, setSeafoodMeals] = useState([]);
+  const [pastaMeals, setPastaMeals] = useState([]);
+  const [chickenMeals, setChickenMeals] = useState([]);
+  const [dessertMeals, setDessertMeals] = useState([]);
 
-  async function getBreakfast(){
-    const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast";
+  const [vegetarianRecipesShown, setVegetarianRecipesShown] = useState(0);
+  const [seafoodRecipesShown, setSeafoodRecipesShown] = useState(0);
+  const [pastaRecipesShown, setPastaRecipesShown] = useState(0);
+  const [chickenRecipesShown, setChickenRecipesShown] = useState(0);
+  const [dessertRecipesShown, setDessertRecipesShown] = useState(0);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [shownRecipes, setShownRecipes] = useState(
+    window.innerWidth <= 1100 ? 1 : window.innerWidth <= 1700 ? 3 : 5,
+  );
+
+  // Checking the window size to determine how many recipes should show
+  useEffect(() => {
+    if (windowWidth <= 1100) {
+      setShownRecipes(1);
+    } else if (windowWidth <= 1700) {
+      setShownRecipes(3);
+    } else {
+      setShownRecipes(5);
+    }
+  }, [windowWidth]);
+
+  useEffect(() => {
+    const checkWindowSize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", checkWindowSize);
+    return () => window.removeEventListener("resize", checkWindowSize);
+  }, []);
+
+  // getting different categories of meals from api to display
+  async function getMeals(mealType, setMealType) {
+    const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${mealType}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
-  
+
       const result = await response.json();
       console.log(result);
+
+      const foodObject = result.meals.map((meal) => createFoodObject(meal));
+      setMealType(foodObject);
     } catch (error) {
       console.error(error.message);
     }
+  }
+
+  //functions for arrows to allow users to view all recipes
+  function nextRecipes(mealType, mealTypeShown, setMealTypeShown) {
+    if (mealTypeShown < mealType.length - shownRecipes) {
+      setMealTypeShown(mealTypeShown + shownRecipes);
+    } else {
+      return;
     }
-getBreakfast()
+  }
 
-  return(
-    <main className="px-8">
-      <section className="flex flex-col gap-8 py-8">
-      <div className="flex flex-col gap-6 xl:gap-8 justify-center items-center mt-24">
-        <p className="heading-font text-md sm:text-lg md:text-xl xl:text-2xl text-[var(--accent)]">DISCOVER · CREATE · COOK </p>
-        <div>
-          <h1 className="heading-font text-center text-3xl md:text-5xl xl:text-7xl">What are you cooking today?</h1>
-          <p className="mt-2 text-center text-md md:text-lg xl:text-xl text-[var(--text-muted)]">Discover hundreds of delicious recipes.</p>
+  function prevRecipes(mealTypeShown, setMealTypeShown) {
+    if (mealTypeShown < shownRecipes) {
+      return;
+    } else {
+      setMealTypeShown(mealTypeShown - shownRecipes);
+    }
+  }
+  // calling my different meal categories functions
+  useEffect(() => {
+    getMeals("Vegetarian", setVegetarianMeals);
+    getMeals("Seafood", setSeafoodMeals);
+    getMeals("Pasta", setPastaMeals);
+    getMeals("Chicken", setChickenMeals);
+    getMeals("Dessert", setDessertMeals);
+  }, []);
+
+  //creating an easy food object to grab data from
+  function createFoodObject(foodData) {
+    return {
+      id: foodData.idMeal,
+      recipeName: foodData.strMeal,
+      recipeImage: foodData.strMealThumb,
+    };
+  }
+
+  return (
+    <main className="py-16 px-8">
+      <section className="flex flex-col gap-8 pb-8">
+        <div className="flex flex-col gap-6 xl:gap-8 justify-center items-center mt-24">
+          <p className="heading-font text-md sm:text-lg md:text-xl xl:text-2xl text-[var(--accent)]">
+            DISCOVER · CREATE · COOK
+          </p>
+          <div>
+            <h1 className="heading-font text-center text-3xl md:text-5xl xl:text-7xl">
+              What are you cooking today?
+            </h1>
+            <p className="mt-2 text-center text-md md:text-lg xl:text-xl text-[var(--text-muted)]">
+              Discover hundreds of delicious recipes.
+            </p>
+          </div>
         </div>
-      </div>
-      <form>
-        <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
-          <Search size={24} className="left-4 absolute top-1/2 -translate-y-1/2"/>
-          <input type="search" className="w-full pl-12 pr-12 border border-[var(--border)] rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200" placeholder="Search recipes, ingredients, cuisines..."/>
-          <button type="submit" className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2">Search</button>
-        </div>
-      </form>
-    </section>
+        <form>
+          <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
+            <Search
+              size={24}
+              className="left-4 absolute top-1/2 -translate-y-1/2"
+            />
+            <input
+              type="search"
+              className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+              placeholder="Search recipes, ingredients, cuisines..."
+            />
+            <button
+              type="submit"
+              className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+      </section>
 
-    <div>
-    <section>
-      <div className="px-8 mt-16 flex items-center gap-4">
-          <hr className="flex-1 border border-0 h-px bg-[var(--divider)] "/>
-          <p className="flex gap-2 items-center body-font text-center text-xl text-[var(--primary-light)]"> <EggFried /> Breakfast</p>
-          <hr className="flex-1 border border-0 h-px bg-[var(--divider)]"/>
-      </div>
-      <div>
-
-      </div>
-    </section>
-    </div>
-
+      <DiscoveryRecipeSection
+        title="Pasta"
+        meals={pastaMeals}
+        mealTypeIcon={LineSquiggle}
+        recipesShown={pastaRecipesShown}
+        setRecipesShown={setPastaRecipesShown}
+        shownRecipes={shownRecipes}
+        nextRecipes={nextRecipes}
+        prevRecipes={prevRecipes}
+      />
+      <DiscoveryRecipeSection
+        title="Seafood"
+        meals={seafoodMeals}
+        mealTypeIcon={Fish}
+        recipesShown={seafoodRecipesShown}
+        setRecipesShown={setSeafoodRecipesShown}
+        shownRecipes={shownRecipes}
+        nextRecipes={nextRecipes}
+        prevRecipes={prevRecipes}
+      />
+      <DiscoveryRecipeSection
+        title="Chicken"
+        meals={chickenMeals}
+        mealTypeIcon={Drumstick}
+        recipesShown={chickenRecipesShown}
+        setRecipesShown={setChickenRecipesShown}
+        shownRecipes={shownRecipes}
+        nextRecipes={nextRecipes}
+        prevRecipes={prevRecipes}
+      />
+      <DiscoveryRecipeSection
+        title="Vegetarian"
+        meals={vegetarianMeals}
+        mealTypeIcon={EggFried}
+        recipesShown={vegetarianRecipesShown}
+        setRecipesShown={setVegetarianRecipesShown}
+        shownRecipes={shownRecipes}
+        nextRecipes={nextRecipes}
+        prevRecipes={prevRecipes}
+      />
+      <DiscoveryRecipeSection
+        title="Dessert"
+        meals={dessertMeals}
+        mealTypeIcon={CakeSlice}
+        recipesShown={dessertRecipesShown}
+        setRecipesShown={setDessertRecipesShown}
+        shownRecipes={shownRecipes}
+        nextRecipes={nextRecipes}
+        prevRecipes={prevRecipes}
+      />
     </main>
-  ) 
+  );
 }
