@@ -6,6 +6,9 @@ import { LineSquiggle } from "lucide-react";
 import { Drumstick } from "lucide-react";
 import { CakeSlice } from "lucide-react";
 
+import basil from "../assets/images/basil-leaf.jpg";
+import spices from "../assets/images/spices.png";
+
 import DiscoveryRecipeSection from "../components/common/DiscoveryRecipeSection.jsx";
 
 export default function Discover() {
@@ -53,7 +56,6 @@ export default function Discover() {
       }
 
       const result = await response.json();
-      console.log(result);
 
       const foodObject = result.meals.map((meal) => createFoodObject(meal));
       setMealType(foodObject);
@@ -61,8 +63,6 @@ export default function Discover() {
       console.error(error.message);
     }
   }
-
-  function viewRecipe() {}
 
   //functions for arrows to allow users to view all recipes
   function nextRecipes(mealType, mealTypeShown, setMealTypeShown) {
@@ -100,8 +100,18 @@ export default function Discover() {
 
   return (
     <main className="py-16 px-8">
-      <section className="flex flex-col gap-8 pb-8">
-        <div className="flex flex-col gap-6 xl:gap-8 justify-center items-center mt-24">
+      <section className="relative flex flex-col gap-8 pb-8">
+        <div className="pointer-events-none overflow-hidden">
+          <img
+            src={basil}
+            className="z-[1] absolute top-0 right-0 w-70 md:w-80 lg:w-96 xl:w-110 translate-x-30 -translate-y-33 opacity-80 -rotate-12"
+          />
+          <img
+            src={spices}
+            className="z-[1] absolute top-0 left-0 w-70 md:w-80 lg:w-96 xl:w-110 -translate-x-40 -translate-y-20 opacity-80 -rotate-12"
+          />
+        </div>
+        <div className="flex flex-col gap-6 xl:gap-8 justify-center items-center mt-18">
           <p className="heading-font text-md sm:text-lg md:text-xl xl:text-2xl text-[var(--accent)]">
             DISCOVER · CREATE · COOK
           </p>

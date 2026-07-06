@@ -6,17 +6,13 @@ export default function RootLayout() {
   return (
     <>
       <div className="min-h-screen flex flex-col">
-        <header className="">
-          <MainHeader />
-        </header>
+        <MainHeader />
 
         <main className="flex-1 bg-[var(--background)]">
           <Outlet />
         </main>
 
-        <footer className="">
-          <MainFooter />
-        </footer>
+        <MainFooter />
       </div>
     </>
   );

@@ -65,7 +65,7 @@ export default function RecipeOptions({
         </div>
         <div className="flex flex-col flex-1 p-2 rounded-b-lg bg-[var(--background-soft)]">
           <p className="flex items-center gap-2 min-h-[60px] heading-font">
-            <MealTypeIcon className="shrink-0" size={20} />{" "}
+            <MealTypeIcon className="shrink-0 text-[var(--accent)]" size={20} />
             <span className="text-xl">{recipeName}</span>
           </p>
           <button
