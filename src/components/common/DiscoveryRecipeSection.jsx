@@ -34,6 +34,7 @@ export default function DiscoverRecipeSection({
             .map((meal) => (
               <RecipeOptions
                 key={meal.id}
+                id={meal.id}
                 recipeName={meal.recipeName}
                 recipeImage={meal.recipeImage}
                 mealTypeIcon={mealTypeIcon}

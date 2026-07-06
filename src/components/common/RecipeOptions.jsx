@@ -1,16 +1,48 @@
 import { useState } from "react";
 import { Heart } from "lucide-react";
 import { ExternalLink } from "lucide-react";
+import Toast from "./Toast";
 
 export default function RecipeOptions({
   recipeImage,
   recipeName,
   mealTypeIcon,
+  id,
 }) {
+  const [toastText, setToastText] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
   const [savedHeart, setSavedHeart] = useState(false);
   const MealTypeIcon = mealTypeIcon;
+
   function toggleSavedHeart() {
     setSavedHeart((current) => !current);
+  }
+  async function viewRecipe(recipeId) {
+    try {
+      const response = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`,
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const sourceUrl = data.meals[0].strSource;
+      const videoLink = data.meals[0].strYoutube;
+
+      sourceUrl
+        ? window.open(sourceUrl, "_blank")
+        : videoLink
+          ? window.open(videoLink, "_blank")
+          : (setToastText("No recipe source available."), setShowToast(true));
+      setTimeout(() => {
+        setShowToast(false);
+      }, 2900);
+    } catch (error) {
+      console.error("Fetch operation failed:", error);
+    }
   }
   return (
     <>
@@ -36,11 +68,15 @@ export default function RecipeOptions({
             <MealTypeIcon className="shrink-0" size={20} />{" "}
             <span className="text-xl">{recipeName}</span>
           </p>
-          <button className="mt-auto flex rounded-lg text-[var(--surface)] items-center gap-2 px-4 py-2 w-full bg-[var(--accent)] cursor-pointer hover:brightness-90">
+          <button
+            onClick={() => viewRecipe(id)}
+            className="mt-auto flex rounded-lg text-[var(--surface)] items-center gap-2 px-4 py-2 w-full bg-[var(--accent)] cursor-pointer hover:brightness-90"
+          >
             View Recipe <ExternalLink size={20} />
           </button>
         </div>
       </div>
+      {showToast && <Toast toastText={toastText} />}
     </>
   );
 }

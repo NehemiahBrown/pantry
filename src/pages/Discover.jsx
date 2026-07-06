@@ -62,6 +62,8 @@ export default function Discover() {
     }
   }
 
+  function viewRecipe() {}
+
   //functions for arrows to allow users to view all recipes
   function nextRecipes(mealType, mealTypeShown, setMealTypeShown) {
     if (mealTypeShown < mealType.length - shownRecipes) {
