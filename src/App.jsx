@@ -11,21 +11,20 @@ import SavedRecipes from "./pages/SavedRecipes";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 
-
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/pantry">
       <Routes>
-        <Route element={<PublicLayout/>}>        
+        <Route element={<PublicLayout />}>
           <Route path="/" element={<Landing />} />
-          <Route path={"sign-up"} element={<SignUp />}/>
-          <Route path={"log-in"} element={<LogIn />}/>
+          <Route path={"sign-up"} element={<SignUp />} />
+          <Route path={"log-in"} element={<LogIn />} />
         </Route>
 
         <Route path="/app" element={<RootLayout />}>
-          <Route index element={<Discover />}/>
-          <Route path="my-recipes" element={<MyRecipes />}/>
-          <Route path="saved-recipes" element={<SavedRecipes />}/>
+          <Route index element={<Discover />} />
+          <Route path="my-recipes" element={<MyRecipes />} />
+          <Route path="saved-recipes" element={<SavedRecipes />} />
         </Route>
       </Routes>
     </BrowserRouter>
