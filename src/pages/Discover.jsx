@@ -108,7 +108,7 @@ export default function Discover() {
           />
           <img
             src={spices}
-            className="z-[1] absolute top-0 left-0 w-70 md:w-80 lg:w-96 xl:w-110 -translate-x-40 -translate-y-20 opacity-80 -rotate-12"
+            className="z-[1] absolute top-0 left-0 w-70 md:w-80 lg:w-96 xl:w-110 -translate-x-35 -translate-y-20 opacity-80 -rotate-12"
           />
         </div>
         <div className="flex flex-col gap-6 xl:gap-8 justify-center items-center mt-18">
