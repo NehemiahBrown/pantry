@@ -1,4 +1,4 @@
-import {useEffect} from "react"
+import { useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
@@ -20,9 +20,9 @@ import webRecipeCard1 from "../assets/images/weblinkrecipe1.png";
 import webRecipeCard2 from "../assets/images/weblinkrecipe2.png";
 
 export default function Landing() {
-    useEffect(() => {
-      document.title = "Pantry"
-    }, [])
+  useEffect(() => {
+    document.title = "Pantry";
+  }, []);
 
   const navLinkStyle =
     "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface-muted)] transition-colors duration-150";
@@ -55,10 +55,16 @@ export default function Landing() {
           </ul>
         </nav>
         <div className="flex items-center gap-4">
-          <NavLink to="/log-in" className="border border-[var(--surface-muted)] rounded-full py-1.5 px-2 hover:border-[var(--primary-light)] cursor-pointer transition-colors duration-150">
+          <NavLink
+            to="/log-in"
+            className="border border-[var(--surface-muted)] rounded-full py-1.5 px-2 hover:border-[var(--primary-light)] cursor-pointer transition-colors duration-150"
+          >
             Sign In
           </NavLink>
-          <NavLink to="/sign-up" className="flex items-center gap-1 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer">
+          <NavLink
+            to="/sign-up"
+            className="flex items-center gap-1 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer"
+          >
             Build Your Pantry <ChevronRight size={14} />
           </NavLink>
         </div>
@@ -66,7 +72,7 @@ export default function Landing() {
       <main className="flex flex-1 flex-col">
         <section
           id="landing"
-          className="flex flex-col px-8 xl:px-25 2xl:px-60 py-30 bg-[var(--background-soft)]"
+          className="flex flex-colpx-8 xl:px-25 2xl:px-60 py-30 bg-[var(--background-soft)]"
         >
           <div className="flex gap-8 items-center mx-auto max-w-4/5">
             <div className="max-w-150">
@@ -84,12 +90,12 @@ export default function Landing() {
                 </p>
               </div>
               <div className="flex gap-4 mt-6">
-                <button className="flex items-center gap-1 text-nowrap text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-5 py-2.5 text-md font-medium hover:brightness-90 hover:shadow-[var(--shadow-md)] cursor-pointer transition-all duration-200">
+                <button className="flex items-center gap-1 text-nowrap text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-5 py-2.5 text-sm md:text-md font-medium hover:brightness-90 hover:shadow-[var(--shadow-md)] cursor-pointer transition-all duration-200">
                   <Plus size={16} /> Start for free
                 </button>
                 <a
                   href="#how-it-works"
-                  className="border border-[var(--surface-muted)] bg-[var(--surface)] rounded-full px-5 py-3.5 text-nowrap text-md font-medium hover:border-[var(--primary-light)] hover:bg-[var(--background-soft)] cursor-pointer transition-colors duration-220"
+                  className="border border-[var(--surface-muted)] bg-[var(--surface)] rounded-full px-5 py-3.5 text-nowrap text-sm md:text-md font-medium hover:border-[var(--primary-light)] hover:bg-[var(--background-soft)] cursor-pointer transition-colors duration-220"
                 >
                   See how it works
                 </a>
@@ -385,19 +391,19 @@ export default function Landing() {
               <p className="mt-2 font-body">
                 "I've tried every recipe app out there. Pantry is the first one
                 that actually feels designed for someone who loves cooking, not
-                just collecting recipes."</p>
-                <div className="mt-4 flex items-center gap-3">
-                  <img
-                    className="w-10 h-10 rounded-full"
-                    src={personOne}
-                    alt="Smiling reviewer."
-                  />
-                  <div className="font-body">
-                    <p>Marcus P.</p>
-                    <p>Weekend chef · London</p>
-                  </div>
+                just collecting recipes."
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={personOne}
+                  alt="Smiling reviewer."
+                />
+                <div className="font-body">
+                  <p>Marcus P.</p>
+                  <p>Weekend chef · London</p>
                 </div>
-              
+              </div>
             </div>
             <div className=" flex-1 min-w-[300px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <p className="text-[#FFD700] tracking-widest text-sm">★★★★★</p>
@@ -440,7 +446,6 @@ export default function Landing() {
           </div>
         </section>
       </main>
-      
     </div>
   );
 }

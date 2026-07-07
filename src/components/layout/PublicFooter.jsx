@@ -2,41 +2,45 @@ import facebookIcon from "../../assets/images/facebook-icon.svg";
 import linkedinIcon from "../../assets/images/linkedin-icon.svg";
 import githubIcon from "../../assets/images/github-icon.svg";
 
-export default function PublicFooter(){
-    return (
-        <footer className="px-12 py-8 bg-[var(--background)]">
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col gap-2">
+export default function PublicFooter() {
+  return (
+    <footer className="px-4 sm:px-8 text-xs sm:text-sm py-8 bg-[var(--background)]">
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-2 max-w-[450px]">
+          <div className="flex justify-between">
             <div className="flex gap-2 items-center">
-            <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
+              <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
               <p className="heading-font text-[var(--text-primary)] text-xl">
-                  Pantry
+                Pantry
               </p>
-              </div>
-              <div>
-                <p className="mt-2 font-body max-w-lg">A warm, personal cookbook for the way you actually cook. Discover, save, and create — all in one beautiful place.</p>
-              </div> 
+            </div>
+            <div className="flex gap-2">
+              <img className="w-6 h-6" src={facebookIcon} />
+              <img className="w-6 h-6" src={linkedinIcon} />
+              <img className="w-6 h-6" src={githubIcon} />
+            </div>
           </div>
-          
-          <div className="flex gap-2">
-            <img className="w-6 h-6" src={facebookIcon}/>
-            <img className="w-6 h-6" src={linkedinIcon}/>
-            <img className="w-6 h-6" src={githubIcon}/>
+          <div>
+            <p className="mt-2 font-body max-w-lg">
+              A warm, personal cookbook for the way you actually cook. Discover,
+              save, and create — all in one beautiful place.
+            </p>
           </div>
         </div>
-        <hr className="my-4 border-0 h-px mx-auto w-full lg:w-full bg-[var(--divider)]" />
-    <div className="flex justify-between">
-      <div>
-        <p>© 2026 Pantry. Made with care for home cooks everywhere.</p>
       </div>
-      <div>
-        <ul className="flex gap-2">
-          <li>Privacy</li>
-          <li>Terms</li>
-          <li>API</li>
-        </ul>
+      <hr className="my-4 border-0 h-px mx-auto w-full lg:w-full bg-[var(--divider)]" />
+      <div className="flex justify-between">
+        <div>
+          <p>© 2026 Pantry. Made with care for home cooks everywhere.</p>
+        </div>
+        <div>
+          <ul className="flex gap-2">
+            <li>Privacy</li>
+            <li>Terms</li>
+            <li>API</li>
+          </ul>
+        </div>
       </div>
-    </div>
-      </footer>
-    )
+    </footer>
+  );
 }
