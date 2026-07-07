@@ -99,9 +99,9 @@ export default function Discover() {
   }
 
   return (
-    <main className="py-16 px-8">
+    <main className="pb-12">
       <section className="relative flex flex-col gap-8 pb-8">
-        <div className="pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
             src={basil}
             className="z-[1] absolute top-0 right-0 w-70 md:w-80 lg:w-96 xl:w-110 translate-x-30 -translate-y-33 opacity-80 -rotate-12"
@@ -111,12 +111,12 @@ export default function Discover() {
             className="z-[1] absolute top-0 left-0 w-70 md:w-80 lg:w-96 xl:w-110 -translate-x-35 -translate-y-20 opacity-80 -rotate-12"
           />
         </div>
-        <div className="flex flex-col gap-6 xl:gap-8 justify-center items-center mt-18">
+        <div className="relative z-10 flex flex-col gap-6 xl:gap-8 justify-center items-center mt-18">
           <p className="heading-font text-md sm:text-lg md:text-xl xl:text-2xl text-[var(--accent)]">
             DISCOVER · CREATE · COOK
           </p>
           <div>
-            <h1 className="heading-font text-center text-3xl md:text-5xl xl:text-7xl">
+            <h1 className="heading-font text-center text-4xl md:text-5xl xl:text-7xl">
               What are you cooking today?
             </h1>
             <p className="mt-2 text-center text-md md:text-lg xl:text-xl text-[var(--text-muted)]">
@@ -124,7 +124,7 @@ export default function Discover() {
             </p>
           </div>
         </div>
-        <form>
+        <form className="px-8">
           <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
             <Search
               size={24}

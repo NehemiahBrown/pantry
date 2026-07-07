@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function MainHeader() {
   const navLinkStyle =
-    "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface-muted)] transition-colors duration-150";
+    "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface)] transition-colors duration-150";
   const activeLink =
     "py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)]";
   return (
