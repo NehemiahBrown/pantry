@@ -15,7 +15,10 @@ export default function DiscoverRecipeSection({
   shownRecipes,
   prevRecipes,
   savedRecipes,
-  saveRecipe
+  saveRecipe,
+  viewRecipe,
+  showToast,
+  toastText
 }) {
   const MealTypeIcon = mealTypeIcon;
   return (
@@ -48,6 +51,7 @@ export default function DiscoverRecipeSection({
                   saveRecipe={saveRecipe}
                   savedRecipes={savedRecipes}
                   isSaved={isSaved}
+                  viewRecipe={viewRecipe}
             />
             )}
             )}

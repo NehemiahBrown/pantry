@@ -11,6 +11,8 @@ import basil from "../assets/images/basil-leaf.jpg";
 import spices from "../assets/images/spices.png";
 
 import DiscoveryRecipeSection from "../components/common/DiscoveryRecipeSection.jsx";
+import SearchResults from "../components/common/SearchResults.jsx";
+
 
 export default function Discover() {
   const [vegetarianMeals, setVegetarianMeals] = useState([]);
@@ -18,6 +20,17 @@ export default function Discover() {
   const [pastaMeals, setPastaMeals] = useState([]);
   const [chickenMeals, setChickenMeals] = useState([]);
   const [dessertMeals, setDessertMeals] = useState([]);
+  const allRecipes = [
+    ...vegetarianMeals,
+    ...seafoodMeals,
+    ...pastaMeals,
+    ...chickenMeals,
+    ...dessertMeals,
+  ];
+
+  const [input, setInput] = useState("")
+  const [inputResults, setInputResults] = useState([])
+ 
 
   const [vegetarianRecipesShown, setVegetarianRecipesShown] = useState(0);
   const [seafoodRecipesShown, setSeafoodRecipesShown] = useState(0);
@@ -30,7 +43,7 @@ export default function Discover() {
     window.innerWidth <= 1100 ? 1 : window.innerWidth <= 1700 ? 3 : 5,
   );
 
-  const {savedRecipes, saveRecipe} = useOutletContext()
+  const {savedRecipes, saveRecipe, viewRecipe} = useOutletContext()
 
   // Checking the window size to determine how many recipes should show
   useEffect(() => {
@@ -101,6 +114,16 @@ export default function Discover() {
     };
   }
 
+
+
+  function handleChange(value){
+    setInput(value)
+    const matchingValues = allRecipes.filter((recipe) => {
+      return value && recipe && recipe.recipeName.toLowerCase().includes(value.toLowerCase())
+    })
+    setInputResults(matchingValues)
+  }
+
   return (
     <main className="pb-12">
       <section className="relative flex flex-col gap-8 pb-8">
@@ -127,7 +150,7 @@ export default function Discover() {
             </p>
           </div>
         </div>
-        <form className="px-8">
+        <form className="px-8 flex flex-col items-center" onSubmit={(e) => e.preventDefault()}>
           <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
             <Search
               size={24}
@@ -135,8 +158,10 @@ export default function Discover() {
             />
             <input
               type="search"
-              className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+              className="w-full px-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
               placeholder="Search recipes, ingredients, cuisines..."
+              value={input}
+              onChange={(e) => handleChange(e.target.value)}
             />
             <button
               type="submit"
@@ -145,6 +170,11 @@ export default function Discover() {
               Search
             </button>
           </div>
+          { inputResults.length > 0 && 
+            <SearchResults 
+            viewRecipe={viewRecipe}
+            inputResults={inputResults}/>
+           } 
         </form>
       </section>
 
@@ -159,6 +189,7 @@ export default function Discover() {
         prevRecipes={prevRecipes}
         savedRecipes={savedRecipes}
         saveRecipe={saveRecipe}
+        viewRecipe={viewRecipe}
       />
       <DiscoveryRecipeSection
         title="Seafood"
@@ -171,6 +202,7 @@ export default function Discover() {
         prevRecipes={prevRecipes}
         savedRecipes={savedRecipes}
         saveRecipe={saveRecipe}
+        viewRecipe={viewRecipe}
       />
       <DiscoveryRecipeSection
         title="Chicken"
@@ -183,6 +215,7 @@ export default function Discover() {
         prevRecipes={prevRecipes}
         savedRecipes={savedRecipes}
         saveRecipe={saveRecipe}
+        viewRecipe={viewRecipe}
       />
       <DiscoveryRecipeSection
         title="Vegetarian"
@@ -195,6 +228,7 @@ export default function Discover() {
         prevRecipes={prevRecipes}
         savedRecipes={savedRecipes}
         saveRecipe={saveRecipe}
+        viewRecipe={viewRecipe}
       />
       <DiscoveryRecipeSection
         title="Dessert"
@@ -207,7 +241,9 @@ export default function Discover() {
         prevRecipes={prevRecipes}
         savedRecipes={savedRecipes}
         saveRecipe={saveRecipe}
+        viewRecipe={viewRecipe}
       />
     </main>
+    
   );
 }

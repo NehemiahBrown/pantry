@@ -11,41 +11,16 @@ export default function RecipeOptions({
   saveRecipe,
   savedRecipes,
   recipe,
-  isSaved
+  isSaved,
+  viewRecipe,
 }) {
-  const [toastText, setToastText] = useState("");
-  const [showToast, setShowToast] = useState(false);
+
 
   const [savedHeart, setSavedHeart] = useState(false);
   const MealTypeIcon = mealTypeIcon;
 
 
-  async function viewRecipe(recipeId) {
-    try {
-      const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`,
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      const sourceUrl = data.meals[0].strSource;
-      const videoLink = data.meals[0].strYoutube;
-
-      sourceUrl
-        ? window.open(sourceUrl, "_blank")
-        : videoLink
-          ? window.open(videoLink, "_blank")
-          : (setToastText("No recipe source available."), setShowToast(true));
-      setTimeout(() => {
-        setShowToast(false);
-      }, 2900);
-    } catch (error) {
-      console.error("Fetch operation failed:", error);
-    }
-  }
+  
   return (
     <>
       <div className="flex flex-col rounded-lg shadow-[var(--shadow-lg)] w-[270px] h-[350px] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
@@ -78,7 +53,6 @@ export default function RecipeOptions({
           </button>
         </div>
       </div>
-      {showToast && <Toast toastText={toastText} />}
     </>
   );
 }
