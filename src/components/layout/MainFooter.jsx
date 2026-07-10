@@ -13,12 +13,6 @@ export default function MainFooter() {
               Pantry
             </p>
           </div>
-          <div>
-            <p className="mt-2 font-body max-w-lg">
-              A warm, personal cookbook for the way you actually cook. Discover,
-              save, and create — all in one beautiful place.
-            </p>
-          </div>
         </div>
 
         <div className="flex gap-2">
