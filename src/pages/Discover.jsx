@@ -1,3 +1,4 @@
+import { useOutletContext } from "react-router-dom"
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { EggFried } from "lucide-react";
@@ -28,6 +29,8 @@ export default function Discover() {
   const [shownRecipes, setShownRecipes] = useState(
     window.innerWidth <= 1100 ? 1 : window.innerWidth <= 1700 ? 3 : 5,
   );
+
+  const {savedRecipes, saveRecipe} = useOutletContext()
 
   // Checking the window size to determine how many recipes should show
   useEffect(() => {
@@ -154,6 +157,8 @@ export default function Discover() {
         shownRecipes={shownRecipes}
         nextRecipes={nextRecipes}
         prevRecipes={prevRecipes}
+        savedRecipes={savedRecipes}
+        saveRecipe={saveRecipe}
       />
       <DiscoveryRecipeSection
         title="Seafood"
@@ -164,6 +169,8 @@ export default function Discover() {
         shownRecipes={shownRecipes}
         nextRecipes={nextRecipes}
         prevRecipes={prevRecipes}
+        savedRecipes={savedRecipes}
+        saveRecipe={saveRecipe}
       />
       <DiscoveryRecipeSection
         title="Chicken"
@@ -174,6 +181,8 @@ export default function Discover() {
         shownRecipes={shownRecipes}
         nextRecipes={nextRecipes}
         prevRecipes={prevRecipes}
+        savedRecipes={savedRecipes}
+        saveRecipe={saveRecipe}
       />
       <DiscoveryRecipeSection
         title="Vegetarian"
@@ -184,6 +193,8 @@ export default function Discover() {
         shownRecipes={shownRecipes}
         nextRecipes={nextRecipes}
         prevRecipes={prevRecipes}
+        savedRecipes={savedRecipes}
+        saveRecipe={saveRecipe}
       />
       <DiscoveryRecipeSection
         title="Dessert"
@@ -194,6 +205,8 @@ export default function Discover() {
         shownRecipes={shownRecipes}
         nextRecipes={nextRecipes}
         prevRecipes={prevRecipes}
+        savedRecipes={savedRecipes}
+        saveRecipe={saveRecipe}
       />
     </main>
   );

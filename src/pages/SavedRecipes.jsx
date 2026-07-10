@@ -1,7 +1,13 @@
+import { useOutletContext } from "react-router-dom"
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
+import { Heart } from "lucide-react";
+
+
+import RecipeOptions from "../components/common/RecipeOptions.jsx"
 
 export default function SavedRecipes() {
+  const {savedRecipes, saveRecipe} = useOutletContext()
   return (
     <>
       <main>
@@ -38,6 +44,27 @@ export default function SavedRecipes() {
               </button>
             </div>
           </form>
+        </section>
+        <section className="px-12 py-12">
+          <div className="flex gap-4">
+          {savedRecipes.map((recipe) => {
+            const isSaved = savedRecipes.some(currentRecipe => currentRecipe.id === recipe.id)
+            return (
+              <RecipeOptions
+                key={recipe.id}
+                key={recipe.id}
+                id={recipe.id}
+                recipeName={recipe.recipeName}
+                recipeImage={recipe.recipeImage}
+                mealTypeIcon={Heart}
+                recipe={recipe}
+                saveRecipe={saveRecipe}
+                savedRecipes={savedRecipes}
+                isSaved={true}
+              />
+            )
+          })}
+          </div>
         </section>
       </main>
     </>

@@ -410,7 +410,7 @@ export default function Landing() {
               <p className="mt-2 font-body">
                 "The cook mode alone is worth it. My phone actually stays usable
                 when I'm mid-recipe with floury hands. It's the little things
-                that make it brilliant."
+                that make it brilliant."</p>
                 <div className="mt-4 flex items-center gap-3">
                   <img
                     className="w-10 h-10 rounded-full"
@@ -422,14 +422,13 @@ export default function Landing() {
                     <p>Home cook · Chicago</p>
                   </div>
                 </div>
-              </p>
             </div>
             <div className=" flex-1 min-w-[300px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <p className="text-[#FFD700] tracking-widest text-sm">★★★★★</p>
               <p className="mt-2 font-body">
                 I finally digitised my grandmother's recipes. The Create Recipe
                 form is a joy to fill out — it doesn't feel like a form at all.
-                Incredibly thoughtful design.
+                Incredibly thoughtful design.</p>
                 <div className="mt-4 flex items-center gap-3">
                   <img
                     className="w-10 h-10 rounded-full"
@@ -441,7 +440,7 @@ export default function Landing() {
                     <p>Food blogger · Austin</p>
                   </div>
                 </div>
-              </p>
+              
             </div>
           </div>
         </section>

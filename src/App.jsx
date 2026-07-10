@@ -23,8 +23,8 @@ export default function App() {
 
         <Route path="/app" element={<RootLayout />}>
           <Route index element={<Discover />} />
-          <Route path="my-recipes" element={<MyRecipes />} />
           <Route path="saved-recipes" element={<SavedRecipes />} />
+          <Route path="my-recipes" element={<MyRecipes />} />
         </Route>
       </Routes>
     </BrowserRouter>

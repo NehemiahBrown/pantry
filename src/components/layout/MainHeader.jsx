@@ -34,9 +34,9 @@ export default function MainHeader() {
               className={({ isActive }) =>
                 isActive ? activeLink : navLinkStyle
               }
-              to="/app/my-recipes"
+              to="/app/saved-recipes"
             >
-              My Recipes
+              Saved Recipes
             </NavLink>
           </li>
           <li>
@@ -44,9 +44,9 @@ export default function MainHeader() {
               className={({ isActive }) =>
                 isActive ? activeLink : navLinkStyle
               }
-              to="/app/saved-recipes"
+              to="/app/my-recipes"
             >
-              Saved Recipes
+              My Recipes
             </NavLink>
           </li>
         </ul>
