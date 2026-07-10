@@ -9,10 +9,22 @@ import Apple from "../assets/images/apple.svg";
 import Wheat from "../assets/images/wheat.svg";
 
 import RecipeOptions from "../components/common/RecipeOptions.jsx";
+import SearchResults from "../components/common/SearchResults.jsx"
 
 export default function SavedRecipes() {
   const { savedRecipes, saveRecipe, viewRecipe } = useOutletContext();
-  return (
+  const [inputValue, setInputValue] = useState("")
+  const [inputResults, setInputResults] = useState([])
+
+  function handleChange(value){
+    setInputValue(value)
+    const matchingValues = savedRecipes.filter((recipe) => {
+      return value && recipe && recipe.recipeName.toLowerCase().includes(value.toLowerCase())
+    }
+    )
+    setInputResults(matchingValues)
+  }
+  return ( 
     <>
       <main>
         <section className="relative flex flex-col">
@@ -39,7 +51,7 @@ export default function SavedRecipes() {
               </p>
             </div>
           </div>
-          <form className="px-8">
+          <form className="flex flex-col items-center px-8">
             <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
               <Search
                 size={24}
@@ -49,6 +61,8 @@ export default function SavedRecipes() {
                 type="search"
                 className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                 placeholder="Search saved recipes..."
+                value={inputValue}
+                onChange={(e) => handleChange(e.target.value)}
               />
               <button
                 type="submit"
@@ -57,6 +71,11 @@ export default function SavedRecipes() {
                 Search
               </button>
             </div>
+            { inputResults.length > 0 && 
+            <SearchResults 
+            viewRecipe={viewRecipe}
+            inputResults={inputResults}/>
+           }
           </form>
         </section>
         <section className="w-full px-12 py-12">

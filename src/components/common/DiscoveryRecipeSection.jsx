@@ -30,12 +30,12 @@ export default function DiscoverRecipeSection({
         </p>
         <hr className="flex-1 border border-0 h-px bg-[var(--divider)]" />
       </div>
-      <div className="flex w-full mt-10 justify-center items-center gap-4">
+      <div className="flex w-full mt-10 justify-center items-center gap-2 md:gap-4">
         <ArrowLeft
           className="w-10 h-10 rounded-full bg-[var(--surface)] border border-[var(--border)] shadow-[var(--shadow-sm)] flex items-center justify-center hover:bg-[var(--accent)] hover:text-white hover:shadow-[var(--shadow-md)] transition-all duration-200 active:scale-95 cursor-pointer"
           onClick={() => prevRecipes(recipesShown, setRecipesShown)}
         />
-        <div className="flex px-8 gap-10">
+        <div className="flex md:px-8 gap-10">
           {meals
             .slice(recipesShown, recipesShown + shownRecipes)
             .map((meal) => {
