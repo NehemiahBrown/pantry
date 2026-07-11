@@ -177,7 +177,8 @@ export default function Discover() {
            } 
         </form>
       </section>
-
+           {/* add a search results section here. Make a new search results component. 
+           let the search button pull up the info */}
       <DiscoveryRecipeSection
         title="Pasta"
         meals={pastaMeals}

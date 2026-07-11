@@ -51,7 +51,7 @@ export default function SavedRecipes() {
               </p>
             </div>
           </div>
-          <form className="flex flex-col items-center px-8">
+          <form className="flex flex-col items-center px-8" onSubmit={(e) => e.preventDefaut()}>
             <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
               <Search
                 size={24}
@@ -86,7 +86,7 @@ export default function SavedRecipes() {
             <div className="flex gap-2 font-body font-bold">
               <p>{savedRecipes.length} {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}</p>
               <p>|</p>
-              <p>Keep saving, Keep cooking</p>
+              <p>{savedRecipes.length === 1 ? "Keep saving, Keep cooking" : "Start saving, Start cooking"}</p>
             </div>
           </div>
 
