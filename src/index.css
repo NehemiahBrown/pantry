@@ -81,6 +81,25 @@ body {
     transparent 100%
   );
 }
+.filterMeals{
+  width: 100%;
+  max-width: 228px;
+  padding: 14px;
+  font-size: 16px;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  background-color: var(--surface);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease; 
+  
+}
+
+.filterMeals:hover,
+.filterMeals:focus{
+  border-color: var(--accent-soft);
+  cursor: pointer;
+}
 
 #toast {
   min-width: 250px;
@@ -141,4 +160,15 @@ body {
     bottom: 0;
     opacity: 0;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

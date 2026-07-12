@@ -40,23 +40,30 @@ export default function SavedRecipes() {
               className="z-[5] rotate-20 absolute top-20 left-27 xl:left-70 w-70 md:w-80 lg:w-96 xl:w-110 -translate-x-35 -translate-y-20 opacity-80 -rotate-12"
             />
           </div>
-          <div className="flex flex-col gap-6 xl:gap-8 justify-center items-center mt-18">
-            <p className="heading-font text-md sm:text-lg md:text-xl xl:text-2xl text-[var(--accent)]">
-              YOUR COLLECTION
-            </p>
+          <div className="flex flex-col pl-10 gap-6 xl:gap-8 justify-center mt-18">
             <div>
-              <h1 className="text-center heading-font text-4xl md:text-5xl xl:text-7xl">
+            <p className="heading-font text-sm sm:text-md md:text-xl text-[var(--accent)]">
+              — YOUR COLLECTION
+            </p>
+              <h1 className="mt-2 heading-font text-4xl md:text-5xl xl:text-7xl">
                 Saved Recipes
               </h1>
-              <p className="mt-2 text-center text-md md:text-lg xl:text-xl text-[var(--text-muted)]">
+              <p className="mt-2 text-md md:text-lg xl:text-xl text-[var(--text-muted)]">
                 Your favorite recipes all in one cozy place.
               </p>
             </div>
+            <div className="flex items-center gap-2">
+            <div className="w-fit border rounded-full">
+            <Bookmark size={28} className=" p-1.5 text-[var(--accent)]"/>
+            </div>
+            <div className="flex gap-2 font-body font-bold text-[var(--text-muted)]">
+              <p>{savedRecipes.length} {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}</p>
+              <p>|</p>
+              <p>{savedRecipes.length === 1 ? "Keep saving, Keep cooking" : "Start saving, Start cooking"}</p>
+            </div>
           </div>
-          <form
-            className="flex flex-col items-center px-8"
-            onSubmit={(e) => e.preventDefaut()}
-          >
+          </div>
+          <form className="flex flex-col items-center px-8" onSubmit={(e) => e.preventDefaut()}>
             <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
               <Search
                 size={24}
@@ -83,23 +90,26 @@ export default function SavedRecipes() {
               />
             )}
           </form>
+            <select defaultValue="all" name="mealType" id="mealType" className="filterMeals">
+              <option value="all">All Recipes</option>
+              <option value="pasta">Pasta</option>
+              <option value="seafood">Seafood</option>
+              <option value="chicken">Chicken</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="dessert">Dessert</option>
+            </select>
+            
+          </div>
         </section>
         <section className="w-full px-12 py-12">
           <div className="flex items-center gap-2">
             <div className="w-fit border rounded-full">
-              <Bookmark size={35} className=" p-1.5 text-[var(--accent)]" />
+            <Bookmark size={35} className=" p-1.5 text-[var(--accent)]"/>
             </div>
             <div className="flex gap-2 font-body font-bold">
-              <p>
-                {savedRecipes.length}{" "}
-                {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}
-              </p>
+              <p>{savedRecipes.length} {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}</p>
               <p>|</p>
-              <p>
-                {savedRecipes.length > 0
-                  ? "Keep saving, Keep cooking"
-                  : "Start saving, Start cooking"}
-              </p>
+              <p>{savedRecipes.length === 1 ? "Keep saving, Keep cooking" : "Start saving, Start cooking"}</p>
             </div>
           </div>
 
