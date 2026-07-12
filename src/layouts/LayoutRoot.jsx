@@ -2,7 +2,9 @@ import {useState} from "react"
 import { Outlet } from "react-router-dom";
 import MainHeader from "../components/layout/MainHeader";
 import MainFooter from "../components/layout/MainFooter";
-import Toast from "../components/common/Toast.jsx"
+import Toast from "../components/common/Toast.jsx";
+import CreateRecipeModal from "../components/common/CreateRecipeModal.jsx";
+
 
 
 export default function RootLayout() {
@@ -10,6 +12,14 @@ export default function RootLayout() {
   const [savedRecipes, setSavedRecipes] = useState([])
   const [toastText, setToastText] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [showCreateRecipeModal, setShowCreateRecipeModal] = useState(false)
+
+  function openCreateRecipeModal(){
+      setShowCreateRecipeModal((current) => current = true)
+  }
+  function closeCreateRecipeModal(){
+    setShowCreateRecipeModal((current) => current = false)
+  }
 
   function saveRecipe(recipe) {
     setSavedRecipes((currentRecipes) => {
@@ -57,14 +67,15 @@ export default function RootLayout() {
   return (
     <>
       <div className="min-h-screen flex flex-col">
-        <MainHeader />
+        <MainHeader openCreateRecipeModal={openCreateRecipeModal}/>
 
         <main className="flex-1 bg-[var(--background)]">
-          <Outlet context={{saveRecipe, savedRecipes, viewRecipe}}/>
+          <Outlet context={{saveRecipe, savedRecipes, viewRecipe, openCreateRecipeModal}}/>
           {showToast && <Toast toastText={toastText} />}
         </main>
-
+        {showCreateRecipeModal && <CreateRecipeModal closeCreateRecipeModal={closeCreateRecipeModal}/>}
         <MainFooter />
+        
       </div>
     </>
   );

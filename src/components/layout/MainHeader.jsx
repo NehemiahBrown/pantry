@@ -1,7 +1,7 @@
 import { Plus } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
-export default function MainHeader() {
+export default function MainHeader({openCreateRecipeModal}) {
   const navLinkStyle =
     "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface)] transition-colors duration-150";
   const activeLink =
@@ -52,7 +52,7 @@ export default function MainHeader() {
         </ul>
       </nav>
       <div className="flex items-center gap-4">
-        <button className="z-[2] flex items-center gap-1 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer">
+        <button onClick={openCreateRecipeModal} className="z-[2] flex items-center gap-1 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer">
           <Plus size={14} /> Create Recipe
         </button>
         <div className="z-[2] flex items-center justify-center w-8 h-8 bg-[var(--accent-soft)] rounded-full text-sm text-[var(--accent)] font-bold cursor-pointer">
