@@ -4,27 +4,29 @@ import { Search } from "lucide-react";
 import { Heart } from "lucide-react";
 import { Bookmark } from "lucide-react";
 
-
 import Apple from "../assets/images/apple.svg";
 import Wheat from "../assets/images/wheat.svg";
 
 import RecipeOptions from "../components/common/RecipeOptions.jsx";
-import SearchResults from "../components/common/SearchResults.jsx"
+import SearchResults from "../components/common/SearchResults.jsx";
 
 export default function SavedRecipes() {
   const { savedRecipes, saveRecipe, viewRecipe } = useOutletContext();
-  const [inputValue, setInputValue] = useState("")
-  const [inputResults, setInputResults] = useState([])
+  const [inputValue, setInputValue] = useState("");
+  const [inputResults, setInputResults] = useState([]);
 
-  function handleChange(value){
-    setInputValue(value)
+  function handleChange(value) {
+    setInputValue(value);
     const matchingValues = savedRecipes.filter((recipe) => {
-      return value && recipe && recipe.recipeName.toLowerCase().includes(value.toLowerCase())
-    }
-    )
-    setInputResults(matchingValues)
+      return (
+        value &&
+        recipe &&
+        recipe.recipeName.toLowerCase().includes(value.toLowerCase())
+      );
+    });
+    setInputResults(matchingValues);
   }
-  return ( 
+  return (
     <>
       <main>
         <section className="relative flex flex-col">
@@ -51,7 +53,10 @@ export default function SavedRecipes() {
               </p>
             </div>
           </div>
-          <form className="flex flex-col items-center px-8" onSubmit={(e) => e.preventDefaut()}>
+          <form
+            className="flex flex-col items-center px-8"
+            onSubmit={(e) => e.preventDefaut()}
+          >
             <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
               <Search
                 size={24}
@@ -71,22 +76,30 @@ export default function SavedRecipes() {
                 Search
               </button>
             </div>
-            { inputResults.length > 0 && 
-            <SearchResults 
-            viewRecipe={viewRecipe}
-            inputResults={inputResults}/>
-           }
+            {inputResults.length > 0 && (
+              <SearchResults
+                viewRecipe={viewRecipe}
+                inputResults={inputResults}
+              />
+            )}
           </form>
         </section>
         <section className="w-full px-12 py-12">
           <div className="flex items-center gap-2">
             <div className="w-fit border rounded-full">
-            <Bookmark size={35} className=" p-1.5 text-[var(--accent)]"/>
+              <Bookmark size={35} className=" p-1.5 text-[var(--accent)]" />
             </div>
             <div className="flex gap-2 font-body font-bold">
-              <p>{savedRecipes.length} {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}</p>
+              <p>
+                {savedRecipes.length}{" "}
+                {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}
+              </p>
               <p>|</p>
-              <p>{savedRecipes.length === 1 ? "Keep saving, Keep cooking" : "Start saving, Start cooking"}</p>
+              <p>
+                {savedRecipes.length > 0
+                  ? "Keep saving, Keep cooking"
+                  : "Start saving, Start cooking"}
+              </p>
             </div>
           </div>
 
