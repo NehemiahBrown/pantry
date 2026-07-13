@@ -42,9 +42,9 @@ export default function SavedRecipes() {
           </div>
           <div className="flex flex-col pl-10 gap-6 xl:gap-8 justify-center mt-18">
             <div>
-            <p className="heading-font text-sm sm:text-md md:text-xl text-[var(--accent)]">
-              — YOUR COLLECTION
-            </p>
+              <p className="heading-font text-sm sm:text-md md:text-xl text-[var(--accent)]">
+                — YOUR COLLECTION
+              </p>
               <h1 className="mt-2 heading-font text-4xl md:text-5xl xl:text-7xl">
                 Saved Recipes
               </h1>
@@ -53,66 +53,72 @@ export default function SavedRecipes() {
               </p>
             </div>
             <div className="flex items-center gap-2">
-            <div className="w-fit border rounded-full">
-            <Bookmark size={28} className=" p-1.5 text-[var(--accent)]"/>
-            </div>
-            <div className="flex gap-2 font-body font-bold text-[var(--text-muted)]">
-              <p>{savedRecipes.length} {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}</p>
-              <p>|</p>
-              <p>{savedRecipes.length === 1 ? "Keep saving, Keep cooking" : "Start saving, Start cooking"}</p>
+              <div className="w-fit border rounded-full">
+                <Bookmark size={35} className=" p-1.5 text-[var(--accent)]" />
+              </div>
+              <div className="flex gap-2 font-body font-bold">
+                <p>
+                  {savedRecipes.length}{" "}
+                  {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}
+                </p>
+                <p>|</p>
+                <p>
+                  {savedRecipes.length === 1
+                    ? "Keep saving, Keep cooking"
+                    : "Start saving, Start cooking"}
+                </p>
+              </div>
             </div>
           </div>
-          </div>
-          <form className="flex flex-col items-center px-8" onSubmit={(e) => e.preventDefaut()}>
-            <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
-              <Search
-                size={24}
-                className="left-4 absolute top-1/2 -translate-y-1/2"
-              />
-              <input
-                type="search"
-                className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
-                placeholder="Search saved recipes..."
-                value={inputValue}
-                onChange={(e) => handleChange(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2"
+          <div className="mt-6 px-8 flex flex-col md:flex-row md:items-center md:justify-center gap-4">
+            <form
+              className="flex flex-1 flex-col items-center "
+              onSubmit={(e) => e.preventDefaut()}
+            >
+              <div className="relative w-full mx-auto">
+                <Search
+                  size={24}
+                  className="left-4 absolute top-1/2 -translate-y-1/2"
+                />
+                <input
+                  type="search"
+                  className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                  placeholder="Search saved recipes..."
+                  value={inputValue}
+                  onChange={(e) => handleChange(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2"
+                >
+                  Search
+                </button>
+              </div>
+              {inputResults.length > 0 && (
+                <SearchResults
+                  viewRecipe={viewRecipe}
+                  inputResults={inputResults}
+                />
+              )}
+            </form>
+            <div className="w-full md:max-w-[228px]">
+              <select
+                name="mealType"
+                id="mealType"
+                className="filterMeals"
+                defaultValue="all"
               >
-                Search
-              </button>
+                <option value="all">All Recipes</option>
+                <option value="pasta">Pasta</option>
+                <option value="seafood">Seafood</option>
+                <option value="chicken">Chicken</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="dessert">Dessert</option>
+              </select>
             </div>
-            {inputResults.length > 0 && (
-              <SearchResults
-                viewRecipe={viewRecipe}
-                inputResults={inputResults}
-              />
-            )}
-          </form>
-            <select defaultValue="all" name="mealType" id="mealType" className="filterMeals">
-              <option value="all">All Recipes</option>
-              <option value="pasta">Pasta</option>
-              <option value="seafood">Seafood</option>
-              <option value="chicken">Chicken</option>
-              <option value="vegetarian">Vegetarian</option>
-              <option value="dessert">Dessert</option>
-            </select>
-            
           </div>
         </section>
         <section className="w-full px-12 py-12">
-          <div className="flex items-center gap-2">
-            <div className="w-fit border rounded-full">
-            <Bookmark size={35} className=" p-1.5 text-[var(--accent)]"/>
-            </div>
-            <div className="flex gap-2 font-body font-bold">
-              <p>{savedRecipes.length} {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}</p>
-              <p>|</p>
-              <p>{savedRecipes.length === 1 ? "Keep saving, Keep cooking" : "Start saving, Start cooking"}</p>
-            </div>
-          </div>
-
           <div className="mt-6 sm:mx-auto grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 justify-items-center lg:justify-items-stretch">
             {savedRecipes.map((recipe) => {
               const isSaved = savedRecipes.some(

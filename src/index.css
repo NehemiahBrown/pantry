@@ -81,9 +81,8 @@ body {
     transparent 100%
   );
 }
-.filterMeals{
+.filterMeals {
   width: 100%;
-  max-width: 228px;
   padding: 14px;
   font-size: 16px;
   border: 2px solid var(--accent);
@@ -91,12 +90,11 @@ body {
   background-color: var(--surface);
   color: var(--text-primary);
   outline: none;
-  transition: border-color 0.2s ease; 
-  
+  transition: border-color 0.2s ease;
 }
 
 .filterMeals:hover,
-.filterMeals:focus{
+.filterMeals:focus {
   border-color: var(--accent-soft);
   cursor: pointer;
 }
