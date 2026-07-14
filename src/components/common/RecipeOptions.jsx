@@ -14,16 +14,12 @@ export default function RecipeOptions({
   isSaved,
   viewRecipe,
 }) {
-
-
   const [savedHeart, setSavedHeart] = useState(false);
   const MealTypeIcon = mealTypeIcon;
 
-
-  
   return (
     <>
-      <div className="flex flex-col rounded-lg shadow-[var(--shadow-lg)] w-[270px] h-[350px] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
+      <div className="flex flex-col rounded-lg shadow-[var(--shadow-lg)] w-[240px] mx-0 md:mx-2 md:w-[270px] h-[350px] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
         <div className="relative">
           <img
             className="w-full h-[200px] rounded-t-lg object-cover"
@@ -31,7 +27,7 @@ export default function RecipeOptions({
             alt={recipeName}
           />
           <button
-            onClick={()=> saveRecipe(recipe)}
+            onClick={() => saveRecipe(recipe)}
             className="absolute right-2 top-2 bg-[var(--surface)] rounded-full cursor-pointer"
           >
             <Heart

@@ -54,9 +54,9 @@ export default function SavedRecipes() {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-fit border rounded-full">
-                <Bookmark size={35} className=" p-1.5 text-[var(--accent)]" />
+                <Bookmark size={28} className=" p-1.5 text-[var(--accent)]" />
               </div>
-              <div className="flex gap-2 font-body font-bold">
+              <div className="flex gap-2 font-body">
                 <p>
                   {savedRecipes.length}{" "}
                   {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}
@@ -70,7 +70,7 @@ export default function SavedRecipes() {
               </div>
             </div>
           </div>
-          <div className="mt-6 px-8 flex flex-col md:flex-row md:items-center md:justify-center gap-4">
+          <div className="mt-8 px-8 flex flex-col md:flex-row md:items-center md:justify-center gap-4">
             <form
               className="flex flex-1 flex-col items-center "
               onSubmit={(e) => e.preventDefaut()}
@@ -101,25 +101,23 @@ export default function SavedRecipes() {
                 />
               )}
             </form>
-            <div className="w-full md:max-w-[228px]">
-              <select
-                name="mealType"
-                id="mealType"
-                className="filterMeals"
-                defaultValue="all"
-              >
-                <option value="all">All Recipes</option>
-                <option value="pasta">Pasta</option>
-                <option value="seafood">Seafood</option>
-                <option value="chicken">Chicken</option>
-                <option value="vegetarian">Vegetarian</option>
-                <option value="dessert">Dessert</option>
-              </select>
-            </div>
+            <select
+              name="mealType"
+              id="mealType"
+              className="filterMeals w-full md:w-48"
+              defaultValue="all"
+            >
+              <option value="all">All Recipes</option>
+              <option value="pasta">Pasta</option>
+              <option value="seafood">Seafood</option>
+              <option value="chicken">Chicken</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="dessert">Dessert</option>
+            </select>
           </div>
         </section>
-        <section className="w-full px-12 py-12">
-          <div className="mt-6 sm:mx-auto grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 justify-items-center lg:justify-items-stretch">
+        <section className="w-full px-2 py-12">
+          <div className="mt-6 sm:mx-auto grid grid grid-cols-[repeat(auto-fill,270px)] gap-8 justify-center">
             {savedRecipes.map((recipe) => {
               const isSaved = savedRecipes.some(
                 (currentRecipe) => currentRecipe.id === recipe.id,

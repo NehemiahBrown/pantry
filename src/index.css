@@ -32,12 +32,6 @@
   --error: #b83232;
   --warning: #d98a24;
 
-  --breakfast: #e6a23c;
-  --lunch: #5c7a5e;
-  --dinner: #9e4a2c;
-  --dessert: #c4603a;
-  --snacks: #d4a65a;
-
   --divider: #e8ddd2;
 
   /* Fonts */
@@ -82,7 +76,6 @@ body {
   );
 }
 .filterMeals {
-  width: 100%;
   padding: 14px;
   font-size: 16px;
   border: 2px solid var(--accent);

@@ -2,7 +2,6 @@ import { ArrowLeft } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { Heart } from "lucide-react";
 
-
 import RecipeOptions from "./RecipeOptions";
 
 export default function DiscoverRecipeSection({
@@ -18,7 +17,7 @@ export default function DiscoverRecipeSection({
   saveRecipe,
   viewRecipe,
   showToast,
-  toastText
+  toastText,
 }) {
   const MealTypeIcon = mealTypeIcon;
   return (
@@ -39,9 +38,11 @@ export default function DiscoverRecipeSection({
           {meals
             .slice(recipesShown, recipesShown + shownRecipes)
             .map((meal) => {
-              const isSaved = savedRecipes.some(recipe => recipe.id === meal.id)
-              return(
-                  <RecipeOptions
+              const isSaved = savedRecipes.some(
+                (recipe) => recipe.id === meal.id,
+              );
+              return (
+                <RecipeOptions
                   key={meal.id}
                   id={meal.id}
                   recipeName={meal.recipeName}
@@ -52,9 +53,9 @@ export default function DiscoverRecipeSection({
                   savedRecipes={savedRecipes}
                   isSaved={isSaved}
                   viewRecipe={viewRecipe}
-            />
-            )}
-            )}
+                />
+              );
+            })}
         </div>
         <ArrowRight
           className="w-10 h-10 rounded-full bg-[var(--surface)] border border-[var(--border)] shadow-[var(--shadow-sm)] flex items-center justify-center hover:bg-[var(--accent)] hover:text-white hover:shadow-[var(--shadow-md)] transition-all duration-200 active:scale-95 cursor-pointer"

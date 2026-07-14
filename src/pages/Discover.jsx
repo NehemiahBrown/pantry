@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router-dom"
+import { useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { EggFried } from "lucide-react";
@@ -12,7 +12,6 @@ import spices from "../assets/images/spices.png";
 
 import DiscoveryRecipeSection from "../components/common/DiscoveryRecipeSection.jsx";
 import SearchResults from "../components/common/SearchResults.jsx";
-
 
 export default function Discover() {
   const [vegetarianMeals, setVegetarianMeals] = useState([]);
@@ -28,9 +27,8 @@ export default function Discover() {
     ...dessertMeals,
   ];
 
-  const [input, setInput] = useState("")
-  const [inputResults, setInputResults] = useState([])
- 
+  const [input, setInput] = useState("");
+  const [inputResults, setInputResults] = useState([]);
 
   const [vegetarianRecipesShown, setVegetarianRecipesShown] = useState(0);
   const [seafoodRecipesShown, setSeafoodRecipesShown] = useState(0);
@@ -40,17 +38,29 @@ export default function Discover() {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [shownRecipes, setShownRecipes] = useState(
-    window.innerWidth <= 1100 ? 1 : window.innerWidth <= 1700 ? 3 : 5,
+    window.innerWidth <= 800
+      ? 1
+      : window.innerWidth <= 1200
+        ? 2
+        : window.innerWidth <= 1500
+          ? 3
+          : window.innerWidth <= 1900
+            ? 4
+            : 5,
   );
 
-  const {savedRecipes, saveRecipe, viewRecipe} = useOutletContext()
+  const { savedRecipes, saveRecipe, viewRecipe } = useOutletContext();
 
   // Checking the window size to determine how many recipes should show
   useEffect(() => {
-    if (windowWidth <= 1100) {
+    if (windowWidth <= 800) {
       setShownRecipes(1);
-    } else if (windowWidth <= 1700) {
+    } else if (windowWidth <= 1200) {
+      setShownRecipes(2);
+    } else if (windowWidth <= 1600) {
       setShownRecipes(3);
+    } else if (windowWidth <= 1900) {
+      setShownRecipes(4);
     } else {
       setShownRecipes(5);
     }
@@ -114,14 +124,16 @@ export default function Discover() {
     };
   }
 
-
-
-  function handleChange(value){
-    setInput(value)
+  function handleChange(value) {
+    setInput(value);
     const matchingValues = allRecipes.filter((recipe) => {
-      return value && recipe && recipe.recipeName.toLowerCase().includes(value.toLowerCase())
-    })
-    setInputResults(matchingValues)
+      return (
+        value &&
+        recipe &&
+        recipe.recipeName.toLowerCase().includes(value.toLowerCase())
+      );
+    });
+    setInputResults(matchingValues);
   }
 
   return (
@@ -137,7 +149,7 @@ export default function Discover() {
             className="z-[1] absolute top-0 left-0 w-70 md:w-80 lg:w-96 xl:w-110 -translate-x-35 -translate-y-20 opacity-80 -rotate-12"
           />
         </div>
-        <div className="relative z-10 flex flex-col gap-6 xl:gap-8 justify-center items-center mt-18">
+        <div className="relative flex flex-col gap-6 xl:gap-8 justify-center items-center mt-18">
           <p className="heading-font text-md sm:text-lg md:text-xl xl:text-2xl text-[var(--accent)]">
             DISCOVER · CREATE · COOK
           </p>
@@ -150,7 +162,10 @@ export default function Discover() {
             </p>
           </div>
         </div>
-        <form className="px-8 flex flex-col items-center" onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="px-8 flex flex-col items-center"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <div className="mt-8 relative w-full max-w-[1000px] mx-auto">
             <Search
               size={24}
@@ -170,14 +185,15 @@ export default function Discover() {
               Search
             </button>
           </div>
-          { inputResults.length > 0 && 
-            <SearchResults 
-            viewRecipe={viewRecipe}
-            inputResults={inputResults}/>
-           } 
+          {inputResults.length > 0 && (
+            <SearchResults
+              viewRecipe={viewRecipe}
+              inputResults={inputResults}
+            />
+          )}
         </form>
       </section>
-           {/* add a search results section here. Make a new search results component. 
+      {/* add a search results section here. Make a new search results component. 
            let the search button pull up the info */}
       <DiscoveryRecipeSection
         title="Pasta"
@@ -245,6 +261,5 @@ export default function Discover() {
         viewRecipe={viewRecipe}
       />
     </main>
-    
   );
 }

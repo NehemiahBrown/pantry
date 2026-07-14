@@ -224,10 +224,10 @@ export default function Landing() {
                 <p className="heading-font text-[var(--accent)]">04</p>
                 <hr className="flex-1 text-[var(--accent-soft)]" />
               </div>
-              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--lunch)]/30 flex items-center justify-center">
+              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--secondary)]/30 flex items-center justify-center">
                 <Utensils
                   size={24}
-                  className="text-[var(--lunch)]"
+                  className="text-[var(--secondary)]"
                   strokeWidth={1.75}
                 />
               </div>
@@ -341,20 +341,20 @@ export default function Landing() {
               </p>
               <ul className="flex flex-col gap-3 mt-8">
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--lunch)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--lunch)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--secondary)]" />
                   </span>
                   Save the link URL, recipe name, category and your own notes
                 </li>
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--lunch)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--lunch)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--secondary)]" />
                   </span>
                   Visit the original recipe with one tap, from anywhere
                 </li>
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--lunch)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--lunch)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--secondary)]" />
                   </span>
                   Favourite, categorise and filter just like your own recipes
                 </li>
@@ -410,37 +410,38 @@ export default function Landing() {
               <p className="mt-2 font-body">
                 "The cook mode alone is worth it. My phone actually stays usable
                 when I'm mid-recipe with floury hands. It's the little things
-                that make it brilliant."</p>
-                <div className="mt-4 flex items-center gap-3">
-                  <img
-                    className="w-10 h-10 rounded-full"
-                    src={personTwo}
-                    alt="Smiling reviewer."
-                  />
-                  <div className="font-body">
-                    <p>Amara K.</p>
-                    <p>Home cook · Chicago</p>
-                  </div>
+                that make it brilliant."
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={personTwo}
+                  alt="Smiling reviewer."
+                />
+                <div className="font-body">
+                  <p>Amara K.</p>
+                  <p>Home cook · Chicago</p>
                 </div>
+              </div>
             </div>
             <div className=" flex-1 min-w-[300px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <p className="text-[#FFD700] tracking-widest text-sm">★★★★★</p>
               <p className="mt-2 font-body">
                 I finally digitised my grandmother's recipes. The Create Recipe
                 form is a joy to fill out — it doesn't feel like a form at all.
-                Incredibly thoughtful design.</p>
-                <div className="mt-4 flex items-center gap-3">
-                  <img
-                    className="w-10 h-10 rounded-full"
-                    src={personThree}
-                    alt="Smiling reviewer."
-                  />
-                  <div className="font-body">
-                    <p>Darren L.</p>
-                    <p>Food blogger · Austin</p>
-                  </div>
+                Incredibly thoughtful design.
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={personThree}
+                  alt="Smiling reviewer."
+                />
+                <div className="font-body">
+                  <p>Darren L.</p>
+                  <p>Food blogger · Austin</p>
                 </div>
-              
+              </div>
             </div>
           </div>
         </section>
