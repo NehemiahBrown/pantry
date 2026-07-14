@@ -15,16 +15,6 @@ export default function MyRecipes() {
   return (
     <main>
       <section className="relative flex flex-col">
-        <div className="absolute inset-0 pointer-events-none overflow-x-clip overflow-y-visible">
-          <img
-            src=""
-            className="z-[5] absolute top-40 right-22 w-70 md:w-80 lg:w-96 xl:w-110 translate-x-30 -translate-y-33 opacity-80 -rotate-12"
-          />
-          <img
-            src=""
-            className="z-[5] rotate-20 absolute top-20 left-27 xl:left-70 w-70 md:w-80 lg:w-96 xl:w-110 -translate-x-35 -translate-y-20 opacity-80 -rotate-12"
-          />
-        </div>
         <div className="flex flex-col pl-10 gap-6 xl:gap-8 justify-center mt-18">
           <div>
             <p className="heading-font text-sm sm:text-md md:text-xl text-[var(--accent)]">
@@ -51,53 +41,52 @@ export default function MyRecipes() {
             </div>
           </div>
         </div>
-        {createdRecipeArray.length > 0 && (
-          <div className="flex flex-col md:flex-row md:items-center md:justify-center mt-8 gap-4 px-8">
-            <form
-              className="flex flex-1 flex-col items-center"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <div className="relative w-full mx-auto">
-                <Search
-                  size={24}
-                  className="left-4 absolute top-1/2 -translate-y-1/2"
-                />
-                <input
-                  type="search"
-                  className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
-                  placeholder="Search saved recipes..."
-                  value={inputValue}
-                  onChange={(e) => handleChange(e.target.value)}
-                />
-                <button
-                  type="submit"
-                  className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2"
-                >
-                  Search
-                </button>
-              </div>
-              {inputResults.length > 0 && (
-                <SearchResults
-                  viewRecipe={viewRecipe}
-                  inputResults={inputResults}
-                />
-              )}
-            </form>
-            <select
-              defaultValue="all"
-              name="mealType"
-              id="mealType"
-              className="filterMeals w-full md:w-48"
-            >
-              <option value="all">All Recipes</option>
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-              <option value="dessert">Dessert</option>
-              <option value="snacks">Snacks</option>
-            </select>
-          </div>
-        )}
+
+        <div className="flex flex-col md:flex-row md:items-center md:justify-center mt-8 gap-4 px-8">
+          <form
+            className="flex flex-1 flex-col items-center"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <div className="relative w-full mx-auto">
+              <Search
+                size={24}
+                className="left-4 absolute top-1/2 -translate-y-1/2"
+              />
+              <input
+                type="search"
+                className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                placeholder="Search saved recipes..."
+                value={inputValue}
+                onChange={(e) => handleChange(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2"
+              >
+                Search
+              </button>
+            </div>
+            {inputResults.length > 0 && (
+              <SearchResults
+                viewRecipe={viewRecipe}
+                inputResults={inputResults}
+              />
+            )}
+          </form>
+          <select
+            defaultValue="all"
+            name="mealType"
+            id="mealType"
+            className="filterMeals w-full md:w-48"
+          >
+            <option value="all">All Recipes</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="dessert">Dessert</option>
+            <option value="snacks">Snacks</option>
+          </select>
+        </div>
       </section>
       <section className="w-full px-12 pt-12">
         {createdRecipeArray.length === 0 && (
@@ -110,8 +99,8 @@ export default function MyRecipes() {
                 Your cookbook is waiting
               </p>
               <p className="mt-2 text-center max-w-[400px] text-[var(--text-muted)]">
-                Every great cookbook starts with one recipe. Add the dishes only
-                you make — the ones your family already knows by heart.
+                Your signature dishes belong here. Save the recipes you've
+                perfected and keep them ready for every meal you make
               </p>
             </div>
             <div>

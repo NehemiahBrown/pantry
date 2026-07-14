@@ -1,8 +1,10 @@
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Heart } from "lucide-react";
 import { Bookmark } from "lucide-react";
+import { ChefHat } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import Apple from "../assets/images/apple.svg";
 import Wheat from "../assets/images/wheat.svg";
@@ -30,16 +32,6 @@ export default function SavedRecipes() {
     <>
       <main>
         <section className="relative flex flex-col">
-          <div className="absolute inset-0 pointer-events-none overflow-x-clip overflow-y-visible">
-            <img
-              src={Apple}
-              className="z-[5] absolute top-40 right-22 w-70 md:w-80 lg:w-96 xl:w-110 translate-x-30 -translate-y-33 opacity-80 -rotate-12"
-            />
-            <img
-              src={Wheat}
-              className="z-[5] rotate-20 absolute top-20 left-27 xl:left-70 w-70 md:w-80 lg:w-96 xl:w-110 -translate-x-35 -translate-y-20 opacity-80 -rotate-12"
-            />
-          </div>
           <div className="flex flex-col pl-10 gap-6 xl:gap-8 justify-center mt-18">
             <div>
               <p className="heading-font text-sm sm:text-md md:text-xl text-[var(--accent)]">
@@ -115,6 +107,32 @@ export default function SavedRecipes() {
               <option value="dessert">Dessert</option>
             </select>
           </div>
+        </section>
+        <section className="w-full px-12 pt-12">
+          {savedRecipes.length === 0 && (
+            <div className="flex flex-col py-10 gap-6 justify-center items-center">
+              <div className="bg-[var(--secondary)]/30 w-fit rounded-full p-4">
+                <ChefHat className="text-[var(--secondary)]" size={100} />
+              </div>
+              <div>
+                <p className="heading-font text-4xl text-center">
+                  No saved recipes yet
+                </p>
+                <p className="mt-2 text-center max-w-[400px] text-[var(--text-muted)]">
+                  Save the recipes you come back to again and again. Build your
+                  own cookbook with meals that make your kitchen feel like home.
+                </p>
+              </div>
+              <div>
+                <NavLink
+                  to="/app"
+                  className="flex items-center gap-3 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-12 py-3 text-xl hover:brightness-90 cursor-pointer"
+                >
+                  <Plus size={20} /> Browse Recipes
+                </NavLink>
+              </div>
+            </div>
+          )}
         </section>
         <section className="w-full px-2 py-12">
           <div className="mt-6 sm:mx-auto grid grid grid-cols-[repeat(auto-fill,270px)] gap-8 justify-center">
