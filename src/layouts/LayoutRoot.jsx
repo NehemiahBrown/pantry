@@ -13,15 +13,14 @@ export default function RootLayout() {
   const [createdRecipeArray, setCreatedRecipeArray] = useState([]);
 
   function openCreateRecipeModal() {
-    setShowCreateRecipeModal((current) => (current = true));
+    setShowCreateRecipeModal(true);
   }
   function closeCreateRecipeModal() {
-    setShowCreateRecipeModal((current) => (current = false));
+    setShowCreateRecipeModal(false);
   }
 
   function addNewRecipe(recipe) {
     setCreatedRecipeArray((current) => [...current, recipe]);
-    console.log(createdRecipeArray);
   }
 
   function saveRecipe(recipe) {

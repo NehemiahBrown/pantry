@@ -6,13 +6,29 @@ import { ChefHat } from "lucide-react";
 import { Plus } from "lucide-react";
 
 import MyRecipeCard from "../components/common/MyRecipeCard.jsx";
+import RecipeDetailModal from "../components/common/RecipeDetailModal.jsx";
+
 
 export default function MyRecipes() {
   const { createdRecipeArray, openCreateRecipeModal } = useOutletContext();
   const [inputValue, setInputValue] = useState("");
   const [inputResults, setInputResults] = useState([]);
+  const [activeRecipe, setActiveRecipe] = useState({});
+  const [showActiveRecipe, setShowActiveRecipe] = useState(false)
 
+  function openRecipeDetails(recipeId){
+    const selectedRecipe = createdRecipeArray.find((recipe) => recipe.id === recipeId) 
+    setActiveRecipe(selectedRecipe)
+    setShowActiveRecipe(true)
+  }
+
+  function closeRecipeDetails(){
+    setShowActiveRecipe(false)
+  }
+
+  
   return (
+    <>
     <main>
       <section className="relative flex flex-col">
         <div className="flex flex-col pl-10 gap-6 xl:gap-8 justify-center mt-18">
@@ -116,9 +132,11 @@ export default function MyRecipes() {
       </section>
       <section className="py-8 px-2 grid grid-cols-[repeat(auto-fill,270px)] gap-8 justify-center">
         {createdRecipeArray.map((recipe) => {
-          return <MyRecipeCard key={recipe.id} recipe={recipe} />;
+          return <MyRecipeCard key={recipe.id} recipe={recipe} openRecipeDetails={openRecipeDetails}/>;
         })}
       </section>
     </main>
+   {showActiveRecipe && <RecipeDetailModal activeRecipe={activeRecipe} closeRecipeDetails={closeRecipeDetails}/>}
+    </>
   );
 }

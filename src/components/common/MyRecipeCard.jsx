@@ -2,9 +2,9 @@ import { Clock } from "lucide-react";
 import { CookingPot } from "lucide-react";
 import { User } from "lucide-react";
 
-export default function MyRecipeCard({ recipe }) {
+export default function MyRecipeCard({ recipe, openRecipeDetails }) {
   return (
-    <div className="flex flex-col text-[var(--text-primary)] rounded-lg shadow-[var(--shadow-lg)] w-[270px] h-[350px] hover:-translate-y-1 transition-transform duration-300 ease-in-out cursor-pointer">
+    <div onClick={openRecipeDetails(recipe.id)} className="flex flex-col text-[var(--text-primary)] rounded-lg shadow-[var(--shadow-lg)] w-[270px] h-[350px] hover:-translate-y-1 transition-transform duration-300 ease-in-out cursor-pointer">
       <div>
         <img
           className="rounded-t-lg"
