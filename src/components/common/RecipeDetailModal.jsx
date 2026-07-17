@@ -11,7 +11,6 @@ export default function RecipeDetailModal({
   closeRecipeDetails,
   openCookMode,
 }) {
-  console.log(activeRecipe);
   return (
     <div className="backdrop-blur-sm px-4 md:px-16 fixed flex flex-col pt-20 pb-8 items-center justify-center inset-0 bg-black/50">
       <div className="flex flex-col w-full bg-[var(--surface)] h-[85vh] rounded-md max-w-[800px]">

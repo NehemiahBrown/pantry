@@ -33,6 +33,8 @@
   --warning: #d98a24;
 
   --divider: #e8ddd2;
+  --disabled: #E0E0E0;
+  --disabled-text: #757575;
 
   /* Fonts */
   --font-heading: "Fraunces", serif;
@@ -91,6 +93,7 @@ body {
   border-color: var(--accent-soft);
   cursor: pointer;
 }
+
 
 #toast {
   min-width: 250px;
