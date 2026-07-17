@@ -43,9 +43,9 @@ export default function RecipeOptions({
           </p>
           <button
             onClick={() => viewRecipe(id)}
-            className="mt-auto flex rounded-lg text-[var(--surface)] items-center gap-2 px-4 py-2 w-full bg-[var(--accent)] cursor-pointer hover:brightness-90"
+            className="mt-auto flex rounded-lg text-[var(--surface)] justify-center items-center gap-2 px-4 py-2 w-full bg-[var(--accent)] cursor-pointer hover:brightness-90"
           >
-            View Recipe <ExternalLink size={20} />
+            View Recipe <ExternalLink size={18} />
           </button>
         </div>
       </div>

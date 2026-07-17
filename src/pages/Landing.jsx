@@ -16,8 +16,7 @@ import personFour from "../assets/images/person4.jpg";
 import pantryWebpage from "../assets/images/pantrywebpage.png";
 import chickenCard from "../assets/images/chickencard.png";
 import recipeCard from "../assets/images/recipecard.png";
-import webRecipeCard1 from "../assets/images/weblinkrecipe1.png";
-import webRecipeCard2 from "../assets/images/weblinkrecipe2.png";
+import empanada from "../assets/images/empanada.png";
 
 export default function Landing() {
   useEffect(() => {
@@ -84,15 +83,12 @@ export default function Landing() {
                   </span>
                 </h1>
                 <p className="mt-6 text-lg text-[var(--text-muted)]">
-                  Discover thousands of recipes, save links from anywhere on the
-                  web, and build a personal cookbook that's entirely yours —
-                  beautifully organised and always at hand.
-                </p>
+                Discover delicious recipes, save your favorites, and create recipes of your own—all organized into a personal cookbook that’s easy to explore and enjoy.                </p>
               </div>
               <div className="flex gap-4 mt-6">
-                <button className="flex items-center gap-1 text-nowrap text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-5 py-2.5 text-sm md:text-md font-medium hover:brightness-90 hover:shadow-[var(--shadow-md)] cursor-pointer transition-all duration-200">
+                <NavLink to="/sign-up" className="flex items-center gap-1 text-nowrap text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-5 py-2.5 text-sm md:text-md font-medium hover:brightness-90 hover:shadow-[var(--shadow-md)] cursor-pointer transition-all duration-200">
                   <Plus size={16} /> Start for free
-                </button>
+                </NavLink>
                 <a
                   href="#how-it-works"
                   className="border border-[var(--surface-muted)] bg-[var(--surface)] rounded-full px-5 py-3.5 text-nowrap text-sm md:text-md font-medium hover:border-[var(--primary-light)] hover:bg-[var(--background-soft)] cursor-pointer transition-colors duration-220"
@@ -144,37 +140,34 @@ export default function Landing() {
           id="features"
         >
           <div className="flex flex-col">
-            <p className="text-[var(--accent)]">SIMPLE BY DESIGN</p>
+            <p className="text-[var(--accent)]">BUILT FOR EVERYDAY COOKING</p>
             <h2 className="mt-4 text-5xl heading-font max-w-lg">
               Everything you need,&nbsp;
               <span className="block font-extralight text-[var(--primary-light)] italic">
-                nothing you don't.
+              from discovery to dinner.
               </span>
             </h2>
             <p className="mt-4 max-w-lg text-[var(--text-muted)]">
-              Pantry strips away the clutter. Four things — done exceptionally
-              well.
+            Pantry keeps finding, saving, creating, and cooking your favorite recipes simple. All in one organized place.
             </p>
           </div>
-          <div className=" mt-16 max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-6">
+          <div className=" mt-16 max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
             <div className="group px-6 py-8 bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <div className="gap-2 flex items-center">
                 <p className="heading-font text-[var(--accent)]">01</p>
                 <hr className="flex-1 text-[var(--accent-soft)]" />
               </div>
-              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--breakfast)]/30 flex items-center justify-center">
+              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--secondary-dark)]/30 flex items-center justify-center">
                 <Search
                   size={24}
-                  className="text-[var(--breakfast)]"
+                  className="text-[var(--secondary-dark)]"
                   strokeWidth={1.75}
                 />
               </div>
               <div className="mt-4">
                 <p className="heading-font text-xl">Discover recipes</p>
                 <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
-                  Browse thousands of curated recipes organised by Breakfast,
-                  Lunch, Dinner, Dessert and Snacks. Search by ingredient or
-                  cuisine.
+                Explore recipes organized by category, from pasta and seafood dishes to delicious desserts. Search to find something that fits your cravings.
                 </p>
               </div>
             </div>
@@ -183,18 +176,17 @@ export default function Landing() {
                 <p className="heading-font text-[var(--accent)]">02</p>
                 <hr className="flex-1 text-[var(--accent-soft)]" />
               </div>
-              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--dessert)]/30 flex items-center justify-center">
+              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--accent-dark)]/30 flex items-center justify-center">
                 <Link
                   size={24}
-                  className="text-[var(--dessert)]"
+                  className="text-[var(--accent-dark)]"
                   strokeWidth={1.75}
                 />
               </div>
               <div className="mt-4">
-                <p className="heading-font text-xl">Save links from the web</p>
+                <p className="heading-font text-xl">Save your favorites</p>
                 <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
-                  Found a recipe on Serious Eats or Half Baked Harvest? Save the
-                  link with your own notes and category — all in one place.
+                Found something you want to make later? Save it to your personal collection so it’s easy to find whenever you’re ready to cook.
                 </p>
               </div>
             </div>
@@ -203,19 +195,17 @@ export default function Landing() {
                 <p className="heading-font text-[var(--accent)]">03</p>
                 <hr className="flex-1 text-[var(--accent-soft)]" />
               </div>
-              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--dinner)]/30 flex items-center justify-center">
+              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--accent)]/30 flex items-center justify-center">
                 <PenLine
                   size={24}
-                  className="text-[var(--dinner)]"
+                  className="text-[var(--accent)]"
                   strokeWidth={1.75}
                 />
               </div>
               <div className="mt-4">
                 <p className="heading-font text-xl">Create your own recipes</p>
                 <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
-                  Write recipes from scratch with ingredients, step-by-step
-                  instructions, prep times, and personal notes. Your family
-                  recipes, finally preserved.
+                Add recipes of your own with ingredients, preparation details, and step-by-step instructions. Keep your personal favorites organized and ready to use.
                 </p>
               </div>
             </div>
@@ -233,12 +223,10 @@ export default function Landing() {
               </div>
               <div className="mt-4">
                 <p className="heading-font text-xl">
-                  Cook without distractions
+                Cook step by step
                 </p>
                 <p className="mt-1 text-[var(--text-muted)] text-sm group-hover:text-[var(--primary)] transition-colors duration-200">
-                  Hit Start Cooking and enter a focused, step-by-step mode. One
-                  instruction at a time, large text, and no UI to get in the
-                  way.
+                Open Cook Mode for a focused, step-by-step view of your recipe. Move through each instruction and track your progress as you cook.
                 </p>
               </div>
             </div>
@@ -252,30 +240,28 @@ export default function Landing() {
             <div className="flex-1">
               <p className="text-[var(--accent)]">DISCOVER</p>
               <h2 className="mt-4 text-5xl heading-font max-w-lg">
-                Thousands of recipes,
+                Hundreds of recipes,
                 <span className="block">zero overwhelm</span>
               </h2>
               <p className="mt-4 max-w-lg text-[var(--text-muted)]">
-                Browse by meal category, filter by what you're in the mood for,
-                or search by ingredient. Every card shows you exactly what you
-                need to decide: time, difficulty, and ingredients.
+              Browse recipes by meal category, search for a specific dish, and save anything that catches your eye to your personal collection. Whether you’re planning dinner or looking for something new, Pantry makes finding your next recipe simple.
               </p>
               <ul className="flex flex-col gap-3 mt-8">
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--dinner)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--dinner)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary-dark)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--secondary-dark)]" />
                   </span>
-                  Organised by Breakfast, Lunch, Dinner, Dessert and Snacks
+                  Browse a collection of recipes for new meal ideas
                 </li>
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--dinner)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--dinner)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary-dark)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--secondary-dark)]" />
                   </span>
-                  Filter by category or search across all recipes at once
+                  Open any recipe to view its ingredients and instructions
                 </li>
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--dinner)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--dinner)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary-dark)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--secondary-dark)]" />
                   </span>
                   Heart any recipe to save it to your personal Favourites
                 </li>
@@ -285,7 +271,7 @@ export default function Landing() {
               <img
                 className="w-80 xl:w-100 rounded-lg"
                 src={chickenCard}
-                alt=""
+                alt="A preview of a recipe card."
               />
             </div>
           </div>
@@ -297,31 +283,29 @@ export default function Landing() {
             <div>
               <p className="text-[var(--accent)]">COOK MODE</p>
               <h2 className="mt-4 text-5xl heading-font max-w-lg">
-                Your phone stays clean. Your hands do too.
+              One step at a time, from start to finish
               </h2>
               <p className="mt-4 max-w-lg text-[var(--text-muted)]">
-                Start Cooking enters a full-screen focused mode. One step at a
-                time, in large, comfortable text. No nav, no distractions, no
-                accidental taps. Just the recipe.
+              Cook Mode gives you a focused view of each instruction with large, easy-to-read text. Move through the recipe at your own pace and track your progress along the way.
               </p>
               <ul className="flex flex-col gap-3 mt-8">
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--breakfast)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--breakfast)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--accent-dark)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--accent-dark)]" />
                   </span>
-                  Step-by-step with clear Previous and Next navigation
+                  Follow one instruction at a time without extra clutter
                 </li>
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--breakfast)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--breakfast)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--accent-dark)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--accent-dark)]" />
                   </span>
-                  Warm dark background — easy on the eyes in a bright kitchen
+                  Move between steps using Previous and Next buttons
                 </li>
                 <li>
-                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--breakfast)]/30 w-6 h-6 rounded-full">
-                    <Check size={14} className="text-[var(--breakfast)]" />
+                  <span className="inline-flex mr-4 justify-center items-center bg-[var(--accent-dark)]/30 w-6 h-6 rounded-full">
+                    <Check size={14} className="text-[var(--accent-dark)]" />
                   </span>
-                  Progress dots let you see exactly where you are in the recipe
+                  Track your place with a progress bar and step counter
                 </li>
               </ul>
             </div>
@@ -329,46 +313,38 @@ export default function Landing() {
           <hr className="my-14 border-0 h-px mx-auto w-full lg:w-full bg-[var(--divider)]" />
           <div className="flex items-center gap-8">
             <div className="flex-1">
-              <p className="text-[var(--accent)]">SAVED LINKS</p>
+              <p className="text-[var(--accent)]">SAVED RECIPES</p>
               <h2 className="mt-4 text-5xl heading-font max-w-lg">
-                Stop losing recipes
-                <span className="block">in browser tabs.</span>
+              Keep your favorites close
               </h2>
               <p className="mt-4 max-w-lg text-[var(--text-muted)]">
-                Save any recipe link from the web with your own notes, category,
-                and rating. Serious Eats. Smitten Kitchen. Your friend's blog.
-                Everything lives in Pantry, organised and searchable.
+              Heart any recipe you discover to add it to your personal Saved Recipes collection. Everything you want to cook later stays together, making it easy to return whenever inspiration strikes.
               </p>
               <ul className="flex flex-col gap-3 mt-8">
                 <li>
                   <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary)]/30 w-6 h-6 rounded-full">
                     <Check size={14} className="text-[var(--secondary)]" />
                   </span>
-                  Save the link URL, recipe name, category and your own notes
+                  Save recipes instantly by selecting the heart icon
                 </li>
                 <li>
                   <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary)]/30 w-6 h-6 rounded-full">
                     <Check size={14} className="text-[var(--secondary)]" />
                   </span>
-                  Visit the original recipe with one tap, from anywhere
+                  Browse and search your saved collection in one place
                 </li>
                 <li>
                   <span className="inline-flex mr-4 justify-center items-center bg-[var(--secondary)]/30 w-6 h-6 rounded-full">
                     <Check size={14} className="text-[var(--secondary)]" />
                   </span>
-                  Favourite, categorise and filter just like your own recipes
+                  Open any saved recipe to view its ingredients and instructio
                 </li>
               </ul>
             </div>
             <div className="flex flex-col gap-4 hidden lg:flex">
               <img
                 className="w-80 xl:w-100 rounded-lg"
-                src={webRecipeCard1}
-                alt=""
-              />
-              <img
-                className="w-80 xl:w-100 rounded-lg"
-                src={webRecipeCard2}
+                src={empanada}
                 alt=""
               />
             </div>
@@ -408,9 +384,7 @@ export default function Landing() {
             <div className=" flex-1 min-w-[300px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <p className="text-[#FFD700] tracking-widest text-sm">★★★★★</p>
               <p className="mt-2 font-body">
-                "The cook mode alone is worth it. My phone actually stays usable
-                when I'm mid-recipe with floury hands. It's the little things
-                that make it brilliant."
+              “Cook Mode alone is worth it. The large text and step-by-step navigation make recipes much easier to follow while I’m cooking. It’s the little things that make it brilliant.”
               </p>
               <div className="mt-4 flex items-center gap-3">
                 <img
