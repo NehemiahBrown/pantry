@@ -37,6 +37,8 @@ export default function Discover() {
   const [dessertRecipesShown, setDessertRecipesShown] = useState(0);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  43;
+  //ensuring on first render the correct number of recipes are shown
   const [shownRecipes, setShownRecipes] = useState(
     window.innerWidth <= 800
       ? 1

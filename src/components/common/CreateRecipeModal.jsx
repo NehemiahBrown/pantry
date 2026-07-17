@@ -60,6 +60,7 @@ export default function CreateRecipeModal({
 
     setEmptyFieldError(false);
     addNewRecipe(newRecipe);
+    closeCreateRecipeModal();
   }
 
   const [ingredients, setIngredients] = useState([
