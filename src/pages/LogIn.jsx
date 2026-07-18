@@ -25,7 +25,7 @@ export default function LogIn() {
   }
 
   return (
-    <div className="flex flex-1 flex-col min-h-screen">
+    <div className="flex flex-1 flex-col">
       <header className="sticky top-0 z-50 flex p-4 items-center justify-between bg-[var(--background)] shadow-[var(--shadow-bottom)]">
         <NavLink to="/" className="flex items-center gap-2 cursor-pointer">
           <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
@@ -42,11 +42,11 @@ export default function LogIn() {
           </NavLink>
         </div>
       </header>
-      <main className="flex-1 py-16 bg-[var(--background-soft)]">
-        <div className="flex w-full gap-8 max-w-[1500px] mx-auto  justify-center px-6">
+      <main className="flex-1 xs:py-16 bg-[var(--background-soft)]">
+        <div className="flex items-start w-full gap-8 max-w-[1500px] mx-auto  justify-center xs:px-4">
           <form
             onSubmit={signInUser}
-            className="flex gap-6 flex-col w-full max-w-lg bg-[var(--surface)] shadow-[var(--shadow-lg)] rounded-2xl py-8 px-6"
+            className="flex gap-6 flex-col w-full max-w-lg bg-[var(--surface)] shadow-[var(--shadow-lg)] xs:rounded-xl py-8 px-6"
           >
             <div>
               <h1 className="mt-4 heading-font text-3xl text-center text-[var(--primary)]">
@@ -121,7 +121,7 @@ export default function LogIn() {
           </form>
           <div className="hidden flex-1 lg:flex w-full max-w-lg">
             <img
-              className="w-full h-full object-cover rounded-2xl"
+              className="w-full h-full object-cover rounded-xl"
               src={LogInImg}
             />
           </div>

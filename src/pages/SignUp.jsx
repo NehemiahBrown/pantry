@@ -32,7 +32,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col">
       <header className="sticky top-0 z-50 flex p-4 items-center justify-between bg-[var(--background)] shadow-[var(--shadow-bottom)]">
         <NavLink to="/" className="flex items-center gap-2 cursor-pointer">
           <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
@@ -49,14 +49,14 @@ export default function SignUp() {
           </NavLink>
         </div>
       </header>
-      <main className="flex flex-1 py-16 bg-[var(--background-soft)]">
-        <div className="flex w-full gap-8 max-w-[1500px] mx-auto items-stretch justify-center px-6">
+      <main className="flex flex-1 xs:min-h-screen xs:py-16 bg-[var(--background-soft)]">
+        <div className="flex w-full gap-8 max-w-[1500px] mx-auto items-stretch justify-center xs:px-6">
           <div className="hidden lg:flex flex-1 max-w-lg">
-            <img className="h-full w-full rounded-2xl" src={SignUpImg} alt="" />
+            <img className="h-full w-full rounded-xl" src={SignUpImg} alt="" />
           </div>
           <form
             onSubmit={createNewUser}
-            className="flex gap-6 flex-col w-full max-w-lg bg-[var(--surface)] shadow-[var(--shadow-lg)] rounded-2xl py-8 px-6"
+            className="flex gap-6 flex-col w-full max-w-lg bg-[var(--surface)] shadow-[var(--shadow-lg)] xs:rounded-2xl py-8 px-6"
           >
             <div>
               <h1 className="mt-4 heading-font text-3xl text-center text-[var(--primary)]">
@@ -67,7 +67,7 @@ export default function SignUp() {
               </p>
             </div>
             <div>
-              <button className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer">
+              <button type="button" className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer">
                 <img className="w-6 h-6" aria-hidden="true" src={GoogleG} />
                 Continue with Google
               </button>
@@ -145,7 +145,7 @@ export default function SignUp() {
               </button>
             </div>
             <p className="text-center">
-              Already have an account?{" "}
+              Already have an account?
               <NavLink to="/log-in" className="underline text-[var(--accent)]">
                 <span className="block sm:inline">Log In</span>
               </NavLink>

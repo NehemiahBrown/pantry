@@ -1,13 +1,34 @@
 import { Plus } from "lucide-react";
+import { Menu } from "lucide-react";
+
 import { NavLink } from "react-router-dom";
+import {useState} from "react"
+
+import HamburgerMenu from "../../components/common/HamburgerMenu.jsx"
 
 export default function MainHeader({ openCreateRecipeModal }) {
+
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  function openMenu(){
+    setMenuOpen(true)
+  }
+
+  function closeMenu(){
+    setMenuOpen(false)
+  }
+
   const navLinkStyle =
     "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface)] transition-colors duration-150";
   const activeLink =
     "py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)]";
   return (
+    <>
+   
     <header className="sticky top-0 z-[50] flex p-4 bg-[var(--background-soft)] items-center justify-between">
+      <div className="flex items-center gap-4">
+      <Menu onClick={openMenu} className="cursor-pointer active:scale-90"/>
+      
       <NavLink to="/app">
         <div className="flex items-center gap-2 cursor-pointer">
           <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
@@ -16,6 +37,7 @@ export default function MainHeader({ openCreateRecipeModal }) {
           </p>
         </div>
       </NavLink>
+      </div>
       <nav className="hidden md:flex">
         <ul className="flex items-center gap-4">
           <li>
@@ -63,5 +85,11 @@ export default function MainHeader({ openCreateRecipeModal }) {
         </div>
       </div>
     </header>
+    <HamburgerMenu 
+    menuOpen={menuOpen}
+    setMenuOpen={setMenuOpen}
+    closeMenu={closeMenu}/>
+    
+    </>
   );
 }

@@ -62,7 +62,7 @@ export default function Landing() {
           </NavLink>
           <NavLink
             to="/sign-up"
-            className="flex items-center gap-1 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer"
+            className="hidden md:flex flex items-center gap-1 text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer"
           >
             Build Your Pantry <ChevronRight size={14} />
           </NavLink>
@@ -85,13 +85,13 @@ export default function Landing() {
                 <p className="mt-6 text-lg text-[var(--text-muted)]">
                 Discover delicious recipes, save your favorites, and create recipes of your own—all organized into a personal cookbook that’s easy to explore and enjoy.                </p>
               </div>
-              <div className="flex gap-4 mt-6">
-                <NavLink to="/sign-up" className="flex items-center gap-1 text-nowrap text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-5 py-2.5 text-sm md:text-md font-medium hover:brightness-90 hover:shadow-[var(--shadow-md)] cursor-pointer transition-all duration-200">
+              <div className="flex flex-col xs:flex-row gap-4 mt-6">
+                <NavLink to="/sign-up" className="flex items-center w-[160px] gap-1 text-nowrap text-[var(--text-inverse)] bg-[var(--accent)] rounded-full px-5 py-2.5 text-sm md:text-md font-medium hover:brightness-90 hover:shadow-[var(--shadow-md)] cursor-pointer transition-all duration-200">
                   <Plus size={16} /> Start for free
                 </NavLink>
                 <a
                   href="#how-it-works"
-                  className="border border-[var(--surface-muted)] bg-[var(--surface)] rounded-full px-5 py-3.5 text-nowrap text-sm md:text-md font-medium hover:border-[var(--primary-light)] hover:bg-[var(--background-soft)] cursor-pointer transition-colors duration-220"
+                  className="border border-[var(--surface-muted)] w-[160px] bg-[var(--surface)] rounded-full px-5 py-3.5 text-nowrap text-sm md:text-md font-medium hover:border-[var(--primary-light)] hover:bg-[var(--background-soft)] cursor-pointer transition-colors duration-220"
                 >
                   See how it works
                 </a>
@@ -362,7 +362,7 @@ export default function Landing() {
             </h2>
           </div>
           <div className="flex flex-col lg:flex-row gap-4 py-8">
-            <div className=" flex-1 min-w-[300px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
+            <div className=" flex-1 min-w-[280px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <p className="text-[#FFD700] tracking-widest text-sm">★★★★★</p>
               <p className="mt-2 font-body">
                 "I've tried every recipe app out there. Pantry is the first one
@@ -381,7 +381,7 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            <div className=" flex-1 min-w-[300px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
+            <div className=" flex-1 min-w-[280px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <p className="text-[#FFD700] tracking-widest text-sm">★★★★★</p>
               <p className="mt-2 font-body">
               “Cook Mode alone is worth it. The large text and step-by-step navigation make recipes much easier to follow while I’m cooking. It’s the little things that make it brilliant.”
@@ -398,7 +398,7 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            <div className=" flex-1 min-w-[300px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
+            <div className=" flex-1 min-w-[280px] mt-4 px-6 py-8  bg-[var(--surface)] shadow[var(--shadow-md)] rounded-md shadow-[var(--shadow-sm)] border border-[var(--border-light)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-transform duration-300 ease-in-out">
               <p className="text-[#FFD700] tracking-widest text-sm">★★★★★</p>
               <p className="mt-2 font-body">
                 I finally digitised my grandmother's recipes. The Create Recipe

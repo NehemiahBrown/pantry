@@ -5,9 +5,9 @@ import githubIcon from "../../assets/images/github-icon.svg";
 export default function PublicFooter() {
   return (
     <footer className="px-4 sm:px-8 text-xs sm:text-sm py-8 bg-[var(--background)]">
-      <div className="flex justify-between items-center">
-        <div className="flex flex-col gap-2 max-w-[450px]">
-          <div className="flex justify-between">
+      
+        <div className="flex flex-col gap-2">
+          <div className="flex w-full justify-between">
             <div className="flex gap-2 items-center">
               <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
               <p className="heading-font text-[var(--text-primary)] text-xl">
@@ -21,15 +21,15 @@ export default function PublicFooter() {
             </div>
           </div>
           <div>
-            <p className="mt-2 font-body max-w-lg">
+            <p className="mt-2 font-body max-w-[450px]">
               A warm, personal cookbook for the way you actually cook. Discover,
               save, and create — all in one beautiful place.
             </p>
           </div>
         </div>
-      </div>
+      
       <hr className="my-4 border-0 h-px mx-auto w-full lg:w-full bg-[var(--divider)]" />
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-2">
         <div>
           <p>© 2026 Pantry. Made with care for home cooks everywhere.</p>
         </div>
