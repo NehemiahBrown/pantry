@@ -4,13 +4,17 @@ import { Search } from "lucide-react";
 import { Bookmark } from "lucide-react";
 import { ChefHat } from "lucide-react";
 import { Plus } from "lucide-react";
+import { X } from "lucide-react";
+
 
 import MyRecipeCard from "../components/common/MyRecipeCard.jsx";
 import RecipeDetailModal from "../components/common/RecipeDetailModal.jsx";
 import CookModeModal from "../components/common/CookModeModal.jsx";
+import SearchResults from "../components/common/SearchResults.jsx";
+
 
 export default function MyRecipes() {
-  const { createdRecipeArray, openCreateRecipeModal } = useOutletContext();
+  const { createdRecipeArray, openCreateRecipeModal} = useOutletContext();
   const [inputValue, setInputValue] = useState("");
   const [inputResults, setInputResults] = useState([]);
   const [activeRecipe, setActiveRecipe] = useState({});
@@ -36,6 +40,23 @@ export default function MyRecipes() {
 
   function closeRecipeDetails() {
     setShowActiveRecipe(false);
+  }
+
+  function handleChange(value) {
+    setInputValue(value);
+    const matchingValues = createdRecipeArray.filter((recipe) => {
+      return (
+        value &&
+        recipe &&
+        recipe.recipeName.toLowerCase().includes(value.toLowerCase())
+      );
+    });
+    setInputResults(matchingValues);
+  }
+
+  function clearInput(){
+    setInputValue("")
+    setInputResults([])
   }
 
   return (
@@ -65,11 +86,13 @@ export default function MyRecipes() {
                     ? "Saved recipe"
                     : "Saved recipes"}
                 </p>
+                <p>|</p>
+                <p>Collect and cook</p>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row md:items-center md:justify-center mt-8 gap-4 px-8">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-center mt-8 gap-4 px-8">
             <form
               className="flex flex-1 flex-col items-center"
               onSubmit={(e) => e.preventDefault()}
@@ -80,22 +103,22 @@ export default function MyRecipes() {
                   className="left-4 absolute top-1/2 -translate-y-1/2"
                 />
                 <input
-                  type="search"
+                  type="text"
                   className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                   placeholder="Search saved recipes..."
                   value={inputValue}
                   onChange={(e) => handleChange(e.target.value)}
                 />
-                <button
-                  type="submit"
-                  className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2"
-                >
-                  Search
-                </button>
+               { inputValue && <button
+            onClick={clearInput}
+              type="button"
+              className="hidden sm:block py-1 px-2 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2 hover:bg-[var(--secondary)] active:scale-90 active:[var(--secondary)] transition-all duration-200"
+            >
+              <X/>
+            </button>}
               </div>
               {inputResults.length > 0 && (
                 <SearchResults
-                  viewRecipe={viewRecipe}
                   inputResults={inputResults}
                 />
               )}

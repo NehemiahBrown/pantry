@@ -5,6 +5,8 @@ import { Heart } from "lucide-react";
 import { Bookmark } from "lucide-react";
 import { ChefHat } from "lucide-react";
 import { Plus } from "lucide-react";
+import { X } from "lucide-react";
+
 
 import Apple from "../assets/images/apple.svg";
 import Wheat from "../assets/images/wheat.svg";
@@ -27,6 +29,11 @@ export default function SavedRecipes() {
       );
     });
     setInputResults(matchingValues);
+  }
+
+  function clearInput(){
+    setInputValue("")
+    setInputResults([])
   }
   return (
     <>
@@ -62,10 +69,10 @@ export default function SavedRecipes() {
               </div>
             </div>
           </div>
-          <div className="mt-8 px-8 flex flex-col md:flex-row md:items-center md:justify-center gap-4">
+          <div className="mt-8 px-8 flex flex-col md:flex-row md:items-start md:justify-center gap-4">
             <form
               className="flex flex-1 flex-col items-center "
-              onSubmit={(e) => e.preventDefaut()}
+              onSubmit={(e) => e.preventDefault()}
             >
               <div className="relative w-full mx-auto">
                 <Search
@@ -73,18 +80,19 @@ export default function SavedRecipes() {
                   className="left-4 absolute top-1/2 -translate-y-1/2"
                 />
                 <input
-                  type="search"
+                  type="text"
                   className="w-full pl-12 pr-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                   placeholder="Search saved recipes..."
                   value={inputValue}
                   onChange={(e) => handleChange(e.target.value)}
                 />
-                <button
-                  type="submit"
-                  className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2"
-                >
-                  Search
-                </button>
+                { inputValue && <button
+            onClick={clearInput}
+              type="button"
+              className="hidden sm:block py-1 px-2 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2 hover:bg-[var(--secondary)] active:scale-90 active:[var(--secondary)] transition-all duration-200"
+            >
+              <X/>
+            </button>}
               </div>
               {inputResults.length > 0 && (
                 <SearchResults
@@ -96,7 +104,7 @@ export default function SavedRecipes() {
             <select
               name="mealType"
               id="mealType"
-              className="filterMeals w-full md:w-48"
+              className="filterMeals w-full md:w-48 self-start"
               defaultValue="all"
             >
               <option value="all">All Recipes</option>
@@ -134,8 +142,8 @@ export default function SavedRecipes() {
             </div>
           )}
         </section>
-        <section className="w-full px-2 py-12">
-          <div className="mt-6 sm:mx-auto grid grid grid-cols-[repeat(auto-fill,270px)] gap-8 justify-center">
+        <section className="w-full px-2 py-8">
+          <div className="sm:mx-auto grid grid grid-cols-[repeat(auto-fill,270px)] gap-8 justify-center">
             {savedRecipes.map((recipe) => {
               const isSaved = savedRecipes.some(
                 (currentRecipe) => currentRecipe.id === recipe.id,

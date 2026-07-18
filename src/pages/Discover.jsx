@@ -6,6 +6,8 @@ import { Fish } from "lucide-react";
 import { LineSquiggle } from "lucide-react";
 import { Drumstick } from "lucide-react";
 import { CakeSlice } from "lucide-react";
+import { X  } from "lucide-react";
+
 
 import basil from "../assets/images/basil-leaf.jpg";
 import spices from "../assets/images/spices.png";
@@ -37,7 +39,7 @@ export default function Discover() {
   const [dessertRecipesShown, setDessertRecipesShown] = useState(0);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  43;
+
   //ensuring on first render the correct number of recipes are shown
   const [shownRecipes, setShownRecipes] = useState(
     window.innerWidth <= 800
@@ -138,6 +140,11 @@ export default function Discover() {
     setInputResults(matchingValues);
   }
 
+  function clearInput(){
+    setInput("")
+    setInputResults([])
+  }
+
   return (
     <main className="pb-12">
       <section className="relative flex flex-col gap-8 pb-8">
@@ -174,18 +181,19 @@ export default function Discover() {
               className="left-4 absolute top-1/2 -translate-y-1/2"
             />
             <input
-              type="search"
+              type="text"
               className="w-full px-12 border border-[var(--border)] bg-white rounded-lg py-4 mx-auto placeholder:text-[var(--muted-text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] focus:shadow-[var(--shadow-sm)] transition-all duration-200"
-              placeholder="Search recipes, ingredients, cuisines..."
+              placeholder="Search recipes by name..."
               value={input}
               onChange={(e) => handleChange(e.target.value)}
             />
-            <button
-              type="submit"
-              className="hidden md:block py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2"
+            {input && <button
+            onClick={clearInput}
+              type="button"
+              className="hidden sm:block py-1 px-2 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2 hover:bg-[var(--secondary)] active:scale-90 active:[var(--secondary)] transition-all duration-200"
             >
-              Search
-            </button>
+              <X/>
+            </button>}
           </div>
           {inputResults.length > 0 && (
             <SearchResults
