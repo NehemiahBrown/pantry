@@ -27,7 +27,7 @@ export default function MainHeader({ openCreateRecipeModal }) {
    
     <header className="sticky top-0 z-[50] flex p-4 bg-[var(--background-soft)] items-center justify-between">
       <div className="flex items-center gap-4">
-      <Menu onClick={openMenu} className="cursor-pointer active:scale-90"/>
+      <Menu onClick={openMenu} className="md:hidden cursor-pointer active:scale-90"/>
       
       <NavLink to="/app">
         <div className="flex items-center gap-2 cursor-pointer">

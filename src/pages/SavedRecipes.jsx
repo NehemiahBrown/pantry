@@ -15,9 +15,10 @@ import RecipeOptions from "../components/common/RecipeOptions.jsx";
 import SearchResults from "../components/common/SearchResults.jsx";
 
 export default function SavedRecipes() {
-  const { savedRecipes, saveRecipe, viewRecipe } = useOutletContext();
+  const {savedRecipes, saveRecipe, viewRecipe } = useOutletContext();
   const [inputValue, setInputValue] = useState("");
   const [inputResults, setInputResults] = useState([]);
+  const [filter, setFilter] = useState("all")
 
   function handleChange(value) {
     setInputValue(value);
@@ -35,6 +36,16 @@ export default function SavedRecipes() {
     setInputValue("")
     setInputResults([])
   }
+
+  const filteredRecipes = savedRecipes.filter((recipe) => {
+    console.log(savedRecipes)
+    const matchesSearch = recipe.recipeName.toLowerCase().includes(inputValue.toLowerCase());
+
+    const matchesFilter = filter === "all" || recipe.recipeCategory.toLowerCase() === filter;
+
+    return matchesSearch && matchesFilter;
+  })
+
   return (
     <>
       <main>
@@ -105,7 +116,8 @@ export default function SavedRecipes() {
               name="mealType"
               id="mealType"
               className="filterMeals w-full md:w-48 self-start"
-              defaultValue="all"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
             >
               <option value="all">All Recipes</option>
               <option value="pasta">Pasta</option>
@@ -144,7 +156,7 @@ export default function SavedRecipes() {
         </section>
         <section className="w-full px-2 py-8">
           <div className="sm:mx-auto grid grid grid-cols-[repeat(auto-fill,270px)] gap-8 justify-center">
-            {savedRecipes.map((recipe) => {
+            {filteredRecipes.map((recipe) => {
               const isSaved = savedRecipes.some(
                 (currentRecipe) => currentRecipe.id === recipe.id,
               );

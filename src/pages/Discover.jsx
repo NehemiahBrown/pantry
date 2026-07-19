@@ -87,7 +87,7 @@ export default function Discover() {
 
       const result = await response.json();
 
-      const foodObject = result.meals.map((meal) => createFoodObject(meal));
+      const foodObject = result.meals.map((meal) => createFoodObject(meal, mealType));
       setMealType(foodObject);
     } catch (error) {
       console.error(error.message);
@@ -120,11 +120,12 @@ export default function Discover() {
   }, []);
 
   //creating an easy food object to grab data from
-  function createFoodObject(foodData) {
+  function createFoodObject(foodData, mealType) {
     return {
       id: foodData.idMeal,
       recipeName: foodData.strMeal,
       recipeImage: foodData.strMealThumb,
+      recipeCategory: mealType,
     };
   }
 
