@@ -7,7 +7,6 @@ import { ChefHat } from "lucide-react";
 import { Plus } from "lucide-react";
 import { X } from "lucide-react";
 
-
 import Apple from "../assets/images/apple.svg";
 import Wheat from "../assets/images/wheat.svg";
 
@@ -15,10 +14,10 @@ import RecipeOptions from "../components/common/RecipeOptions.jsx";
 import SearchResults from "../components/common/SearchResults.jsx";
 
 export default function SavedRecipes() {
-  const {savedRecipes, saveRecipe, viewRecipe } = useOutletContext();
+  const { savedRecipes, saveRecipe, viewRecipe } = useOutletContext();
   const [inputValue, setInputValue] = useState("");
   const [inputResults, setInputResults] = useState([]);
-  const [filter, setFilter] = useState("all")
+  const [filter, setFilter] = useState("all");
 
   function handleChange(value) {
     setInputValue(value);
@@ -32,19 +31,22 @@ export default function SavedRecipes() {
     setInputResults(matchingValues);
   }
 
-  function clearInput(){
-    setInputValue("")
-    setInputResults([])
+  function clearInput() {
+    setInputValue("");
+    setInputResults([]);
   }
 
   const filteredRecipes = savedRecipes.filter((recipe) => {
-    console.log(savedRecipes)
-    const matchesSearch = recipe.recipeName.toLowerCase().includes(inputValue.toLowerCase());
+    console.log(savedRecipes);
+    const matchesSearch = recipe.recipeName
+      .toLowerCase()
+      .includes(inputValue.toLowerCase());
 
-    const matchesFilter = filter === "all" || recipe.recipeCategory.toLowerCase() === filter;
+    const matchesFilter =
+      filter === "all" || recipe.recipeCategory.toLowerCase() === filter;
 
     return matchesSearch && matchesFilter;
-  })
+  });
 
   return (
     <>
@@ -97,13 +99,15 @@ export default function SavedRecipes() {
                   value={inputValue}
                   onChange={(e) => handleChange(e.target.value)}
                 />
-                { inputValue && <button
-            onClick={clearInput}
-              type="button"
-              className="hidden sm:block py-1 px-2 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2 hover:bg-[var(--secondary)] active:scale-90 active:[var(--secondary)] transition-all duration-200"
-            >
-              <X/>
-            </button>}
+                {inputValue && (
+                  <button
+                    onClick={clearInput}
+                    type="button"
+                    className="hidden sm:block py-1 px-2 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2 hover:bg-[var(--secondary)] active:scale-90 active:[var(--secondary)] transition-all duration-200"
+                  >
+                    <X />
+                  </button>
+                )}
               </div>
               {inputResults.length > 0 && (
                 <SearchResults

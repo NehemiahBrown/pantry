@@ -6,21 +6,20 @@ import { ChefHat } from "lucide-react";
 import { Plus } from "lucide-react";
 import { X } from "lucide-react";
 
-
 import MyRecipeCard from "../components/common/MyRecipeCard.jsx";
 import RecipeDetailModal from "../components/common/RecipeDetailModal.jsx";
 import CookModeModal from "../components/common/CookModeModal.jsx";
 import SearchResults from "../components/common/SearchResults.jsx";
 
-
 export default function MyRecipes() {
-  const { createdRecipeArray, openCreateRecipeModal} = useOutletContext();
+  const { createdRecipeArray, openCreateRecipeModal } = useOutletContext();
   const [inputValue, setInputValue] = useState("");
   const [inputResults, setInputResults] = useState([]);
   const [activeRecipe, setActiveRecipe] = useState({});
   const [showActiveRecipe, setShowActiveRecipe] = useState(false);
   const [showCookMode, setShowCookMode] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [filter, setFilter] = useState("all");
 
   function openCookMode() {
     setShowCookMode(true);
@@ -54,10 +53,23 @@ export default function MyRecipes() {
     setInputResults(matchingValues);
   }
 
-  function clearInput(){
-    setInputValue("")
-    setInputResults([])
+  function clearInput() {
+    setInputValue("");
+    setInputResults([]);
   }
+  console.log(createdRecipeArray);
+
+  const filteredRecipes = createdRecipeArray.filter((recipe) => {
+    const matchesSearch = recipe.recipeName
+      .toLowerCase()
+      .includes(inputValue.toLowerCase());
+
+    const matchesFilter =
+      filter === "all" ||
+      recipe.recipeCategory.toLowerCase() === filter.toLowerCase();
+
+    return matchesSearch && matchesFilter;
+  });
 
   return (
     <>
@@ -109,24 +121,25 @@ export default function MyRecipes() {
                   value={inputValue}
                   onChange={(e) => handleChange(e.target.value)}
                 />
-               { inputValue && <button
-            onClick={clearInput}
-              type="button"
-              className="hidden sm:block py-1 px-2 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2 hover:bg-[var(--secondary)] active:scale-90 active:[var(--secondary)] transition-all duration-200"
-            >
-              <X/>
-            </button>}
+                {inputValue && (
+                  <button
+                    onClick={clearInput}
+                    type="button"
+                    className="hidden sm:block py-1 px-2 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)] right-4 absolute top-1/2 -translate-y-1/2 hover:bg-[var(--secondary)] active:scale-90 active:[var(--secondary)] transition-all duration-200"
+                  >
+                    <X />
+                  </button>
+                )}
               </div>
               {inputResults.length > 0 && (
-                <SearchResults
-                  inputResults={inputResults}
-                />
+                <SearchResults inputResults={inputResults} />
               )}
             </form>
             <select
-              defaultValue="all"
+              value={filter}
               name="mealType"
               id="mealType"
+              onChange={(e) => setFilter(e.target.value)}
               className="filterMeals w-full md:w-48"
             >
               <option value="all">All Recipes</option>
@@ -165,7 +178,7 @@ export default function MyRecipes() {
           )}
         </section>
         <section className="py-8 px-2 grid grid-cols-[repeat(auto-fill,270px)] gap-8 justify-center">
-          {createdRecipeArray.map((recipe) => {
+          {filteredRecipes.map((recipe) => {
             return (
               <MyRecipeCard
                 key={recipe.id}
