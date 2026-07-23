@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Search } from "lucide-react";
 import { EggFried } from "lucide-react";
 import { Fish } from "lucide-react";
@@ -8,6 +8,8 @@ import { Drumstick } from "lucide-react";
 import { CakeSlice } from "lucide-react";
 import { X  } from "lucide-react";
 
+
+import { AuthContext } from "../App.jsx"
 
 import basil from "../assets/images/basil-leaf.jpg";
 import spices from "../assets/images/spices.png";
@@ -54,6 +56,9 @@ export default function Discover() {
   );
 
   const { savedRecipes, saveRecipe, viewRecipe } = useOutletContext();
+  const {currentUser } = useContext(AuthContext)
+  const firstName = currentUser?.displayName?.split(" ")[0];
+
 
   // Checking the window size to determine how many recipes should show
   useEffect(() => {
@@ -164,8 +169,9 @@ export default function Discover() {
             DISCOVER · CREATE · COOK
           </p>
           <div>
-            <h1 className="heading-font text-center text-4xl md:text-5xl xl:text-7xl">
-              What are you cooking today?
+            <h1 className="heading-font text-center text-3xl sm:4xl md:text-5xl xl:text-7xl">
+              <span className="block">Hey {firstName},</span>
+              What are we cooking today?
             </h1>
             <p className="mt-2 text-center text-md md:text-lg xl:text-xl text-[var(--text-muted)]">
               Discover hundreds of delicious recipes.

@@ -1,7 +1,6 @@
-import { auth } from "../services/firebase.jsx";
+import { auth, provider } from "../services/firebase.jsx";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { NavLink } from "react-router-dom";
 import LogInImg from "../assets/images/loginimage.jpg";
 import GoogleG from "../assets/images/google-g.png";
@@ -23,6 +22,15 @@ export default function LogIn() {
         console.log(error.message);
       });
   }
+    function signInWithGoogle(){
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      navigate("/app");
+    }).catch((error) => {
+      console.log(error.code)
+      console.log(error.message)
+    });}
 
   return (
     <div className="flex flex-1 flex-col">
@@ -57,7 +65,7 @@ export default function LogIn() {
               </p>
             </div>
             <div>
-              <button className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer">
+              <button onClick={signInWithGoogle} type="button" className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer">
                 <img className="w-6 h-6" aria-hidden="true" src={GoogleG} />
                 Continue with Google
               </button>

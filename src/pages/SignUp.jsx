@@ -1,6 +1,6 @@
-import { auth } from "../services/firebase.jsx";
+import { auth, provider } from "../services/firebase.jsx";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 
 import { NavLink } from "react-router-dom";
 import GoogleG from "../assets/images/google-g.png";
@@ -15,6 +15,7 @@ export default function SignUp() {
     const email = e.target.userEmail.value;
     const password = e.target.userPassword.value;
     const confirmPassword = e.target.confirmPassword.value;
+    const fullName = e.target.fullName.value;
 
     if (password !== confirmPassword) {
       console.log("Passwords do not match");
@@ -24,12 +25,28 @@ export default function SignUp() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate("/app");
+        return updateProfile(user, {
+          displayName: fullName,
+        })
+        })
+        .then(() => {
+          navigate("/app");
+        
       })
       .catch((error) => {
         console.log(error.message);
       });
   }
+
+  function signInWithGoogle(){
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    const user = result.user;
+    navigate("/app")
+  }).catch((error) => {
+    console.log(error.code)
+    console.log(error.message)
+  });}
 
   return (
     <div className="flex flex-col">
@@ -67,7 +84,7 @@ export default function SignUp() {
               </p>
             </div>
             <div>
-              <button type="button" className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer">
+              <button onClick={signInWithGoogle} type="button" className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer">
                 <img className="w-6 h-6" aria-hidden="true" src={GoogleG} />
                 Continue with Google
               </button>
@@ -92,6 +109,7 @@ export default function SignUp() {
                 id="fullName"
                 name="fullName"
                 placeholder="Chef Curry"
+                required
               />
 
               <label
@@ -106,6 +124,7 @@ export default function SignUp() {
                 id="userEmail"
                 name="userEmail"
                 placeholder="chefcurry01@gmail.com"
+                required
               />
 
               <label
@@ -120,6 +139,7 @@ export default function SignUp() {
                 id="userPassword"
                 name="userPassword"
                 placeholder="********"
+                required
               />
 
               <label
@@ -134,6 +154,7 @@ export default function SignUp() {
                 id="confirmPassword"
                 name="confirmPassword"
                 placeholder="********"
+                required
               />
             </div>
             <div className="mt-6">
