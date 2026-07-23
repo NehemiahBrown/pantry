@@ -1,15 +1,13 @@
 import {useState, useContext} from "react"
-import { Outlet } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+import { Outlet, Navigate} from "react-router-dom"
 import { AuthContext } from "../App";
 
 
 export default function AuthRequired(){
-    const { currentUser } = useContext()
-    const navigate = useNavigate()
+    const { currentUser } = useContext(AuthContext)
     if(!currentUser){
-        navigate("/")
-    } else{
-        return <Outlet/>
-    }
+       return  <Navigate to="/log-in" replace/>
+    } 
+    return <Outlet/>
+    
 }
