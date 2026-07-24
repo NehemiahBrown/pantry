@@ -15,7 +15,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase.jsx";
 
 export default function MyRecipes() {
-  const { createdRecipeArray, openCreateRecipeModal } = useOutletContext();
+  const { createdRecipeArray, openCreateRecipeModal, setCreatedRecipeArray, editRecipe, deleteRecipe } = useOutletContext();
   const [inputValue, setInputValue] = useState("");
   const [inputResults, setInputResults] = useState([]);
   const [activeRecipe, setActiveRecipe] = useState({});
@@ -33,7 +33,6 @@ export default function MyRecipes() {
           id: recipe.id,
           ...recipe.data(),
         });
-        console.log(recipe.id, " => ", recipe.data());
       });
       setCreatedRecipeArray(recipeArray);
     }
@@ -77,7 +76,6 @@ export default function MyRecipes() {
     setInputValue("");
     setInputResults([]);
   }
-  console.log(createdRecipeArray);
 
   const filteredRecipes = createdRecipeArray.filter((recipe) => {
     const matchesSearch = recipe.recipeName

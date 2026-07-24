@@ -10,57 +10,108 @@ import Spaghetti from "../../assets/images/myRecipeSpaghetti.png";
 import Cake from "../../assets/images/myRecipeCake.png";
 import Chips from "../../assets/images/myRecipeChips.png";
 
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../services/firebase.jsx"
+
 export default function CreateRecipeModal({
   closeCreateRecipeModal,
   addNewRecipe,
-  recipeToEdit,
+  recipeToEditObject,
+  editRecipe,
+  createdRecipeArray,
+  setCreatedRecipeArray
 }) {
   const [emptyFieldError, setEmptyFieldError] = useState(false);
 
-  function createNewRecipeObject(e) {
-    e.preventDefault();
-    const recipeName = e.target.recipeName.value;
-    const recipeCategory = e.target.recipeCategory.value;
-    const recipeSummary = e.target.recipeSummary.value;
-    const prepTime = e.target.prepTime.value;
-    const cookTime = e.target.cookTime.value;
-    const servings = e.target.servings.value;
-    const categoryValue = e.target.recipeCategory.value;
 
-    const RecipeImageLookup = {
-      breakfast: Egg,
-      lunch: Sandwich,
-      dinner: Spaghetti,
-      dessert: Cake,
-      snacks: Chips,
-    };
-    const newRecipe = {
-      recipeName: recipeName,
-      recipeCategory: recipeCategory,
-      recipeSummary: recipeSummary,
-      prepTime: prepTime,
-      cookTime: cookTime,
-      servings: servings,
-      image: RecipeImageLookup[categoryValue],
-      ingredients,
-      instructions,
-    };
-    if (
-      recipeName.trim() === "" ||
-      ingredients.some(
-        (ingredient) => ingredient.ingredientName.trim() === "",
-      ) ||
-      instructions.some(
-        (instruction) => instruction.instructionName.trim() === "",
-      )
-    ) {
-      setEmptyFieldError(true);
-      return;
-    }
+  const RecipeImageLookup = {
+    breakfast: Egg,
+    lunch: Sandwich,
+    dinner: Spaghetti,
+    dessert: Cake,
+    snacks: Chips,
+  };
 
-    setEmptyFieldError(false);
-    addNewRecipe(newRecipe);
-    closeCreateRecipeModal();
+  async function createNewRecipeObject(e) {
+    e.preventDefault()
+
+  const recipeName = e.target.recipeName.value;
+  const recipeCategory = e.target.recipeCategory.value;
+  const recipeSummary = e.target.recipeSummary.value;
+  const prepTime = e.target.prepTime.value;
+  const cookTime = e.target.cookTime.value;
+  const servings = e.target.servings.value;
+  const categoryValue = e.target.recipeCategory.value;
+  
+    try{
+if(recipeToEditObject){
+  const docRef = doc(db, "userRecipes", recipeToEditObject.id);
+    const updatedRecipe = {
+     id: recipeToEditObject.id,
+     recipeName,
+     recipeCategory,
+     recipeSummary,
+     prepTime,
+     cookTime,
+     servings,
+     categoryValue,
+     image: RecipeImageLookup[categoryValue],
+     instructions, 
+     ingredients,
+  };
+  if (
+    recipeName.trim() === "" ||
+    ingredients.some(
+      (ingredient) => ingredient.ingredientName.trim() === "",
+    ) ||
+    instructions.some(
+      (instruction) => instruction.instructionName.trim() === "",
+    )
+  ) {
+    setEmptyFieldError(true);
+    return;
+  }
+  await updateDoc(docRef, updatedRecipe)
+  
+  setCreatedRecipeArray((current) => current.map((recipe) =>
+    recipe.id === recipeToEditObject.id ? updatedRecipe : recipe
+  ))
+  closeCreateRecipeModal()
+  
+} else{
+ const newRecipe = {
+   recipeName,
+   recipeCategory,
+   recipeSummary,
+   prepTime,
+   cookTime,
+   servings,
+   image: RecipeImageLookup[categoryValue],
+   ingredients,
+   instructions,
+ };
+ if (
+   recipeName.trim() === "" ||
+   ingredients.some(
+     (ingredient) => ingredient.ingredientName.trim() === "",
+   ) ||
+   instructions.some(
+     (instruction) => instruction.instructionName.trim() === "",
+   )
+ ) {
+   setEmptyFieldError(true);
+   return;
+ }
+
+ setEmptyFieldError(false);
+ addNewRecipe(newRecipe);
+ closeCreateRecipeModal();
+}
+    
+   
+  }catch(e){
+    console.log("Error creating recipe: ", e.message)
+  }
   }
 
   const [ingredients, setIngredients] = useState([
@@ -75,6 +126,14 @@ export default function CreateRecipeModal({
       instructionName: "",
     },
   ]);
+
+  useEffect(() => {
+    if(!recipeToEditObject){
+      return
+    }
+    setIngredients(recipeToEditObject?.ingredients ?? [])
+    setInstructions(recipeToEditObject?.instructions ?? [])
+  }, [recipeToEditObject])
 
   /* when modal first opens it focuses on recipeName input, 
    when adding ingredients/instructions the newest input gets focus */
@@ -184,10 +243,11 @@ export default function CreateRecipeModal({
                 htmlFor="recipeName"
                 className="flex items-center heading-font text-lg"
               >
-                Recipe Name{" "}
+                Recipe Name
                 <Asterisk size={17} className="text-[var(--error)]/80" />
               </label>
               <input
+              defaultValue={recipeToEditObject?.recipeName ?? "" }
                 ref={recipeNameInputRef}
                 type="text"
                 name="recipeName"
@@ -206,7 +266,7 @@ export default function CreateRecipeModal({
                 className="block w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)]"
                 name="recipeCategory"
                 id="recipeCategory"
-                defaultValue={"breakfast"}
+                defaultValue={recipeToEditObject?.recipeCategory ?? "breakfast"}
               >
                 <option value="breakfast">Breakfast</option>
                 <option value="lunch">Lunch</option>
@@ -218,6 +278,7 @@ export default function CreateRecipeModal({
             <div className="flex flex-col gap-2 heading-font text-lg">
               <label htmlFor="recpieSummary">Summary</label>
               <textarea
+                defaultValue={recipeToEditObject?.recipeSummary ?? ""}
                 name="recipieSummary"
                 id="recipeSummary"
                 maxLength="200"
@@ -233,6 +294,7 @@ export default function CreateRecipeModal({
                   Prep Time
                 </label>
                 <input
+                defaultValue={recipeToEditObject?.prepTime ?? ""}
                   type="number"
                   id="prepTime"
                   name="prepTime"
@@ -249,6 +311,7 @@ export default function CreateRecipeModal({
                   Cook Time
                 </label>
                 <input
+                defaultValue={recipeToEditObject?.cookTime ?? ""}
                   type="number"
                   id="cookTime"
                   name="cookTime"
@@ -265,6 +328,7 @@ export default function CreateRecipeModal({
                   Servings
                 </label>
                 <input
+                defaultValue={recipeToEditObject?.servings ?? ""}
                   type="number"
                   id="servings"
                   name="servings"

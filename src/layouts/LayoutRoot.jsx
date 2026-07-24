@@ -4,7 +4,7 @@ import MainHeader from "../components/layout/MainHeader";
 import MainFooter from "../components/layout/MainFooter";
 import Toast from "../components/common/Toast.jsx";
 import CreateRecipeModal from "../components/common/CreateRecipeModal.jsx";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, doc, addDoc, deleteDoc, updateDoc} from "firebase/firestore";
 import { db } from "../services/firebase.jsx";
 
 export default function RootLayout() {
@@ -13,13 +13,14 @@ export default function RootLayout() {
   const [showToast, setShowToast] = useState(false);
   const [showCreateRecipeModal, setShowCreateRecipeModal] = useState(false);
   const [createdRecipeArray, setCreatedRecipeArray] = useState([]);
-  const [recipeToEdit, setRecipeToEdit] = useState([]);
+  const [recipeToEditObject, setRecipeToEditObject] = useState([]);
 
   function openCreateRecipeModal() {
     setShowCreateRecipeModal(true);
   }
   function closeCreateRecipeModal() {
     setShowCreateRecipeModal(false);
+    setRecipeToEditObject(null);
   }
 
   async function addNewRecipe(recipe) {
@@ -35,17 +36,26 @@ export default function RootLayout() {
     }
   }
 
-  function deleteRecipe(recipeId) {
-    setCreatedRecipeArray((current) =>
-      current.filter((recipe) => recipe.id !== recipeId),
-    );
+  async function deleteRecipe(recipeId) {
+    try{
+      const docRef = (doc(db, "userRecipes", recipeId));
+
+      await deleteDoc(docRef)
+   
+       setCreatedRecipeArray((current) =>
+         current.filter((recipe) => recipe.id !== recipeId),
+       );
+    } catch(error){
+        console.log("Error removing document: ", error)
+    }
+ 
   }
 
-  function editRecipe(recipeId) {
-    const recipeEdit = createdRecipeArray.find(
+   function editRecipe(recipeId) {
+    const recipeToEdit = createdRecipeArray.find(
       (recipe) => recipe.id === recipeId,
     );
-    setRecipeToEdit(recipeEdit);
+    setRecipeToEditObject(recipeToEdit);
     setShowCreateRecipeModal(true);
   }
 
@@ -104,6 +114,9 @@ export default function RootLayout() {
               viewRecipe,
               openCreateRecipeModal,
               createdRecipeArray,
+              setCreatedRecipeArray,
+              editRecipe,
+              deleteRecipe
             }}
           />
           {showToast && <Toast toastText={toastText} />}
@@ -112,7 +125,10 @@ export default function RootLayout() {
           <CreateRecipeModal
             closeCreateRecipeModal={closeCreateRecipeModal}
             addNewRecipe={addNewRecipe}
-            recipeToEdit={recipeToEdit}
+            recipeToEditObject={recipeToEditObject}
+            editRecipe={editRecipe}
+            createdRecipeArray={createdRecipeArray}
+            setCreatedRecipeArray={setCreatedRecipeArray}
           />
         )}
         <MainFooter />

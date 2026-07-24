@@ -81,7 +81,7 @@ export default function RecipeDetailModal({
             </div>
           </div>
           <hr className="mb-4 border-0 h-px mx-auto w-[90%] bg-[var(--divider)]" />
-          <div className="px-8 grid grid-cols-[4fr_6fr]">
+          <div className="px-8 grid grid-cols[1fr] gap-6 md:gap-2 md:grid-cols-[4fr_6fr]">
             <div className="">
               <p className="heading-font text-xl font-bold mb-2">INGREDIENTS</p>
               {activeRecipe.ingredients.map((ingredient, index) => {
@@ -112,7 +112,7 @@ export default function RecipeDetailModal({
             </div>
           </div>
           <hr className="my-8 border-0 h-px  bg-[var(--divider)]" />
-          <div className="w-full px-8 ">
+          <div className="w-full px-8 flex justif-center items-center">
             <button
               onClick={openCookMode}
               className="flex w-full items-center justify-center gap-2 mt-4 mx-4 p-3 border bg-[var(--secondary)]  text-[var(--surface)] rounded-sm cursor-pointer hover:border-[var(--secondary)] hover:bg-[var(--surface)] hover:text-black transition-all duration-200"
