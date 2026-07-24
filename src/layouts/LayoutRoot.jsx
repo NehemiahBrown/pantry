@@ -26,7 +26,7 @@ export default function RootLayout() {
       const docRef = await addDoc(collection(db, "userRecipes"), 
         recipe,
       )
-      const newRecipe = {
+      const newRecipe = { 
         id: docRef.id,
         ...recipe
       }
