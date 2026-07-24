@@ -10,6 +10,8 @@ export default function RecipeDetailModal({
   activeRecipe,
   closeRecipeDetails,
   openCookMode,
+  deleteRecipe,
+  editRecipe,
 }) {
   return (
     <div className="backdrop-blur-sm px-4 md:px-16 fixed flex flex-col pt-20 pb-8 items-center justify-center inset-0 bg-black/50">
@@ -40,12 +42,22 @@ export default function RecipeDetailModal({
               </p>
             </div>
             <div className="flex gap-3">
-              <button className="flex gap-1 items-center text-[var(--text-muted)] cursor-pointer hover:text[var(--text-primary)]">
-                {" "}
+              <button
+                onClick={() => {
+                  editRecipe(activeRecipe.id);
+                  closeRecipeDetails();
+                }}
+                className="flex gap-1 items-center text-[var(--text-muted)] cursor-pointer hover:text[var(--text-primary)]"
+              >
                 <PenLine size={15} /> Edit
               </button>
-              <button className="flex gap-1 items-center text-[var(--text-muted)] cursor-pointer hover:text[var(--text-primary)]">
-                {" "}
+              <button
+                onClick={() => {
+                  deleteRecipe(activeRecipe.id);
+                  closeRecipeDetails();
+                }}
+                className="flex gap-1 items-center text-[var(--text-muted)] cursor-pointer hover:text[var(--text-primary)]"
+              >
                 <Trash size={18} /> Delete
               </button>
             </div>

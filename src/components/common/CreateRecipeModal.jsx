@@ -13,6 +13,7 @@ import Chips from "../../assets/images/myRecipeChips.png";
 export default function CreateRecipeModal({
   closeCreateRecipeModal,
   addNewRecipe,
+  recipeToEdit,
 }) {
   const [emptyFieldError, setEmptyFieldError] = useState(false);
 
@@ -155,8 +156,8 @@ export default function CreateRecipeModal({
   }
 
   return (
-    <div className="overlay backdrop-blur-sm px-4 md:px-16 fixed flex flex-col pt-20 pb-8 items-center justify-center inset-0 bg-black/50">
-      <div className="z-[100] w-full max-h-[86vh] max-w-[800px] overflow-hidden bg-[var(--surface-warm)] shadow-[var(--shadow-lg)] rounded-xl">
+    <div className="overlay backdrop-blur-sm sm:px-4 md:px-16 fixed flex flex-col sm:pt-20 sm:pb-8 items-center justify-center inset-0 bg-black/50">
+      <div className="z-[100] w-full  max-w-[800px] overflow-hidden bg-[var(--surface-warm)] shadow-[var(--shadow-lg)] sm:rounded-xl">
         <div>
           <div className="flex px-4 mt-3 justify-between">
             <h2 className="mt-6 text-3xl heading-font">Create Recipe</h2>
@@ -287,7 +288,7 @@ export default function CreateRecipeModal({
                     key={ingredient.id}
                     className="mt-2 flex items-center gap-2"
                   >
-                    <div className="flex items-center justify-center text-[var(--surface)] bg-[var(--secondary)] w-7 h-7 rounded-full">
+                    <div className="flex shrink-0 items-center justify-center text-[var(--surface)] bg-[var(--secondary)] w-7 h-7 rounded-full">
                       {index + 1}
                     </div>
                     <input
@@ -298,7 +299,7 @@ export default function CreateRecipeModal({
                       }
                       type="text"
                       value={ingredient.ingredientName}
-                      className="flex-1 px-4 rounded-lg border border-[var(--border)] bg-white py-2 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                      className="flex-1 min-w-0 px-4 rounded-lg border border-[var(--border)] bg-white py-2 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                       onChange={(e) =>
                         updateIngredient(ingredient.id, e.target.value)
                       }
@@ -315,7 +316,7 @@ export default function CreateRecipeModal({
               })}
               <button
                 type="button"
-                className="flex items-center justify-center gap-2 mt-4 mx-4 p-3 border border-dashed border-[var(--secondary)] rounded-sm cursor-pointer hover:bg-[var(--secondary)] hover:text-[var(--surface)] transition-all duration-200"
+                className="flex items-center justify-center gap-2 mt-4 mx-4 p-3 border border-dashed border-[var(--secondary)] rounded-sm cursor-pointer hover:bg-[var(--secondary)] hover:text-[var(--surface)] active:scale-95 transition-all duration-200"
                 onClick={addIngredient}
               >
                 <Plus size={20} /> Add Ingredient
@@ -335,13 +336,13 @@ export default function CreateRecipeModal({
                     key={instruction.id}
                     className="mt-2 flex items-center gap-2"
                   >
-                    <div className="flex items-center justify-center text-[var(--surface)] bg-[var(--secondary)] w-7 h-7 rounded-full">
+                    <div className="flex shrink-0 items-center justify-center text-[var(--surface)] bg-[var(--secondary)] w-7 h-7 rounded-full">
                       {index + 1}
                     </div>
                     <input
                       type="text"
                       value={instruction.instructionName}
-                      className="flex-1 px-4 rounded-lg border border-[var(--border)] bg-white py-2 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                      className="px-4 flex-1 rounded-lg min-w-0 border border-[var(--border)] bg-white py-2 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                       ref={
                         instructions.length - 1 === index
                           ? inputInstruction
@@ -363,7 +364,7 @@ export default function CreateRecipeModal({
               })}
               <button
                 type="button"
-                className="flex items-center justify-center gap-2 mt-4 mx-4 p-3 border border-dashed border-[var(--secondary)] rounded-sm cursor-pointer hover:bg-[var(--secondary)] hover:text-[var(--surface)] transition-all duration-200"
+                className="flex items-center justify-center gap-2 mt-4 mx-4 p-3 border border-dashed border-[var(--secondary)] rounded-sm cursor-pointer hover:bg-[var(--secondary)] hover:text-[var(--surface)] active:scale-95 transition-all duration-200"
                 onClick={addInstruction}
               >
                 <Plus size={20} /> Add Instructions

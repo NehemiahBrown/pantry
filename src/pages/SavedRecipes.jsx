@@ -73,8 +73,8 @@ export default function SavedRecipes() {
                   {savedRecipes.length}{" "}
                   {savedRecipes.length === 1 ? "Saved recipe" : "Saved recipes"}
                 </p>
-                <p>|</p>
-                <p>
+                <p className="hidden xs:flex">|</p>
+                <p className="hidden xs:flex">
                   {savedRecipes.length === 1
                     ? "Keep saving, Keep cooking"
                     : "Start saving, Start cooking"}

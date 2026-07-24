@@ -12,10 +12,10 @@ import CookModeModal from "../components/common/CookModeModal.jsx";
 import SearchResults from "../components/common/SearchResults.jsx";
 
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../services/firebase.jsx"
+import { db } from "../services/firebase.jsx";
 
 export default function MyRecipes() {
-  const { createdRecipeArray, setCreatedRecipeArray, openCreateRecipeModal } = useOutletContext();
+  const { createdRecipeArray, openCreateRecipeModal } = useOutletContext();
   const [inputValue, setInputValue] = useState("");
   const [inputResults, setInputResults] = useState([]);
   const [activeRecipe, setActiveRecipe] = useState({});
@@ -25,24 +25,21 @@ export default function MyRecipes() {
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    async function loadRecipes(){
+    async function loadRecipes() {
       const recipesToLoad = await getDocs(collection(db, "userRecipes"));
-      const recipeArray = []
+      const recipeArray = [];
       recipesToLoad.forEach((recipe) => {
-        recipeArray.push(
-          {
-            id: recipe.id,
-            ...recipe.data()
-          }
-        )
+        recipeArray.push({
+          id: recipe.id,
+          ...recipe.data(),
+        });
         console.log(recipe.id, " => ", recipe.data());
       });
-      setCreatedRecipeArray(recipeArray)
+      setCreatedRecipeArray(recipeArray);
     }
 
-    loadRecipes()
-  }, [])
-
+    loadRecipes();
+  }, []);
 
   function openCookMode() {
     setShowCookMode(true);
@@ -121,8 +118,8 @@ export default function MyRecipes() {
                     ? "Saved recipe"
                     : "Saved recipes"}
                 </p>
-                <p>|</p>
-                <p>Collect and cook</p>
+                <p className="hidden xs:flex">|</p>
+                <p className="hidden xs:flex">Collect and cook</p>
               </div>
             </div>
           </div>
@@ -217,6 +214,8 @@ export default function MyRecipes() {
           activeRecipe={activeRecipe}
           closeRecipeDetails={closeRecipeDetails}
           openCookMode={openCookMode}
+          deleteRecipe={deleteRecipe}
+          editRecipe={editRecipe}
         />
       )}
       {showCookMode && (
