@@ -117,6 +117,19 @@ body {
     fadeout 0.5s 2.5s;
 }
 
+.loading-bar{
+  animation: loading-slide 1.8s ease-in-out infinite;
+}
+
+@keyframes loading-slide{
+  0%{
+    transform: translateX(-120%)
+  }
+  100%{
+    transform: translateX(320%)
+  }
+}
+
 @-webkit-keyframes fadein {
   from {
     bottom: 0;

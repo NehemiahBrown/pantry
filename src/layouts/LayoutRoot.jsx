@@ -4,6 +4,8 @@ import MainHeader from "../components/layout/MainHeader";
 import MainFooter from "../components/layout/MainFooter";
 import Toast from "../components/common/Toast.jsx";
 import CreateRecipeModal from "../components/common/CreateRecipeModal.jsx";
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "../services/firebase.jsx";
 
 export default function RootLayout() {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -19,8 +21,22 @@ export default function RootLayout() {
     setShowCreateRecipeModal(false);
   }
 
-  function addNewRecipe(recipe) {
-    setCreatedRecipeArray((current) => [...current, recipe]);
+  async function addNewRecipe(recipe) {
+  try{
+      const docRef = await addDoc(collection(db, "userRecipes"), 
+        recipe,
+      )
+      const newRecipe = {
+        id: docRef.id,
+        ...recipe
+      }
+      setCreatedRecipeArray((current) => [
+        ...current,
+        newRecipe
+      ])
+    } catch(e){
+      console.error("Error adding recipe: " , e.message)
+    }
   }
 
   function saveRecipe(recipe) {
@@ -78,6 +94,7 @@ export default function RootLayout() {
               viewRecipe,
               openCreateRecipeModal,
               createdRecipeArray,
+              setCreatedRecipeArray,
             }}
           />
           {showToast && <Toast toastText={toastText} />}

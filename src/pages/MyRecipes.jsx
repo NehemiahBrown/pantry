@@ -11,8 +11,11 @@ import RecipeDetailModal from "../components/common/RecipeDetailModal.jsx";
 import CookModeModal from "../components/common/CookModeModal.jsx";
 import SearchResults from "../components/common/SearchResults.jsx";
 
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../services/firebase.jsx"
+
 export default function MyRecipes() {
-  const { createdRecipeArray, openCreateRecipeModal } = useOutletContext();
+  const { createdRecipeArray, setCreatedRecipeArray, openCreateRecipeModal } = useOutletContext();
   const [inputValue, setInputValue] = useState("");
   const [inputResults, setInputResults] = useState([]);
   const [activeRecipe, setActiveRecipe] = useState({});
@@ -20,6 +23,26 @@ export default function MyRecipes() {
   const [showCookMode, setShowCookMode] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    async function loadRecipes(){
+      const recipesToLoad = await getDocs(collection(db, "userRecipes"));
+      const recipeArray = []
+      recipesToLoad.forEach((recipe) => {
+        recipeArray.push(
+          {
+            id: recipe.id,
+            ...recipe.data()
+          }
+        )
+        console.log(recipe.id, " => ", recipe.data());
+      });
+      setCreatedRecipeArray(recipeArray)
+    }
+
+    loadRecipes()
+  }, [])
+
 
   function openCookMode() {
     setShowCookMode(true);

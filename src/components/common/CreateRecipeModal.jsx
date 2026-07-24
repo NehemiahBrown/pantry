@@ -34,7 +34,6 @@ export default function CreateRecipeModal({
       snacks: Chips,
     };
     const newRecipe = {
-      id: crypto.randomUUID(),
       recipeName: recipeName,
       recipeCategory: recipeCategory,
       recipeSummary: recipeSummary,

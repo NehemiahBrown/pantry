@@ -1,9 +1,8 @@
 import { useState, useEffect, createContext } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import RootLayout from "./layouts/LayoutRoot";
 import PublicLayout from "./layouts/PublicLayout";
 import AuthRequired from "./layouts/AuthRequired";
-
 
 import Landing from "./pages/Landing";
 import Discover from "./pages/Discover";
@@ -14,24 +13,31 @@ import LogIn from "./pages/LogIn";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./services/firebase.jsx"
+import { db } from "./services/firebase.jsx"
+
 
 export const AuthContext = createContext(null)
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null)
+  const [loadingPageActive, setLoadingPageActive] = useState(true)
+
+
   useEffect(() => {
-    const userLoggedInStatus = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user)
+      setLoadingPageActive(false)
+      
     });
-    return userLoggedInStatus;
+    return unsubscribe;
   }, [])
-  
+
   return (
-    <AuthContext.Provider value={{currentUser}}> 
+    <AuthContext.Provider value={{currentUser, loadingPageActive}}> 
     <BrowserRouter basename="/pantry">
       <Routes>
         <Route element={<PublicLayout />}>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Landing/>} />
           <Route path={"sign-up"} element={<SignUp />} />
           <Route path={"log-in"} element={<LogIn />} />
         </Route>
