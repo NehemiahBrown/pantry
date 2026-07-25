@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { X } from "lucide-react";
 import { Trash } from "lucide-react";
 import { Plus } from "lucide-react";
@@ -13,6 +13,8 @@ import Chips from "../../assets/images/myRecipeChips.png";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../services/firebase.jsx"
 
+import {AuthContext} from "../../App.jsx"
+
 export default function CreateRecipeModal({
   closeCreateRecipeModal,
   addNewRecipe,
@@ -22,7 +24,7 @@ export default function CreateRecipeModal({
   setCreatedRecipeArray
 }) {
   const [emptyFieldError, setEmptyFieldError] = useState(false);
-
+  const { currentUser } = useContext(AuthContext)
 
   const RecipeImageLookup = {
     breakfast: Egg,
@@ -42,12 +44,14 @@ export default function CreateRecipeModal({
   const cookTime = e.target.cookTime.value;
   const servings = e.target.servings.value;
   const categoryValue = e.target.recipeCategory.value;
+  const userId = currentUser.uid
   
     try{
 if(recipeToEditObject){
   const docRef = doc(db, "userRecipes", recipeToEditObject.id);
     const updatedRecipe = {
      id: recipeToEditObject.id,
+     user: userId,
      recipeName,
      recipeCategory,
      recipeSummary,
@@ -80,6 +84,7 @@ if(recipeToEditObject){
   
 } else{
  const newRecipe = {
+  user: userId,
    recipeName,
    recipeCategory,
    recipeSummary,

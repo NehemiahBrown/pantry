@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import MainHeader from "../components/layout/MainHeader";
 import MainFooter from "../components/layout/MainFooter";
@@ -6,6 +6,8 @@ import Toast from "../components/common/Toast.jsx";
 import CreateRecipeModal from "../components/common/CreateRecipeModal.jsx";
 import { collection, doc, addDoc, deleteDoc, updateDoc} from "firebase/firestore";
 import { db } from "../services/firebase.jsx";
+import {AuthContext} from "../App.jsx"
+
 
 export default function RootLayout() {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -13,7 +15,9 @@ export default function RootLayout() {
   const [showToast, setShowToast] = useState(false);
   const [showCreateRecipeModal, setShowCreateRecipeModal] = useState(false);
   const [createdRecipeArray, setCreatedRecipeArray] = useState([]);
-  const [recipeToEditObject, setRecipeToEditObject] = useState([]);
+  const [recipeToEditObject, setRecipeToEditObject] = useState(null);
+  const { currentUser } = useContext(AuthContext)
+
 
   function openCreateRecipeModal() {
     setShowCreateRecipeModal(true);
@@ -26,6 +30,8 @@ export default function RootLayout() {
   async function addNewRecipe(recipe) {
     try {
       const docRef = await addDoc(collection(db, "userRecipes"), recipe);
+     
+     
       const newRecipe = {
         id: docRef.id,
         ...recipe,

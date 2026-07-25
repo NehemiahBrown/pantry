@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Search } from "lucide-react";
 import { Bookmark } from "lucide-react";
 import { ChefHat } from "lucide-react";

@@ -60,15 +60,14 @@ export default function CookModeModal({
           <button
             disabled={currentStep === 0}
             onClick={previousStep}
-            className="flex items-center gap-1 border border-[var(--border)] rounded-2xl w-[120px] px-4 py-2 bg-[var(--surface)] disabled:bg-[var(--disabled)] disabled:text-[var(--disabled-text)] disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex items-center gap-1 border border-[var(--border)] rounded-2xl w-[120px] px-4 py-2 bg-[var(--surface)] disabled:bg-[var(--disabled)] disabled:text-[var(--disabled-text)] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
           >
-            {" "}
             <ChevronLeft size={18} /> Previous
           </button>
           <button
             disabled={currentStep === activeRecipe.instructions.length - 1}
             onClick={nextStep}
-            className="flex items-center justify-center gap-1 bg-[var(--accent)] rounded-2xl py-2 px-4 w-[120px] text-[var(--surface)] disabled:bg-[var(--disabled)] disabled:text-[var(--disabled-text)] disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex items-center justify-center gap-1 bg-[var(--accent)] rounded-2xl py-2 px-4 w-[120px] text-[var(--surface)] disabled:bg-[var(--disabled)] disabled:text-[var(--disabled-text)] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
           >
             Next <ChevronRight size={18} />
           </button>
