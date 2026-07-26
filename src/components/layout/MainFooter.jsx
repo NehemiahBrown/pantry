@@ -16,9 +16,13 @@ export default function MainFooter() {
         </div>
 
         <div className="flex gap-2">
-          <img className="w-6 h-6" src={facebookIcon} />
-          <img className="w-6 h-6" src={linkedinIcon} />
-          <img className="w-6 h-6" src={githubIcon} />
+          <img className="w-6 h-6 cursor-pointer" src={facebookIcon} />
+          <a href="www.linkedin.com/in/nehemiah-browndev" target="_blank">
+          <img className="w-6 h-6 cursor-pointer" src={linkedinIcon} />
+          </a>
+          <a href="https://github.com/NehemiahBrown/pantry" target="_blank">
+          <img className="w-6 h-6 cursor-pointer" src={githubIcon} />
+          </a>
         </div>
       </div>
       <hr className="my-4 border-0 h-px mx-auto w-full lg:w-full bg-[var(--divider)]" />

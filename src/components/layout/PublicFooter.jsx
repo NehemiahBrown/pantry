@@ -16,8 +16,12 @@ export default function PublicFooter() {
             </div>
             <div className="flex gap-2">
               <img className="w-6 h-6" src={facebookIcon} />
+              <a href="www.linkedin.com/in/nehemiah-browndev" target="_blank">
               <img className="w-6 h-6" src={linkedinIcon} />
+              </a>
+              <a href="https://github.com/NehemiahBrown/pantry" target="_blank">
               <img className="w-6 h-6" src={githubIcon} />
+              </a>
             </div>
           </div>
           <div>
