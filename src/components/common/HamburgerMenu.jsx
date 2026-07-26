@@ -48,9 +48,9 @@ export default function HamburgerMenu({menuOpen, closeMenu}){
               My Recipes
             </NavLink>
           </li>
-          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] hover:text-[var(--surface)] active:scale-95 transition-all duration-200 cursor-pointer">
+          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] hover:text-[var(--surface)] active:scale-95 transition-all duration-200">
             <button
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 cursor-pointer"
               onClick={signUserOut}
             >
               Log out

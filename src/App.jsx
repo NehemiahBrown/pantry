@@ -33,8 +33,9 @@ export default function App() {
   }, [])
 
   return (
-    <AuthContext.Provider value={{currentUser, loadingPageActive}}> 
+    
     <BrowserRouter basename="/pantry">
+      <AuthContext.Provider value={{currentUser, loadingPageActive}}> 
       <Routes>
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Landing/>} />
@@ -49,7 +50,8 @@ export default function App() {
         </Route>
         </Route>
       </Routes>
+      </AuthContext.Provider>
     </BrowserRouter>
-    </AuthContext.Provider>
+  
   );
 }

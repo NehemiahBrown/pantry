@@ -7,12 +7,12 @@ export default function MyRecipeCard({ recipe, openRecipeDetails }) {
     <div onClick={() => openRecipeDetails(recipe.id)} className="flex flex-col text-[var(--text-primary)] rounded-lg shadow-[var(--shadow-lg)] w-[270px] h-[358px] hover:-translate-y-1 transition-transform duration-300 ease-in-out cursor-pointer">
       <div>
         <img
-          className="rounded-t-lg"
+          className="rounded-t-lg h-40"
           src={recipe.image}
           alt={recipe.recipeName}
         />
       </div>
-      <div className="flex flex-col gap-2 px-4 mt-2 h-47 overflow-hidden">
+      <div className="flex flex-col gap-2 px-4 mt-2 h-55 overflow-hidden">
         <div className="h-26">
         <p className="heading-font text-[24px] line-clamp-2">{recipe.recipeName}</p>
         </div>

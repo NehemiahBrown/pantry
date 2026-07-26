@@ -11,8 +11,10 @@ import RecipeDetailModal from "../components/common/RecipeDetailModal.jsx";
 import CookModeModal from "../components/common/CookModeModal.jsx";
 import SearchResults from "../components/common/SearchResults.jsx";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../services/firebase.jsx";
+import {AuthContext} from "../App.jsx"
+
 
 export default function MyRecipes() {
   const { createdRecipeArray, openCreateRecipeModal, setCreatedRecipeArray, editRecipe, deleteRecipe } = useOutletContext();
@@ -24,9 +26,14 @@ export default function MyRecipes() {
   const [currentStep, setCurrentStep] = useState(0);
   const [filter, setFilter] = useState("all");
 
+  const { currentUser } = useContext(AuthContext)
+ 
+
   useEffect(() => {
     async function loadRecipes() {
-      const recipesToLoad = await getDocs(collection(db, "userRecipes"));
+      const usersRecipesRef = collection(db, "userRecipes");
+      const specificUserRecipes = query(usersRecipesRef, where("user", "==", currentUser.uid))
+      const recipesToLoad = await getDocs(specificUserRecipes);
       const recipeArray = [];
       recipesToLoad.forEach((recipe) => {
         recipeArray.push({

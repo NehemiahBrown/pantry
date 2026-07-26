@@ -94,9 +94,6 @@ export default function MainHeader({ openCreateRecipeModal }) {
           >
             <Plus size={14} /> Create Recipe
           </button>
-          <div className="z-[2] flex items-center justify-center w-8 h-8 bg-[var(--accent-soft)] rounded-full text-sm text-[var(--accent)] font-bold cursor-pointer">
-            NB
-          </div>
         </div>
       </header>
       <HamburgerMenu
