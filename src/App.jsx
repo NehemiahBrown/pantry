@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from "react";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RootLayout from "./layouts/LayoutRoot";
 import PublicLayout from "./layouts/PublicLayout";
 import AuthRequired from "./layouts/AuthRequired";
@@ -12,46 +12,41 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./services/firebase.jsx"
-import { db } from "./services/firebase.jsx"
+import { auth } from "./services/firebase.jsx";
+import { db } from "./services/firebase.jsx";
 
-
-export const AuthContext = createContext(null)
+export const AuthContext = createContext(null);
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState(null)
-  const [loadingPageActive, setLoadingPageActive] = useState(true)
-
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loadingPageActive, setLoadingPageActive] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user)
-      setLoadingPageActive(false)
-      
+      setCurrentUser(user);
+      setLoadingPageActive(false);
     });
     return unsubscribe;
-  }, [])
+  }, []);
 
   return (
-    
-    <BrowserRouter basename="/pantry">
-      <AuthContext.Provider value={{currentUser, loadingPageActive}}> 
-      <Routes>
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<Landing/>} />
-          <Route path={"sign-up"} element={<SignUp />} />
-          <Route path={"log-in"} element={<LogIn />} />
-        </Route>
-      <Route element={<AuthRequired/>}>
-        <Route path="/app" element={<RootLayout />}>
-          <Route index element={<Discover />} />
-          <Route path="saved-recipes" element={<SavedRecipes />} />
-          <Route path="my-recipes" element={<MyRecipes />} />
-        </Route>
-        </Route>
-      </Routes>
+    <BrowserRouter basename="/">
+      <AuthContext.Provider value={{ currentUser, loadingPageActive }}>
+        <Routes>
+          <Route element={<PublicLayout />}>
+            <Route path="/" element={<Landing />} />
+            <Route path={"sign-up"} element={<SignUp />} />
+            <Route path={"log-in"} element={<LogIn />} />
+          </Route>
+          <Route element={<AuthRequired />}>
+            <Route path="/app" element={<RootLayout />}>
+              <Route index element={<Discover />} />
+              <Route path="saved-recipes" element={<SavedRecipes />} />
+              <Route path="my-recipes" element={<MyRecipes />} />
+            </Route>
+          </Route>
+        </Routes>
       </AuthContext.Provider>
     </BrowserRouter>
-  
   );
 }
