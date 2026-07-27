@@ -4,16 +4,10 @@ import { Trash } from "lucide-react";
 import { Plus } from "lucide-react";
 import { Asterisk } from "lucide-react";
 
-import Egg from "../../assets/images/myRecipeEgg.png";
-import Sandwich from "../../assets/images/myRecipeSandwich.png";
-import Spaghetti from "../../assets/images/myRecipeSpaghetti.png";
-import Cake from "../../assets/images/myRecipeCake.png";
-import Chips from "../../assets/images/myRecipeChips.png";
-
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../services/firebase.jsx"
+import { db } from "../../services/firebase.jsx";
 
-import {AuthContext} from "../../App.jsx"
+import { AuthContext } from "../../App.jsx";
 
 export default function CreateRecipeModal({
   closeCreateRecipeModal,
@@ -21,102 +15,91 @@ export default function CreateRecipeModal({
   recipeToEditObject,
   editRecipe,
   createdRecipeArray,
-  setCreatedRecipeArray
+  setCreatedRecipeArray,
 }) {
   const [emptyFieldError, setEmptyFieldError] = useState(false);
-  const { currentUser } = useContext(AuthContext)
-
-  const RecipeImageLookup = {
-    breakfast: Egg,
-    lunch: Sandwich,
-    dinner: Spaghetti,
-    dessert: Cake,
-    snacks: Chips,
-  };
+  const { currentUser } = useContext(AuthContext);
 
   async function createNewRecipeObject(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-  const recipeName = e.target.recipeName.value;
-  const recipeCategory = e.target.recipeCategory.value;
-  const recipeSummary = e.target.recipeSummary.value;
-  const prepTime = e.target.prepTime.value;
-  const cookTime = e.target.cookTime.value;
-  const servings = e.target.servings.value;
-  const categoryValue = e.target.recipeCategory.value;
-  const userId = currentUser.uid
-  
-    try{
-if(recipeToEditObject){
-  const docRef = doc(db, "userRecipes", recipeToEditObject.id);
-    const updatedRecipe = {
-     id: recipeToEditObject.id,
-     user: userId,
-     recipeName,
-     recipeCategory,
-     recipeSummary,
-     prepTime,
-     cookTime,
-     servings,
-     categoryValue,
-     image: RecipeImageLookup[categoryValue],
-     instructions, 
-     ingredients,
-  };
-  if (
-    recipeName.trim() === "" ||
-    ingredients.some(
-      (ingredient) => ingredient.ingredientName.trim() === "",
-    ) ||
-    instructions.some(
-      (instruction) => instruction.instructionName.trim() === "",
-    )
-  ) {
-    setEmptyFieldError(true);
-    return;
-  }
-  await updateDoc(docRef, updatedRecipe)
-  
-  setCreatedRecipeArray((current) => current.map((recipe) =>
-    recipe.id === recipeToEditObject.id ? updatedRecipe : recipe
-  ))
-  closeCreateRecipeModal()
-  
-} else{
- const newRecipe = {
-  user: userId,
-   recipeName,
-   recipeCategory,
-   recipeSummary,
-   prepTime,
-   cookTime,
-   servings,
-   image: RecipeImageLookup[categoryValue],
-   ingredients,
-   instructions,
- };
- if (
-   recipeName.trim() === "" ||
-   ingredients.some(
-     (ingredient) => ingredient.ingredientName.trim() === "",
-   ) ||
-   instructions.some(
-     (instruction) => instruction.instructionName.trim() === "",
-   )
- ) {
-   setEmptyFieldError(true);
-   return;
- }
+    const recipeName = e.target.recipeName.value;
+    const recipeCategory = e.target.recipeCategory.value;
+    const recipeSummary = e.target.recipeSummary.value;
+    const prepTime = e.target.prepTime.value;
+    const cookTime = e.target.cookTime.value;
+    const servings = e.target.servings.value;
+    const categoryValue = e.target.recipeCategory.value;
+    const userId = currentUser.uid;
 
- setEmptyFieldError(false);
- addNewRecipe(newRecipe);
- closeCreateRecipeModal();
-}
-    
-   
-  }catch(e){
-    console.log("Error creating recipe: ", e.message)
-  }
+    try {
+      if (recipeToEditObject) {
+        const docRef = doc(db, "userRecipes", recipeToEditObject.id);
+        const updatedRecipe = {
+          id: recipeToEditObject.id,
+          user: userId,
+          recipeName,
+          recipeCategory,
+          recipeSummary,
+          prepTime,
+          cookTime,
+          servings,
+          categoryValue,
+          instructions,
+          ingredients,
+        };
+        if (
+          recipeName.trim() === "" ||
+          ingredients.some(
+            (ingredient) => ingredient.ingredientName.trim() === "",
+          ) ||
+          instructions.some(
+            (instruction) => instruction.instructionName.trim() === "",
+          )
+        ) {
+          setEmptyFieldError(true);
+          return;
+        }
+        await updateDoc(docRef, updatedRecipe);
+
+        setCreatedRecipeArray((current) =>
+          current.map((recipe) =>
+            recipe.id === recipeToEditObject.id ? updatedRecipe : recipe,
+          ),
+        );
+        closeCreateRecipeModal();
+      } else {
+        const newRecipe = {
+          user: userId,
+          recipeName,
+          recipeCategory,
+          recipeSummary,
+          prepTime,
+          cookTime,
+          servings,
+          ingredients,
+          instructions,
+        };
+        if (
+          recipeName.trim() === "" ||
+          ingredients.some(
+            (ingredient) => ingredient.ingredientName.trim() === "",
+          ) ||
+          instructions.some(
+            (instruction) => instruction.instructionName.trim() === "",
+          )
+        ) {
+          setEmptyFieldError(true);
+          return;
+        }
+
+        setEmptyFieldError(false);
+        addNewRecipe(newRecipe);
+        closeCreateRecipeModal();
+      }
+    } catch (e) {
+      console.log("Error creating recipe: ", e.message);
+    }
   }
 
   const [ingredients, setIngredients] = useState([
@@ -133,12 +116,12 @@ if(recipeToEditObject){
   ]);
 
   useEffect(() => {
-    if(!recipeToEditObject){
-      return
+    if (!recipeToEditObject) {
+      return;
     }
-    setIngredients(recipeToEditObject?.ingredients ?? [])
-    setInstructions(recipeToEditObject?.instructions ?? [])
-  }, [recipeToEditObject])
+    setIngredients(recipeToEditObject?.ingredients ?? []);
+    setInstructions(recipeToEditObject?.instructions ?? []);
+  }, [recipeToEditObject]);
 
   /* when modal first opens it focuses on recipeName input, 
    when adding ingredients/instructions the newest input gets focus */
@@ -252,7 +235,7 @@ if(recipeToEditObject){
                 <Asterisk size={17} className="text-[var(--error)]/80" />
               </label>
               <input
-              defaultValue={recipeToEditObject?.recipeName ?? "" }
+                defaultValue={recipeToEditObject?.recipeName ?? ""}
                 ref={recipeNameInputRef}
                 type="text"
                 name="recipeName"
@@ -298,15 +281,21 @@ if(recipeToEditObject){
                 >
                   Prep Time
                 </label>
-                <input
-                defaultValue={recipeToEditObject?.prepTime ?? ""}
-                  type="number"
-                  id="prepTime"
-                  name="prepTime"
-                  className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
-                  min="1"
-                  step="1"
-                />
+                <div className="relative">
+                  <input
+                    defaultValue={recipeToEditObject?.prepTime ?? ""}
+                    type="number"
+                    id="prepTime"
+                    name="prepTime"
+                    className=" w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                    min="1"
+                    max="999"
+                    step="1"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]">
+                    mins
+                  </span>
+                </div>
               </div>
               <div className="flex-1">
                 <label
@@ -315,15 +304,21 @@ if(recipeToEditObject){
                 >
                   Cook Time
                 </label>
-                <input
-                defaultValue={recipeToEditObject?.cookTime ?? ""}
-                  type="number"
-                  id="cookTime"
-                  name="cookTime"
-                  className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
-                  min="1"
-                  step="1"
-                />
+                <div className="relative">
+                  <input
+                    defaultValue={recipeToEditObject?.cookTime ?? ""}
+                    type="number"
+                    id="cookTime"
+                    name="cookTime"
+                    className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                    min="1"
+                    max="999"
+                    step="1"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]">
+                    mins
+                  </span>
+                </div>
               </div>
               <div className="flex-1">
                 <label
@@ -332,15 +327,21 @@ if(recipeToEditObject){
                 >
                   Servings
                 </label>
-                <input
-                defaultValue={recipeToEditObject?.servings ?? ""}
-                  type="number"
-                  id="servings"
-                  name="servings"
-                  className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
-                  min="1"
-                  step="1"
-                />
+                <div className="relative">
+                  <input
+                    defaultValue={recipeToEditObject?.servings ?? ""}
+                    type="number"
+                    id="servings"
+                    name="servings"
+                    className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                    min="1"
+                    max="10000"
+                    step="1"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]">
+                    people
+                  </span>
+                </div>
               </div>
             </div>
             <div className="flex flex-col">

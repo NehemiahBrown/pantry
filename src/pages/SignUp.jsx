@@ -1,6 +1,10 @@
 import { auth, provider } from "../services/firebase.jsx";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 
 import { NavLink } from "react-router-dom";
 import GoogleG from "../assets/images/google-g.png";
@@ -27,26 +31,27 @@ export default function SignUp() {
         const user = userCredential.user;
         return updateProfile(user, {
           displayName: fullName,
-        })
-        })
-        .then(() => {
-          navigate("/app");
-        
+        });
+      })
+      .then(() => {
+        navigate("/app");
       })
       .catch((error) => {
         console.log(error.message);
       });
   }
 
-  function signInWithGoogle(){
+  function signInWithGoogle() {
     signInWithPopup(auth, provider)
-  .then((result) => {
-    const user = result.user;
-    navigate("/app")
-  }).catch((error) => {
-    console.log(error.code)
-    console.log(error.message)
-  });}
+      .then((result) => {
+        const user = result.user;
+        navigate("/app");
+      })
+      .catch((error) => {
+        console.log(error.code);
+        console.log(error.message);
+      });
+  }
 
   return (
     <div className="flex flex-col">
@@ -84,7 +89,11 @@ export default function SignUp() {
               </p>
             </div>
             <div>
-              <button onClick={signInWithGoogle} type="button" className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer">
+              <button
+                onClick={signInWithGoogle}
+                type="button"
+                className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer"
+              >
                 <img className="w-6 h-6" aria-hidden="true" src={GoogleG} />
                 Continue with Google
               </button>

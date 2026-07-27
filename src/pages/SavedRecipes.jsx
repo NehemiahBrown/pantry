@@ -37,7 +37,6 @@ export default function SavedRecipes() {
   }
 
   const filteredRecipes = savedRecipes.filter((recipe) => {
-    console.log(savedRecipes);
     const matchesSearch = recipe.recipeName
       .toLowerCase()
       .includes(inputValue.toLowerCase());

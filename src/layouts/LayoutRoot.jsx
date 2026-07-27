@@ -1,13 +1,21 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import MainHeader from "../components/layout/MainHeader";
 import MainFooter from "../components/layout/MainFooter";
 import Toast from "../components/common/Toast.jsx";
 import CreateRecipeModal from "../components/common/CreateRecipeModal.jsx";
-import { collection, doc, addDoc, deleteDoc, updateDoc} from "firebase/firestore";
+import {
+  collection,
+  doc,
+  addDoc,
+  deleteDoc,
+  updateDoc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../services/firebase.jsx";
-import {AuthContext} from "../App.jsx"
-
+import { AuthContext } from "../App.jsx";
 
 export default function RootLayout() {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -16,8 +24,30 @@ export default function RootLayout() {
   const [showCreateRecipeModal, setShowCreateRecipeModal] = useState(false);
   const [createdRecipeArray, setCreatedRecipeArray] = useState([]);
   const [recipeToEditObject, setRecipeToEditObject] = useState(null);
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
+  useEffect(() => {
+    if (!currentUser) return;
+
+    async function loadRecipes() {
+      const savedRecipesRef = collection(db, "savedRecipes");
+      const specificSavedRecipes = query(
+        savedRecipesRef,
+        where("user", "==", currentUser.uid),
+      );
+      const recipesToLoad = await getDocs(specificSavedRecipes);
+      const recipeArray = [];
+      recipesToLoad.forEach((recipe) => {
+        recipeArray.push({
+          firestoreId: recipe.id,
+          ...recipe.data(),
+        });
+      });
+      setSavedRecipes(recipeArray);
+    }
+
+    loadRecipes();
+  }, [currentUser]);
 
   function openCreateRecipeModal() {
     setShowCreateRecipeModal(true);
@@ -30,8 +60,7 @@ export default function RootLayout() {
   async function addNewRecipe(recipe) {
     try {
       const docRef = await addDoc(collection(db, "userRecipes"), recipe);
-     
-     
+
       const newRecipe = {
         id: docRef.id,
         ...recipe,
@@ -43,21 +72,20 @@ export default function RootLayout() {
   }
 
   async function deleteRecipe(recipeId) {
-    try{
-      const docRef = (doc(db, "userRecipes", recipeId));
+    try {
+      const docRef = doc(db, "userRecipes", recipeId);
 
-      await deleteDoc(docRef)
-   
-       setCreatedRecipeArray((current) =>
-         current.filter((recipe) => recipe.id !== recipeId),
-       );
-    } catch(error){
-        console.log("Error removing document: ", error)
+      await deleteDoc(docRef);
+
+      setCreatedRecipeArray((current) =>
+        current.filter((recipe) => recipe.id !== recipeId),
+      );
+    } catch (error) {
+      console.log("Error removing document: ", error);
     }
- 
   }
 
-   function editRecipe(recipeId) {
+  function editRecipe(recipeId) {
     const recipeToEdit = createdRecipeArray.find(
       (recipe) => recipe.id === recipeId,
     );
@@ -65,21 +93,42 @@ export default function RootLayout() {
     setShowCreateRecipeModal(true);
   }
 
-  function saveRecipe(recipe) {
-    setSavedRecipes((currentRecipes) => {
-      const alreadySaved = currentRecipes.some(
-        (savedRecipe) => savedRecipe.id === recipe.id,
-      );
+  async function saveRecipe(recipe) {
+    const alreadySavedRecipe = savedRecipes.find(
+      (savedRecipe) => savedRecipe.id === recipe.id,
+    );
 
-      if (alreadySaved) {
-        return currentRecipes.filter(
-          (savedRecipe) => savedRecipe.id !== recipe.id,
+    try {
+      if (alreadySavedRecipe) {
+        const recipeDocRef = doc(
+          db,
+          "savedRecipes",
+          alreadySavedRecipe.firestoreId,
         );
-      }
-      return [...currentRecipes, recipe];
-    });
-  }
 
+        await deleteDoc(recipeDocRef);
+
+        setSavedRecipes((current) =>
+          current.filter((savedRecipe) => savedRecipe.id !== recipe.id),
+        );
+
+        return;
+      }
+      const savedRecipe = {
+        user: currentUser.uid,
+        ...recipe,
+      };
+      const docRef = await addDoc(collection(db, "savedRecipes"), savedRecipe);
+
+      const recipeWithFirestoreId = {
+        ...savedRecipe,
+        firestoreId: docRef.id,
+      };
+      setSavedRecipes((current) => [...current, recipeWithFirestoreId]);
+    } catch (e) {
+      console.log("Error saving recipe: ", e.message);
+    }
+  }
   async function viewRecipe(recipeId) {
     try {
       const response = await fetch(
@@ -122,7 +171,7 @@ export default function RootLayout() {
               createdRecipeArray,
               setCreatedRecipeArray,
               editRecipe,
-              deleteRecipe
+              deleteRecipe,
             }}
           />
           {showToast && <Toast toastText={toastText} />}
