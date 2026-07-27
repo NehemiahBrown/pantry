@@ -6,6 +6,12 @@ import { Trash } from "lucide-react";
 import { X } from "lucide-react";
 import { ChefHat } from "lucide-react";
 
+import Egg from "../../assets/images/myRecipeEgg.png";
+import Sandwich from "../../assets/images/myRecipeSandwich.png";
+import Spaghetti from "../../assets/images/myRecipeSpaghetti.png";
+import Cake from "../../assets/images/myRecipeCake.png";
+import Chips from "../../assets/images/myRecipeChips.png";
+
 export default function RecipeDetailModal({
   activeRecipe,
   closeRecipeDetails,
@@ -13,13 +19,21 @@ export default function RecipeDetailModal({
   deleteRecipe,
   editRecipe,
 }) {
+  const RecipeImageLookup = {
+    breakfast: Egg,
+    lunch: Sandwich,
+    dinner: Spaghetti,
+    dessert: Cake,
+    snacks: Chips,
+  };
+
   return (
     <div className="backdrop-blur-sm px-4 md:px-16 fixed flex flex-col pt-20 pb-8 items-center justify-center inset-0 bg-black/50">
       <div className="flex flex-col w-full bg-[var(--surface)] h-[85vh] rounded-md max-w-[800px]">
         <div className="relative h-[300px] shrink-0">
           <img
             className="block h-full w-full object-cover rounded-t-md"
-            src={activeRecipe.image}
+            src={RecipeImageLookup[activeRecipe.recipeCategory]}
             alt={activeRecipe.image}
           />
           <X
