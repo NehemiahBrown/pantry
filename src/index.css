@@ -37,7 +37,7 @@
   --warning: #d98a24;
 
   --divider: #e8ddd2;
-  --disabled: #E0E0E0;
+  --disabled: #e0e0e0;
   --disabled-text: #757575;
 
   /* Fonts */
@@ -63,9 +63,14 @@
   --reading-width: 760px;
 }
 
+html,
 body {
   color: var(--text-primary);
   font-family: var(--font-body);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .heading-font {
@@ -99,7 +104,6 @@ body {
   cursor: pointer;
 }
 
-
 #toast {
   min-width: 250px;
   margin-left: -125px;
@@ -117,16 +121,16 @@ body {
     fadeout 0.5s 2.5s;
 }
 
-.loading-bar{
+.loading-bar {
   animation: loading-slide 1.8s ease-in-out infinite;
 }
 
-@keyframes loading-slide{
-  0%{
-    transform: translateX(-120%)
+@keyframes loading-slide {
+  0% {
+    transform: translateX(-120%);
   }
-  100%{
-    transform: translateX(320%)
+  100% {
+    transform: translateX(320%);
   }
 }
 
