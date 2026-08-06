@@ -14,9 +14,9 @@ import personTwo from "../assets/images/person2.jpg";
 import personThree from "../assets/images/person3.jpg";
 import personFour from "../assets/images/person4.jpg";
 import pantryWebpage from "../assets/images/pantrywebpage.png";
-import chickenCard from "../assets/images/chickencard.png";
+import discoverDish from "../assets/images/discoverdish.png";
 import recipeCard from "../assets/images/recipecard.png";
-import empanada from "../assets/images/empanada.png";
+import customRecipe from "../assets/images/customrecipe.png";
 
 export default function Landing() {
   useEffect(() => {
@@ -24,12 +24,11 @@ export default function Landing() {
   }, []);
 
   const navLinkStyle =
-    "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface-muted)] transition-colors duration-150";
+    "p-2 rounded-full cursor-pointer text-[var(--primary-text)] hover:bg-[var(--surface-muted)] transition-colors duration-150";
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-50 flex p-4 items-center justify-between bg-[var(--background)] shadow-[var(--shadow-bottom)]">
-        <div className="flex items-center gap-2 cursor-pointer">
-          <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
+        <div className="gap-2 cursor-pointer">
           <p className="heading-font text-[var(--text-primary)] text-2xl">
             <a href="#landing">Pantry</a>
           </p>
@@ -126,9 +125,9 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-            <div className="hero-image hidden lg:block">
+            <div className="hidden lg:block">
               <img
-                className="max-h-150 max-w-100"
+                className="max-h-200 max-w-200"
                 src={pantryWebpage}
                 alt="A design overview of Pantry."
               />
@@ -157,10 +156,10 @@ export default function Landing() {
                 <p className="heading-font text-[var(--accent)]">01</p>
                 <hr className="flex-1 text-[var(--accent-soft)]" />
               </div>
-              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--secondary-dark)]/30 flex items-center justify-center">
+              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--secondary)]/30 flex items-center justify-center">
                 <Search
                   size={24}
-                  className="text-[var(--secondary-dark)]"
+                  className="text-[var(--secondary)]"
                   strokeWidth={1.75}
                 />
               </div>
@@ -176,10 +175,10 @@ export default function Landing() {
                 <p className="heading-font text-[var(--accent)]">02</p>
                 <hr className="flex-1 text-[var(--accent-soft)]" />
               </div>
-              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--accent-dark)]/30 flex items-center justify-center">
+              <div className="mt-2 w-12 h-12 rounded-md bg-[var(--accent)]/30 flex items-center justify-center">
                 <Link
                   size={24}
-                  className="text-[var(--accent-dark)]"
+                  className="text-[var(--accent)]"
                   strokeWidth={1.75}
                 />
               </div>
@@ -270,7 +269,7 @@ export default function Landing() {
             <div className="hidden lg:block">
               <img
                 className="w-80 xl:w-100 rounded-lg"
-                src={chickenCard}
+                src={discoverDish}
                 alt="A preview of a recipe card."
               />
             </div>
@@ -278,7 +277,7 @@ export default function Landing() {
           <hr className="my-14 border-0 h-px mx-auto w-full lg:w-full bg-[var(--divider)]" />
           <div className="flex  items-center justify-between gap-8">
             <div className="hidden lg:block">
-              <img className="w-100 h-90 rounded-lg" src={recipeCard} alt="" />
+              <img className="w-150 h-150 rounded-lg" src={recipeCard} alt="" />
             </div>
             <div>
               <p className="text-[var(--accent)]">COOK MODE</p>
@@ -344,7 +343,7 @@ export default function Landing() {
             <div className="flex flex-col gap-4 hidden lg:flex">
               <img
                 className="w-80 xl:w-100 rounded-lg"
-                src={empanada}
+                src={customRecipe}
                 alt=""
               />
             </div>

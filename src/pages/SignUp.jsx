@@ -56,8 +56,7 @@ export default function SignUp() {
   return (
     <div className="flex flex-col">
       <header className="sticky top-0 z-50 flex p-4 items-center justify-between bg-[var(--background)] shadow-[var(--shadow-bottom)]">
-        <NavLink to="/" className="flex items-center gap-2 cursor-pointer">
-          <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
+        <NavLink to="/" className="gap-2 cursor-pointer">
           <p className="heading-font text-[var(--text-primary)] text-2xl">
             <span>Pantry</span>
           </p>
@@ -81,10 +80,10 @@ export default function SignUp() {
             className="flex gap-6 flex-col w-full max-w-lg bg-[var(--surface)] shadow-[var(--shadow-lg)] xs:rounded-2xl py-8 px-6"
           >
             <div>
-              <h1 className="mt-4 heading-font text-3xl text-center text-[var(--primary)]">
+              <h1 className="mt-4 heading-font text-3xl text-center text-[var(--text-primary)]">
                 Create your account
               </h1>
-              <p className="mt-2 body-font text-center text-sm text-[var(--primary-light)]">
+              <p className="mt-2 body-font text-center text-sm text-[var(--text-primary)]">
                 Start stocking your pantry.
               </p>
             </div>
@@ -92,7 +91,7 @@ export default function SignUp() {
               <button
                 onClick={signInWithGoogle}
                 type="button"
-                className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer"
+                className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-inverse)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] hover:text-[var(--text-primary)] focus:outline-none cursor-pointer"
               >
                 <img className="w-6 h-6" aria-hidden="true" src={GoogleG} />
                 Continue with Google
@@ -100,20 +99,20 @@ export default function SignUp() {
             </div>
             <div className="my-4 flex items-center gap-2">
               <hr className="flex-1 border border-0 h-px bg-[var(--divider)] " />
-              <p className="body-font text-center text-xs text-[var(--primary-light)]">
+              <p className="body-font text-center text-xs text-[var(--text-primary)]">
                 or
               </p>
               <hr className="flex-1 border border-0 h-px bg-[var(--divider)]" />
             </div>
             <div className="flex flex-col">
               <label
-                className="mb-2 text-[var(--primary-light)]"
+                className="mb-2 text-[var(--text-primary)]"
                 htmlFor="fullName"
               >
                 Full Name
               </label>
               <input
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                 type="text"
                 id="fullName"
                 name="fullName"
@@ -122,13 +121,13 @@ export default function SignUp() {
               />
 
               <label
-                className="mt-4 mb-2 text-[var(--primary-light)]"
+                className="mt-4 mb-2 text-[var(--text-primary)]"
                 htmlFor="userEmail"
               >
                 Email
               </label>
               <input
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                 type="email"
                 id="userEmail"
                 name="userEmail"
@@ -137,13 +136,13 @@ export default function SignUp() {
               />
 
               <label
-                className="mt-4 mb-2 text-[var(--primary-light)]"
+                className="mt-4 mb-2 text-[var(--text-primary)]"
                 htmlFor="userPassword"
               >
                 Password
               </label>
               <input
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                 type="password"
                 id="userPassword"
                 name="userPassword"
@@ -152,13 +151,13 @@ export default function SignUp() {
               />
 
               <label
-                className="mt-4 mb-2 text-[var(--primary-light)]"
+                className="mt-4 mb-2 text-[var(--text-primary)]"
                 htmlFor="confirmPassword"
               >
                 Confirm Password
               </label>
               <input
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                 type="password"
                 id="confirmPassword"
                 name="confirmPassword"
@@ -169,7 +168,7 @@ export default function SignUp() {
             <div className="mt-6">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--accent)] px-4 py-3 text-sm font-medium text-white shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] hover:text-[var(--text-primary)] focus:outline-none cursor-pointer"
+                className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--accent)] px-4 py-3 text-sm font-medium text-[var(--text-inverse)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] hover:text-[var(--text-primary)] focus:outline-none cursor-pointer"
               >
                 Create Account
               </button>
@@ -177,7 +176,7 @@ export default function SignUp() {
             <p className="text-center">
               Already have an account?
               <NavLink to="/log-in" className="underline text-[var(--accent)]">
-                <span className="block sm:inline">Log In</span>
+                <span className="block ml-2 sm:inline">Log In</span>
               </NavLink>
             </p>
           </form>

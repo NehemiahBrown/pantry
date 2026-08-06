@@ -240,7 +240,7 @@ export default function CreateRecipeModal({
                 type="text"
                 name="recipeName"
                 id="recipeName"
-                className="block w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                className="block w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -251,7 +251,7 @@ export default function CreateRecipeModal({
                 Category
               </label>
               <select
-                className="block w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)]"
+                className="block w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)]"
                 name="recipeCategory"
                 id="recipeCategory"
                 defaultValue={recipeToEditObject?.recipeCategory ?? "breakfast"}
@@ -270,7 +270,7 @@ export default function CreateRecipeModal({
                 name="recipieSummary"
                 id="recipeSummary"
                 maxLength="200"
-                className="block w-full h-[112px] rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200 resize-none"
+                className="block w-full h-[112px] rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200 resize-none"
               ></textarea>
             </div>
             <div className="flex flex-col md:flex-row gap-4">
@@ -287,7 +287,7 @@ export default function CreateRecipeModal({
                     type="number"
                     id="prepTime"
                     name="prepTime"
-                    className=" w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                    className=" w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-inverse)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                     min="1"
                     max="999"
                     step="1"
@@ -310,7 +310,7 @@ export default function CreateRecipeModal({
                     type="number"
                     id="cookTime"
                     name="cookTime"
-                    className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                    className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-inverse)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                     min="1"
                     max="999"
                     step="1"
@@ -333,7 +333,7 @@ export default function CreateRecipeModal({
                     type="number"
                     id="servings"
                     name="servings"
-                    className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                    className="w-[200px] md:w-full rounded-lg border border-[var(--border)] px-4 bg-white py-3 text-[var(--text-inverse)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                     min="1"
                     max="10000"
                     step="1"
@@ -369,7 +369,7 @@ export default function CreateRecipeModal({
                       }
                       type="text"
                       value={ingredient.ingredientName}
-                      className="flex-1 min-w-0 px-4 rounded-lg border border-[var(--border)] bg-white py-2 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                      className="flex-1 min-w-0 px-4 rounded-lg border border-[var(--border)] bg-white py-2 text-[var(--text-inverse)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                       onChange={(e) =>
                         updateIngredient(ingredient.id, e.target.value)
                       }
@@ -412,7 +412,7 @@ export default function CreateRecipeModal({
                     <input
                       type="text"
                       value={instruction.instructionName}
-                      className="px-4 flex-1 rounded-lg min-w-0 border border-[var(--border)] bg-white py-2 text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                      className="px-4 flex-1 rounded-lg min-w-0 border border-[var(--border)] bg-white py-2 text-[var(--text-inverse)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                       ref={
                         instructions.length - 1 === index
                           ? inputInstruction

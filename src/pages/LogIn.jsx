@@ -35,8 +35,7 @@ export default function LogIn() {
   return (
     <div className="flex flex-1 flex-col">
       <header className="sticky top-0 z-50 flex p-4 items-center justify-between bg-[var(--background)] shadow-[var(--shadow-bottom)]">
-        <NavLink to="/" className="flex items-center gap-2 cursor-pointer">
-          <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
+        <NavLink to="/" className="gap-2 cursor-pointer">
           <p className="heading-font text-[var(--text-primary)] text-2xl">
             <span>Pantry</span>
           </p>
@@ -57,15 +56,15 @@ export default function LogIn() {
             className="flex gap-6 flex-col w-full max-w-lg bg-[var(--surface)] shadow-[var(--shadow-lg)] xs:rounded-xl py-8 px-6"
           >
             <div>
-              <h1 className="mt-4 heading-font text-3xl text-center text-[var(--primary)]">
+              <h1 className="mt-4 heading-font text-3xl text-center text-[var(--primary-text)]">
                 Welcome back
               </h1>
-              <p className="mt-2 body-font text-center text-sm text-[var(--primary-light)]">
+              <p className="mt-2 body-font text-center text-sm text-[var(--primary-text)]">
                 Log in to your Pantry account.
               </p>
             </div>
             <div>
-              <button onClick={signInWithGoogle} type="button" className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] focus:outline-none cursor-pointer">
+              <button onClick={signInWithGoogle} type="button" className="flex w-full items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-sm font-medium text-[var(--text-inverse)] shadow-[var(--shadow-sm)] transition-colors duration-200 hover:bg-[var(--background-soft)] hover:text-[var(--text-primary)] focus:outline-none cursor-pointer">
                 <img className="w-6 h-6" aria-hidden="true" src={GoogleG} />
                 Continue with Google
               </button>
@@ -79,13 +78,13 @@ export default function LogIn() {
             </div>
             <div className="flex flex-col">
               <label
-                className="mt-4 mb-2 text-[var(--primary-light)]"
+                className="mt-4 mb-2 text-[var(--text-primary)]"
                 htmlFor="userEmail"
               >
                 Email
               </label>
               <input
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                 type="email"
                 id="userEmail"
                 name="userEmail"
@@ -93,13 +92,13 @@ export default function LogIn() {
               />
 
               <label
-                className="mt-4 mb-2 text-[var(--primary-light)]"
+                className="mt-4 mb-2 text-[var(--text-primary)]"
                 htmlFor="userPassword"
               >
                 Password
               </label>
               <input
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
+                className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--text-inverse)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 focus:shadow-[var(--shadow-sm)] transition-all duration-200"
                 type="password"
                 id="userPassword"
                 name="userPassword"

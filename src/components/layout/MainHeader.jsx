@@ -30,7 +30,7 @@ export default function MainHeader({ openCreateRecipeModal }) {
       });
   }
   const navLinkStyle =
-    "p-2 rounded-full cursor-pointer text-[var(--primary)] hover:bg-[var(--surface)] transition-colors duration-150";
+    "p-2 rounded-full cursor-pointer text-[var(--primary-text)] hover:bg-[var(--surface)] transition-colors duration-150";
   const activeLink =
     "py-2 px-4 rounded-full cursor-pointer text-[var(--accent-soft)] bg-[var(--accent)]";
 
@@ -44,8 +44,7 @@ export default function MainHeader({ openCreateRecipeModal }) {
           />
 
           <NavLink to="/app">
-            <div className="flex items-center gap-2 cursor-pointer">
-              <div className="w-2 h-2 bg-[var(--accent)] rounded-full"></div>
+            <div className="gap-2 cursor-pointer">
               <p className="z-[2] heading-font text-[var(--text-primary)] text-2xl">
                 Pantry
               </p>
