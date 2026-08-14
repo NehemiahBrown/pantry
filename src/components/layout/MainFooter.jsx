@@ -1,4 +1,3 @@
-import facebookIcon from "../../assets/images/facebook-icon.svg";
 import linkedinIcon from "../../assets/images/linkedin-icon.svg";
 import githubIcon from "../../assets/images/github-icon.svg";
 
@@ -16,15 +15,14 @@ export default function MainFooter() {
         </div>
 
         <div className="flex gap-2">
-          <img className="w-6 h-6 cursor-pointer" src={facebookIcon} />
           <a
             href="https://www.linkedin.com/in/nehemiah-browndev"
             target="_blank"
           >
-            <img className="w-6 h-6 cursor-pointer" src={linkedinIcon} />
+            <img className="w-7 h-7 cursor-pointer" src={linkedinIcon} />
           </a>
           <a href="https://github.com/NehemiahBrown/pantry" target="_blank">
-            <img className="w-6 h-6 cursor-pointer" src={githubIcon} />
+            <img className="w-7 h-7 cursor-pointer" src={githubIcon} />
           </a>
         </div>
       </div>
