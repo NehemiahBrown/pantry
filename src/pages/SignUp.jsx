@@ -1,4 +1,5 @@
 import { auth, provider } from "../services/firebase.jsx";
+import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
@@ -12,6 +13,7 @@ import SignUpImg from "../assets/images/signupimg.jpg";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   function createNewUser(e) {
     e.preventDefault();
@@ -22,7 +24,7 @@ export default function SignUp() {
     const fullName = e.target.fullName.value;
 
     if (password !== confirmPassword) {
-      console.log("Passwords do not match");
+      setErrorMessage("Passwords do not match.")
       return;
     }
 
@@ -105,6 +107,7 @@ export default function SignUp() {
               <hr className="flex-1 border border-0 h-px bg-[var(--divider)]" />
             </div>
             <div className="flex flex-col">
+              { errorMessage && <p className="text-[var(--error)] font-bold text-lg mb-2">{errorMessage}</p>}
               <label
                 className="mb-2 text-[var(--text-primary)]"
                 htmlFor="fullName"
