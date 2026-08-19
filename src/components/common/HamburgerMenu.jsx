@@ -24,7 +24,7 @@ export default function HamburgerMenu({menuOpen, closeMenu}){
             <hr className="my-2 border border-0 h-px bg-[var(--accent)] " />
         <X onClick={closeMenu} size={32} className="absolute top-3 right-6 cursor-pointer active:scale-90 rounded-full p-1 hover:bg-[var(--accent)] hover:text-[var(--surface)] transition-all duration-200"/>
         <ul className="mt-6 flex flex-col gap-4">
-          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] hover:text-[var(--surface)] active:scale-95 transition-all duration-200 cursor-pointer">
+          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)]  active:scale-95 transition-all duration-200 cursor-pointer">
             <NavLink
               to="/app"
               onClick={closeMenu}
@@ -32,7 +32,7 @@ export default function HamburgerMenu({menuOpen, closeMenu}){
               Discover
             </NavLink>
           </li>
-          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] hover:text-[var(--surface)] active:scale-95 transition-all duration-200 cursor-pointer">
+          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] active:scale-95 transition-all duration-200 cursor-pointer">
             <NavLink
               to="/app/saved-recipes"
               onClick={closeMenu}
@@ -40,7 +40,7 @@ export default function HamburgerMenu({menuOpen, closeMenu}){
               Saved Recipes
             </NavLink>
           </li>
-          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] hover:text-[var(--surface)] active:scale-95 transition-all duration-200 cursor-pointer">
+          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] active:scale-95 transition-all duration-200 cursor-pointer">
             <NavLink
               to="/app/my-recipes"
               onClick={closeMenu}
@@ -48,7 +48,7 @@ export default function HamburgerMenu({menuOpen, closeMenu}){
               My Recipes
             </NavLink>
           </li>
-          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] hover:text-[var(--surface)] active:scale-95 transition-all duration-200">
+          <li className="heading-font text-xl p-2 hover:bg-[var(--secondary)] active:scale-95 transition-all duration-200">
             <button
             className="flex items-center gap-3 cursor-pointer"
               onClick={signUserOut}

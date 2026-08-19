@@ -93,6 +93,9 @@ export default function MainHeader({ openCreateRecipeModal }) {
           >
             <Plus size={14} /> Create Recipe
           </button>
+          <button onClick={signUserOut} className="hidden md:flex flex items-center gap-1 text-[var(--surface)] bg-[var(--accent)] rounded-full px-2.5 py-2 text-sm hover:brightness-90 cursor-pointer">
+            Log Out <LogOut size={14}/>
+          </button>
         </div>
       </header>
       <HamburgerMenu
