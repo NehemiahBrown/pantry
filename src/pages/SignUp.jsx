@@ -17,17 +17,18 @@ export default function SignUp() {
 
   function createNewUser(e) {
     e.preventDefault();
+    setErrorMessage("")
 
     const email = e.target.userEmail.value;
     const password = e.target.userPassword.value;
     const confirmPassword = e.target.confirmPassword.value;
     const fullName = e.target.fullName.value;
 
+
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match.")
       return;
     }
-
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -39,7 +40,19 @@ export default function SignUp() {
         navigate("/app");
       })
       .catch((error) => {
-        console.log(error.message);
+        switch(error.code){
+          case "auth/invalid-email":
+            setErrorMessage("Enter a valid email address.")
+            break;
+          case "auth/email-already-in-use":
+            setErrorMessage("This password is already in use.")
+            break;
+          case "auth/network-request-failed":
+            setErrorMessage("Check your internet connection.")
+            break;
+          default:
+            setErrorMessage("Something went wrong. Please try again.")
+        }
       });
   }
 

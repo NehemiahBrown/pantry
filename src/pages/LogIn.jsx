@@ -1,5 +1,6 @@
 import { auth, provider } from "../services/firebase.jsx";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { NavLink } from "react-router-dom";
 import LogInImg from "../assets/images/loginimage.jpg";
@@ -7,6 +8,7 @@ import GoogleG from "../assets/images/google-g.png";
 
 export default function LogIn() {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   function signInUser(e) {
     e.preventDefault();
@@ -19,7 +21,20 @@ export default function LogIn() {
         navigate("/app");
       })
       .catch((error) => {
-        console.log(error.message);
+        switch(error.code){
+          case "auth/invalid-email":
+            setErrorMessage("Enter a valid email address.")
+            break;
+          case "auth/invalid-credential":
+            setErrorMessage("Email or password invalid.")
+            break;
+          case "auth/network-request-failed":
+            setErrorMessage("Network connection failed. Please try again.")
+            break;
+          default:
+            setErrorMessage("Something went wrong. Please try again.")
+
+        }
       });
   }
     function signInWithGoogle(){
@@ -77,6 +92,7 @@ export default function LogIn() {
               <hr className="flex-1 border border-0 h-px bg-[var(--divider)]" />
             </div>
             <div className="flex flex-col">
+              {errorMessage && <p>{errorMessage}</p>}
               <label
                 className="mt-4 mb-2 text-[var(--text-primary)]"
                 htmlFor="userEmail"
